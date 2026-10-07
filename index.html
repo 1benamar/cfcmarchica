@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CFC Marchica · Carte professionnelle à Nador</title>
+<meta name="description" content="CFC Marchica, centre de formation à la carte professionnelle de conducteur à Nador. Ouvert de 9 h à 17 h. WhatsApp : +212 6 61 21 42 01.">
+<meta name="theme-color" content="#0b0b0b">
+<meta property="og:title" content="CFC Marchica · Carte professionnelle à Nador">
+<meta property="og:description" content="Formation à la carte professionnelle de conducteur, à Nador.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg?v=20261006" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261006">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<!-- Splash: se oculta solo a los 4,5 s aunque falle el JS -->
+<div class="splash" data-splash aria-hidden="true">
+  <div class="splash__stripes"></div>
+  <p class="splash__label mono">CFC MARCHICA <span>—</span> <b data-splash-count>0</b> km/h</p>
+</div>
+
+<div class="progress" aria-hidden="true"><span data-progress></span></div>
+
+<div class="cursor" aria-hidden="true" data-cursor>
+  <span class="cursor__dot"></span>
+  <span class="cursor__label mono" data-cursor-label>N 35.1681° · W 2.9335°</span>
+</div>
+
+<header class="nav" data-nav>
+  <a class="nav__logo" href="#top" aria-label="CFC Marchica, accueil">
+    <span class="nav__mark">CFC</span><span class="nav__name">Marchica</span>
+  </a>
+  <nav class="nav__links" data-menu aria-label="Navigation principale">
+    <a href="#formation"><span class="mono">02</span> Formation</a>
+    <a href="#parcours"><span class="mono">03</span> Parcours</a>
+    <a href="#quiz"><span class="mono">04</span> Quiz</a>
+    <a href="#dossier"><span class="mono">05</span> Dossier</a>
+    <a href="#contact"><span class="mono">06</span> Contact</a>
+  </nav>
+  <span class="status mono" data-status><i></i><b data-status-text>09:00 — 17:00</b></span>
+  <a class="btn btn--ink nav__cta" href="https://wa.me/212661214201" target="_blank" rel="noopener">WhatsApp</a>
+  <button class="nav__burger mono" type="button" aria-expanded="false" aria-controls="menu" data-burger>Menu</button>
+</header>
+
+<main id="top">
+
+  <!-- 01 · HERO -->
+  <section class="hero">
+    <div class="grid hero__grid">
+      <div class="cell hero__copy">
+        <p class="kicker mono">01 — Centre de formation · Nador, Maroc</p>
+        <h1 class="hero__title">
+          <span class="line"><span>Prenez</span></span>
+          <span class="line"><span>la route</span></span>
+          <span class="line"><span><mark>en pro.</mark></span></span>
+        </h1>
+        <p class="hero__lead">Formation à la carte professionnelle de conducteur, à Nador. Vous apprenez la réglementation, la sécurité et les réflexes d'un conducteur professionnel.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--yellow" href="#contact">Je m'inscris <span aria-hidden="true">→</span></a>
+          <a class="btn btn--line" href="#quiz">Faire le quiz</a>
+        </div>
+      </div>
+
+      <div class="cell hero__card">
+        <div class="pcard" data-pcard tabindex="0" role="button" aria-pressed="false" aria-label="Retourner la carte">
+          <div class="pcard__inner">
+            <div class="pcard__face pcard__front">
+              <div class="pcard__band mono"><span>CFC MARCHICA</span><span>SPÉCIMEN</span></div>
+              <p class="pcard__title">Carte<br>professionnelle</p>
+              <p class="pcard__sub mono">Conducteur · Transport</p>
+              <div class="pcard__body">
+                <div class="pcard__photo" aria-hidden="true">
+                  <svg viewBox="0 0 60 70"><circle cx="30" cy="24" r="13"/><path d="M6 70c0-15 11-25 24-25s24 10 24 25z"/></svg>
+                </div>
+                <dl class="pcard__fields mono">
+                  <div><dt>Nom</dt><dd>VOTRE NOM</dd></div>
+                  <div><dt>Centre</dt><dd>NADOR</dd></div>
+                  <div><dt>Statut</dt><dd data-pcard-status>EN ROUTE…</dd></div>
+                </dl>
+              </div>
+              <div class="pcard__code" aria-hidden="true"></div>
+            </div>
+            <div class="pcard__face pcard__back">
+              <p class="mono">Verso</p>
+              <p class="pcard__big">Votre nom<br>ici&nbsp;?</p>
+              <p class="pcard__call mono">Appelez le<br><strong>+212 6 61 21 42 01</strong></p>
+            </div>
+          </div>
+        </div>
+        <p class="hint mono">↻ Cliquez sur la carte</p>
+      </div>
+    </div>
+
+    <div class="grid hero__facts">
+      <a class="cell fact" href="tel:+212661214201"><span class="mono">Téléphone</span><strong>+212 6 61 21 42 01</strong></a>
+      <div class="cell fact"><span class="mono">Horaires</span><strong>09:00 — 17:00</strong></div>
+      <div class="cell fact"><span class="mono">Ville</span><strong>Nador</strong></div>
+      <a class="cell fact" href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener"><span class="mono">Instagram</span><strong>@cfcmarchica</strong></a>
+    </div>
+
+    <div class="road" aria-hidden="true" data-road>
+      <div class="road__lines"></div>
+      <div class="truck" data-truck>
+        <svg viewBox="0 0 260 112" class="truck__svg">
+          <rect class="t-box" x="2" y="8" width="168" height="72"/>
+          <text x="86" y="52" text-anchor="middle" class="t-label">CFC MARCHICA</text>
+          <rect class="t-cab" x="176" y="26" width="64" height="54"/>
+          <rect class="t-win" x="206" y="34" width="26" height="20"/>
+          <rect class="t-light" x="236" y="64" width="8" height="8"/>
+          <rect class="t-chassis" x="0" y="80" width="246" height="7"/>
+          <g class="wheel" style="transform-origin:36px 92px"><circle cx="36" cy="92" r="15"/><rect x="34" y="80" width="4" height="24"/></g>
+          <g class="wheel" style="transform-origin:72px 92px"><circle cx="72" cy="92" r="15"/><rect x="70" y="80" width="4" height="24"/></g>
+          <g class="wheel" style="transform-origin:146px 92px"><circle cx="146" cy="92" r="15"/><rect x="144" y="80" width="4" height="24"/></g>
+          <g class="wheel" style="transform-origin:216px 92px"><circle cx="216" cy="92" r="15"/><rect x="214" y="80" width="4" height="24"/></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee__track" data-marquee>
+      <span>Carte professionnelle <i>◆</i> Nador <i>◆</i> Marchandises <i>◆</i> Voyageurs <i>◆</i> Sécurité <i>◆</i>&nbsp;</span>
+      <span>Carte professionnelle <i>◆</i> Nador <i>◆</i> Marchandises <i>◆</i> Voyageurs <i>◆</i> Sécurité <i>◆</i>&nbsp;</span>
+    </div>
+  </section>
+
+  <!-- 02 · FORMATION -->
+  <section class="section" id="formation">
+    <div class="grid section__head">
+      <p class="cell kicker mono">02 — La formation</p>
+      <h2 class="cell reveal">Une carte.<br>Un métier.</h2>
+      <p class="cell lead reveal">Au Maroc, la carte professionnelle est exigée pour conduire, à titre professionnel, un véhicule de transport de marchandises ou de voyageurs. CFC Marchica vous prépare à l'obtenir.</p>
+    </div>
+    <div class="grid modules">
+      <article class="cell module reveal">
+        <span class="module__num">01</span>
+        <h3>Réglementation</h3>
+        <p>Code de la route, règles du transport professionnel, documents de bord.</p>
+      </article>
+      <article class="cell module reveal">
+        <span class="module__num">02</span>
+        <h3>Sécurité routière</h3>
+        <p>Anticiper, garder ses distances, connaître les angles morts de son véhicule.</p>
+      </article>
+      <article class="cell module reveal">
+        <span class="module__num">03</span>
+        <h3>Conduite rationnelle</h3>
+        <p>Rouler souple pour consommer moins et user moins le véhicule.</p>
+      </article>
+      <article class="cell module reveal">
+        <span class="module__num">04</span>
+        <h3>Premiers secours</h3>
+        <p>Protéger, alerter, secourir : les bons gestes en cas d'accident.</p>
+      </article>
+      <article class="cell module reveal">
+        <span class="module__num">05</span>
+        <h3>Chargement &amp; passagers</h3>
+        <p>Répartir et arrimer une charge, assurer la sécurité des personnes à bord.</p>
+      </article>
+      <article class="cell module reveal">
+        <span class="module__num">06</span>
+        <h3>Vérifications</h3>
+        <p>Pneus, freins, feux, niveaux : le tour du véhicule avant chaque départ.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 · PARCOURS (horizontal en escritorio) -->
+  <section class="parcours" id="parcours" data-parcours>
+    <div class="parcours__pin">
+      <div class="parcours__head">
+        <p class="kicker mono">03 — Le parcours</p>
+        <h2>Quatre étapes<br>jusqu'à votre carte.</h2>
+      </div>
+      <div class="parcours__track" data-track>
+        <article class="stop">
+          <p class="stop__km mono">KM 00</p>
+          <h3>Premier contact</h3>
+          <p>Un message WhatsApp ou un passage au centre, de 9 h à 17 h. On répond à vos questions et on vous indique la prochaine session.</p>
+        </article>
+        <article class="stop">
+          <p class="stop__km mono">KM 01</p>
+          <h3>Inscription</h3>
+          <p>Vous déposez votre dossier. On vérifie avec vous qu'il ne manque rien.</p>
+        </article>
+        <article class="stop">
+          <p class="stop__km mono">KM 02</p>
+          <h3>Formation</h3>
+          <p>Cours théoriques et mises en situation : réglementation, sécurité, conduite rationnelle, premiers secours.</p>
+        </article>
+        <article class="stop stop--end">
+          <p class="stop__km mono">KM 03</p>
+          <h3>Carte en main</h3>
+          <p>Formation validée : vous pouvez prendre la route en professionnel.</p>
+          <a class="btn btn--ink" href="#contact">Commencer <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+      <div class="parcours__road" aria-hidden="true">
+        <span class="parcours__fill" data-parcours-fill></span>
+        <span class="parcours__truck" data-parcours-truck>
+          <svg viewBox="0 0 60 30"><rect x="0" y="2" width="38" height="20"/><rect x="40" y="8" width="16" height="14"/><circle cx="10" cy="25" r="4.5"/><circle cx="30" cy="25" r="4.5"/><circle cx="48" cy="25" r="4.5"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · QUIZ -->
+  <section class="section quiz" id="quiz">
+    <div class="grid section__head">
+      <p class="cell kicker mono">04 — Testez-vous</p>
+      <h2 class="cell reveal">Prêt pour<br>la route&nbsp;?</h2>
+      <p class="cell lead reveal">Six questions de sécurité routière. Pas d'inscription, pas de note officielle : juste pour voir où vous en êtes.</p>
+    </div>
+    <div class="quiz__box" data-quiz>
+      <div class="quiz__top mono">
+        <span data-quiz-step>6 questions</span>
+        <span data-quiz-score>Score 0</span>
+      </div>
+      <div class="quiz__bar"><span data-quiz-bar></span></div>
+      <div class="quiz__body" data-quiz-body>
+        <div class="quiz__start">
+          <p class="quiz__q">Panneaux, distances, premiers secours… vous connaissez&nbsp;?</p>
+          <button class="btn btn--yellow" type="button" data-quiz-start>Commencer le quiz <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · DOSSIER -->
+  <section class="section dossier" id="dossier">
+    <div class="grid dossier__grid">
+      <div class="cell dossier__intro">
+        <p class="kicker mono">05 — Votre dossier</p>
+        <h2 class="reveal">Cochez.<br>C'est prêt.</h2>
+        <p class="lead">Préparez vos documents avant de venir. Liste indicative : elle vous est confirmée à l'inscription.</p>
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge__cells" data-gauge><span></span><span></span><span></span><span></span></div>
+          <p class="gauge__pct mono"><b data-gauge-pct>0</b>%</p>
+        </div>
+        <p class="gauge__msg mono" data-gauge-msg>Réservoir vide. On commence ?</p>
+      </div>
+      <ul class="cell checklist" data-checklist>
+        <li><label><input type="checkbox" value="cin"><span class="box" aria-hidden="true"></span><span>Copie de la CIN</span></label></li>
+        <li><label><input type="checkbox" value="permis"><span class="box" aria-hidden="true"></span><span>Copie du permis de conduire</span></label></li>
+        <li><label><input type="checkbox" value="photos"><span class="box" aria-hidden="true"></span><span>Photos d'identité</span></label></li>
+        <li><label><input type="checkbox" value="medical"><span class="box" aria-hidden="true"></span><span>Certificat médical</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 · CONTACT -->
+  <section class="contact" id="contact">
+    <div class="grid contact__grid">
+      <div class="cell contact__form">
+        <p class="kicker mono">06 — Contact</p>
+        <h2 class="reveal">Écrivez-nous<br>sur WhatsApp.</h2>
+        <form class="wa" data-wa action="https://wa.me/212661214201" method="get" target="_blank">
+          <label class="field">
+            <span class="mono">Votre prénom</span>
+            <input type="text" name="nom" autocomplete="given-name" placeholder="Ex. Youssef" data-wa-name>
+          </label>
+          <fieldset class="field">
+            <legend class="mono">Vous voulez…</legend>
+            <div class="chips">
+              <label><input type="radio" name="objet" value="inscription" checked><span>M'inscrire</span></label>
+              <label><input type="radio" name="objet" value="infos"><span>Des informations</span></label>
+              <label><input type="radio" name="objet" value="session"><span>La prochaine session</span></label>
+              <label><input type="radio" name="objet" value="tarifs"><span>Les tarifs</span></label>
+            </div>
+          </fieldset>
+          <label class="field">
+            <span class="mono">Message (facultatif)</span>
+            <textarea name="text" rows="3" placeholder="Une question ?" data-wa-msg></textarea>
+          </label>
+          <div class="bubble" aria-live="polite">
+            <span class="mono">Aperçu</span>
+            <p data-wa-preview>Bonjour CFC Marchica, je souhaite m'inscrire à la formation carte professionnelle.</p>
+          </div>
+          <button class="btn btn--yellow" type="submit">Envoyer sur WhatsApp <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+
+      <div class="cell contact__side">
+        <div class="clock">
+          <p class="mono">Heure à Nador</p>
+          <p class="clock__time mono" data-clock>--:--:--</p>
+          <p class="clock__state mono" data-clock-state>Ouvert de 09:00 à 17:00</p>
+          <div class="day" aria-hidden="true">
+            <span class="day__open"></span>
+            <span class="day__now" data-day-now></span>
+            <span class="day__lbl mono" style="left:0">00</span>
+            <span class="day__lbl mono" style="left:37.5%">09</span>
+            <span class="day__lbl mono" style="left:70.83%">17</span>
+            <span class="day__lbl mono day__lbl--end">24</span>
+          </div>
+        </div>
+        <a class="contact__line" href="tel:+212661214201"><span class="mono">Téléphone</span><strong>+212 6 61 21 42 01</strong></a>
+        <a class="contact__line" href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener"><span class="mono">Instagram</span><strong>@cfcmarchica</strong></a>
+        <div class="map">
+          <iframe title="Carte : Nador, Maroc" src="https://www.google.com/maps?q=Nador%2C%20Maroc&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · FAQ -->
+  <section class="section faq" id="faq">
+    <div class="grid section__head">
+      <p class="cell kicker mono">07 — Questions</p>
+      <h2 class="cell reveal">On vous<br>répond.</h2>
+      <p class="cell lead reveal">Votre question n'est pas dans la liste&nbsp;? Écrivez-nous sur WhatsApp au <a href="https://wa.me/212661214201" target="_blank" rel="noopener">+212&nbsp;6&nbsp;61&nbsp;21&nbsp;42&nbsp;01</a>.</p>
+    </div>
+    <div class="faq__list">
+      <details>
+        <summary>Faut-il déjà avoir le permis de conduire&nbsp;?</summary>
+        <p>Oui. La carte professionnelle s'ajoute au permis correspondant à la catégorie du véhicule que vous conduisez.</p>
+      </details>
+      <details>
+        <summary>Combien coûte la formation&nbsp;?</summary>
+        <p>Les tarifs dépendent de la session. Écrivez-nous sur WhatsApp au +212 6 61 21 42 01 et nous vous donnons le détail.</p>
+      </details>
+      <details>
+        <summary>Quels sont vos horaires&nbsp;?</summary>
+        <p>Le centre vous accueille de 9 h à 17 h.</p>
+      </details>
+      <details>
+        <summary>Où se trouve le centre&nbsp;?</summary>
+        <p>À Nador. Envoyez-nous un message et nous vous partageons la localisation exacte.</p>
+      </details>
+      <details>
+        <summary>Comment connaître les dates des prochaines sessions&nbsp;?</summary>
+        <p>Nous les publions sur Instagram, <a href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener">@cfcmarchica</a>. Vous pouvez aussi nous les demander sur WhatsApp.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="footer__big" aria-hidden="true">CFC MARCHICA</p>
+  <div class="grid footer__grid mono">
+    <p class="cell">Centre de formation<br>Carte professionnelle</p>
+    <p class="cell">Nador, Maroc<br>09:00 — 17:00</p>
+    <p class="cell"><a href="tel:+212661214201">+212 6 61 21 42 01</a><br><a href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener">@cfcmarchica</a></p>
+    <p class="cell">© <span data-year>2026</span> CFC Marchica<br><a href="#top">Haut de page ↑</a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/212661214201" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.1.1.7-.2 1.4Z"/></svg>
+</a>
+
+<script defer src="lib/gsap.min.js?v=20261006"></script>
+<script defer src="lib/ScrollTrigger.min.js?v=20261006"></script>
+<script defer src="lib/manifest.js?v=20261006"></script>
+<script defer src="main.js?v=20261006"></script>
+</body>
+</html>
