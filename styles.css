@@ -1748,3 +1748,17 @@ html:not(:lang(ar)) .route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
 
 /* móvil: la portada de fondo coincide con el primer plano (manos al volante) */
 @media (max-width: 759px) { .hero__media { background-image: url("assets/video/clip-volant.webp"); } }
+
+/* ---------- 44. Firma de la agencia (made by) ---------- */
+.foot__made { display: flex; justify-content: center; padding-top: 1.6rem; margin-top: 1.4rem; border-top: 1px solid var(--line-light); }
+.madeby { display: inline-flex; align-items: center; gap: .9rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(243, 238, 228, .55); }
+.madeby__logo { width: 132px; height: auto; color: var(--cream); overflow: visible; transition: color .3s ease; }
+.madeby__frame path { transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), stroke .3s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .madeby:hover .madeby__logo { color: #fff; }
+  .madeby:hover .madeby__frame path { stroke: var(--sun); }
+  .madeby:hover .c1 { transform: translate(-3px, -3px); }
+  .madeby:hover .c2 { transform: translate(3px, -3px); }
+  .madeby:hover .c3 { transform: translate(-3px, 3px); }
+  .madeby:hover .c4 { transform: translate(3px, 3px); }
+}
