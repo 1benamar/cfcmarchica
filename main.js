@@ -162,7 +162,7 @@
       setTimeout(startHero, 260);
       setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 1400);
     }
-    function ready() { setTimeout(hide, Math.max(0, 1650 - (performance.now() - t0))); }
+    function ready() { setTimeout(hide, Math.max(0, 900 - (performance.now() - t0))); }
     if (doc.readyState === "complete") ready();
     else addEventListener("load", ready);
     setTimeout(hide, 3600);
@@ -252,6 +252,13 @@
     if (conn.saveData || /(^|-)2g/.test(conn.effectiveType || "")) {   // datos limitados: solo la portada
       vids.forEach(function (v, i) { if (i) v.parentNode.removeChild(v); else { v.removeAttribute("autoplay"); v.preload = "none"; } });
       return;
+    }
+    // en móvil el primer plano es el más ligero (manos al volante) y el autobús pasa al final:
+    // los <source media> ya lo hacen; aquí se cambian también las portadas
+    if (matchMedia("(max-width: 759px)").matches && vids.length > 3) {
+      var p0 = vids[0].getAttribute("poster");
+      vids[0].setAttribute("poster", vids[3].getAttribute("poster"));
+      vids[3].setAttribute("poster", p0);
     }
     var CLIP = 8, FADE = 1.3;
     var cur = 0, switching = false, inView = true, looping = false, dots = [];
@@ -613,26 +620,6 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ================= Cifras que cuentan al aparecer ================= */
-  function initCounters() {
-    var els = $$("[data-count]");
-    if (!els.length || !("IntersectionObserver" in window)) return;
-    function run(el) {
-      var end = parseInt(el.getAttribute("data-count"), 10) || 0, start = null;
-      function step(now) {
-        if (start === null) start = now;
-        var p = Math.min(1, (now - start) / 1400);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { io.unobserve(en.target); run(en.target); } });
-    }, { threshold: 0.4 });
-    els.forEach(function (el) { el.textContent = "0"; io.observe(el); });
-  }
-
   /* ================= Fotos de las tarjetas: se desplazan más despacio que la página ================= */
   function initPhotoParallax() {
     var imgs = $$("[data-parallax-img]");
@@ -651,14 +638,9 @@
 
   /* ================= Titulares que suben palabra a palabra ================= */
   // Se respeta <em> y <br>; el espacio duro (&nbsp;) no parte la palabra.
-  function splitHeading(el, chars) {
+  function splitHeading(el) {
     var i = 0, html = "";
     function pieces(text) {
-      if (chars) {
-        return Array.prototype.map.call(text, function (ch) {
-          return /[ \t\n\r]/.test(ch) ? " " : '<span class="split-c" style="--i:' + (i++) + '">' + esc(ch) + "</span>";
-        }).join("");
-      }
       return text.split(/([ \t\n\r]+)/).map(function (w) {
         if (!w) return "";
         if (/^[ \t\n\r]+$/.test(w)) return " ";
@@ -675,16 +657,11 @@
   }
   function initSplit() {
     var heads = $$(".h2.reveal");
-    var foot = $(".foot__word");
-    if (foot) foot.classList.add("reveal");
-    function run() {
-      heads.forEach(function (h) { safe(function () { splitHeading(h, false); }, "split"); });
-      if (foot) splitHeading(foot, true);
-    }
+    function run() { heads.forEach(function (h) { safe(function () { splitHeading(h); }, "split"); }); }
     run();
     onLang(run);   // al cambiar de idioma el texto se reescribe: se vuelve a partir
     // más elementos que entran en cascada
-    $$(".qa, .info__row, .socials li, .foot__cols > div, .chap").forEach(function (e) { e.classList.add("reveal"); });
+    $$(".foot__cols > div, .chap").forEach(function (e) { e.classList.add("reveal"); });
   }
 
   /* ================= El título del hero sigue al ratón con algo de profundidad ================= */
@@ -1312,34 +1289,6 @@
     onLang(tick);
   }
 
-  /* ================= FAQ con altura animada ================= */
-  function initFaq() {
-    $$(".qa").forEach(function (d) {
-      var s = $("summary", d), a = $(".qa__a", d);
-      if (!s || !a) return;
-      s.addEventListener("click", function (e) {
-        if (reduced) return;
-        e.preventDefault();
-        var end = function () { a.style.height = ""; a.removeEventListener("transitionend", end); };
-        if (d.open) {
-          a.style.height = a.scrollHeight + "px";
-          requestAnimationFrame(function () {
-            a.style.height = "0px";
-            setTimeout(function () { d.open = false; end(); }, 560);
-          });
-        } else {
-          d.open = true;
-          var h = a.scrollHeight;
-          a.style.height = "0px";
-          requestAnimationFrame(function () {
-            a.style.height = h + "px";
-            setTimeout(end, 600);
-          });
-        }
-      });
-    });
-  }
-
   /* ================= Varios ================= */
   function initYear() { $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); }); }
   function initAnchors() {
@@ -1374,7 +1323,6 @@
     safe(initZoom, "initZoom");
     safe(initRibbon, "initRibbon");
     safe(initPhotoParallax, "initPhotoParallax");
-    safe(initCounters, "initCounters");
     safe(initOdometers, "initOdometers");
     safe(initTrafficLight, "initTrafficLight");
     safe(initGps, "initGps");
@@ -1390,7 +1338,6 @@
     safe(initBooking, "initBooking");
     safe(initComposer, "initComposer");
     safe(initStatus, "initStatus");
-    safe(initFaq, "initFaq");
     safe(initYear, "initYear");
     safe(initAnchors, "initAnchors");
     safe(initLoop, "initLoop");

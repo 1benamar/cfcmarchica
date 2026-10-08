@@ -49,7 +49,9 @@ una barra abajo a la derecha que muestra el avance y permite saltar de plano:
 | `clip-volant.mp4` | Manos al volante | Mixkit 33327 |
 
 Los vídeos de Mixkit (mixkit.co) tienen licencia gratuita que permite el uso
-comercial sin citar la fuente. Cada `.webp` con el mismo nombre es su portada
+comercial sin citar la fuente. En móvil (menos de 760 px) el primer plano es
+`clip-volant.mp4` (el más ligero, 2,3 MB) y el autobús pasa al último lugar,
+para que la portada cargue antes con datos móviles. Cada `.webp` con el mismo nombre es su portada
 (se ve mientras carga el vídeo y cuando el móvil ahorra datos). Para poner un
 vídeo propio del centro, sustituye un `.mp4` y su `.webp` manteniendo el nombre.
 
@@ -69,11 +71,20 @@ oficios que reacciona a la velocidad del scroll, galería que avanza en
 horizontal en escritorio, programa que avanza solo, carretera del recorrido con
 el coche, contadores, inclinación 3D y botones magnéticos (solo con ratón).
 
+## GPS del contacto
+
+Pantalla de navegación con ruta animada, brújula y botón «Me localiser»: con
+permiso de la persona calcula la distancia y el rumbo hasta `place` de
+`lib/manifest.js`. La posición solo se usa en el navegador. La pestaña «Carte»
+carga el mapa de Google solo cuando se abre.
+
 ## Pendiente de confirmar con el centro
 
 - Días de apertura: la web considera abierto de lunes a sábado de 9 h a 17 h
   (`hours.openDays` en `lib/manifest.js`).
 - Enlace exacto de la página de Facebook (ahora lleva a una búsqueda de «CFC Marchica»).
-- Ubicación exacta en el mapa (ahora apunta a Hay El Matar, Nador).
-- Cuando haya dominio: poner la URL completa en `og:image` de `index.html`
-  (las redes necesitan una dirección absoluta para mostrar la imagen).
+- Ubicación exacta: el mapa apunta a Hay El Matar y el GPS usa el centro de
+  Nador (`place` en `lib/manifest.js`). Con las coordenadas exactas del centro
+  basta con cambiar esos dos números.
+- Si se cambia de dominio: actualizar `og:url`, `og:image` y `canonical` en
+  `index.html` (ahora apuntan a https://1benamar.github.io/cfcmarchica/).
