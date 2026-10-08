@@ -11,16 +11,17 @@
 <meta property="og:description" content="Le premier centre de formation des conducteurs professionnels de Nador. Taxi, autocar, poids lourd, transport touristique.">
 <meta property="og:image" content="assets/img/partage.jpg">
 <meta property="og:locale" content="fr_MA">
-<meta property="og:locale:alternate" content="ar_MA">
-<link rel="icon" href="favicon.svg?v=20261008" type="image/svg+xml">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="de_DE">
+<link rel="icon" href="favicon.svg?v=20261008-2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="preload" as="image" href="assets/video/hero-poster.webp" media="(orientation: landscape)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/video/hero-poster-movil.webp" media="(orientation: portrait)" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20261008">
-<script>document.documentElement.classList.add("js");try{if(localStorage.getItem("cfc-lang")==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&display=swap">
+<link rel="preload" as="image" href="assets/video/clip-bus.webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=20261008-2">
+<script>document.documentElement.classList.add("js");try{var l=localStorage.getItem("cfc-lang");if(/^(en|es|de)$/.test(l)){document.documentElement.lang=l;}}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -88,12 +89,21 @@
     </button>
     <a class="hdr__brand" href="#accueil" aria-label="C.F.C.P Marchica">
       <svg class="hdr__emblem" aria-hidden="true"><use href="#emblema"/></svg>
-      <span class="hdr__word"><span>C.F.C.P</span> <b>Marchica</b></span>
+      <span class="hdr__word"><b>Marchica</b><small>C.F.C.P · Nador</small></span>
     </a>
     <div class="hdr__end">
-      <button class="lang" type="button" data-lang-toggle aria-label="Lire en arabe" data-i18n-attr="aria-label:lang.aria">
-        <span class="lang__fr">FR</span><span class="lang__ar">ع</span>
-      </button>
+      <div class="langs" data-langs>
+        <button class="lang" type="button" data-lang-btn aria-haspopup="true" aria-expanded="false" aria-controls="langs-list" aria-label="Choisir la langue" data-i18n-attr="aria-label:lang.aria">
+          <span data-lang-current>FR</span>
+          <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="langs__list" id="langs-list" data-lang-list hidden>
+          <button type="button" data-set-lang="fr" lang="fr">Français <small>FR</small></button>
+          <button type="button" data-set-lang="en" lang="en">English <small>EN</small></button>
+          <button type="button" data-set-lang="es" lang="es">Español <small>ES</small></button>
+          <button type="button" data-set-lang="de" lang="de">Deutsch <small>DE</small></button>
+        </div>
+      </div>
       <a class="btn btn--sun btn--sm hdr__cta" href="#contact"><span data-i18n="nav.cta">S'inscrire</span></a>
     </div>
   </div>
@@ -111,7 +121,6 @@
       <a href="#salle" data-menu-img="assets/img/salle-fenetre-700.webp"><span class="menu__num">05</span><span data-i18n="nav.salle">La salle</span></a>
       <a href="#quiz" data-menu-img="assets/img/salle-rangs-960.webp"><span class="menu__num">06</span><span data-i18n="nav.quiz">Quiz</span></a>
       <a href="#contact" data-menu-img="assets/img/salle-bureau-960.webp"><span class="menu__num">07</span><span data-i18n="nav.contact">Contact</span></a>
-      <a href="#faq" data-menu-img="assets/img/salle-tableau-700.webp"><span class="menu__num">08</span><span data-i18n="nav.faq">Questions</span></a>
     </nav>
     <aside class="menu__side">
       <figure class="menu__fig"><img src="assets/img/salle-rangs-960.webp" alt="" data-menu-fig loading="lazy" decoding="async" width="960" height="720"></figure>
@@ -129,20 +138,17 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="accueil" aria-labelledby="hero-title">
-    <div class="hero__media" aria-hidden="true">
-      <video class="hero__video" data-hero-video muted loop playsinline autoplay preload="metadata"
-        poster="assets/video/hero-poster.webp"
-        data-src-wide="assets/video/hero-1080.mp4"
-        data-src-mid="assets/video/hero-720.mp4"
-        data-src-tall="assets/video/hero-movil.mp4"
-        data-src-webm="assets/video/hero-720.webm"
-        data-src-tall-webm="assets/video/hero-movil.webm"
-        data-poster-tall="assets/video/hero-poster-movil.webp"></video>
+    <!-- Vídeo de portada: cuatro planos (Mixkit, licencia libre) que se funden uno tras otro -->
+    <div class="hero__media" aria-hidden="true" data-hero-media>
+      <video class="hero__video is-active" data-clip muted loop playsinline autoplay preload="auto" poster="assets/video/clip-bus.webp"><source src="assets/video/clip-bus.mp4" type="video/mp4"></video>
+      <video class="hero__video" data-clip muted loop playsinline preload="none" poster="assets/video/clip-nuit.webp"><source src="assets/video/clip-nuit.mp4" type="video/mp4"></video>
+      <video class="hero__video" data-clip muted loop playsinline preload="none" poster="assets/video/clip-autoroute.webp"><source src="assets/video/clip-autoroute.mp4" type="video/mp4"></video>
+      <video class="hero__video" data-clip muted loop playsinline preload="none" poster="assets/video/clip-volant.webp"><source src="assets/video/clip-volant.mp4" type="video/mp4"></video>
     </div>
     <div class="hero__shade" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
-    <div class="hero__content">
+    <div class="hero__content" data-hero-copy>
       <p class="hero__eyebrow reveal-hero" data-i18n="hero.eyebrow">Centre de formation des conducteurs professionnels · Nador</p>
       <h1 class="hero__title" id="hero-title" data-i18n="hero.title"><span class="ln"><span>La route est</span></span> <span class="ln"><span><em>un métier.</em></span></span></h1>
       <p class="hero__lead reveal-hero" data-i18n="hero.lead">Préparez votre carte professionnelle dans le premier centre de Nador&nbsp;: cours théoriques et pratiques pour les chauffeurs de taxi, d'autocar, de poids lourd et de transport touristique.</p>
@@ -177,12 +183,9 @@
 
     <div class="hero__foot">
       <p class="hero__place"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> <span data-i18n="hero.place">Hay El Matar · Nador</span></p>
-      <a class="hero__scroll" href="#centre"><span data-i18n="hero.scroll">Découvrir</span><i aria-hidden="true"></i></a>
       <div class="hero__tools">
         <p class="status" data-status><i aria-hidden="true"></i><span data-status-text>9 h — 17 h</span></p>
-        <button class="hero__pause" type="button" data-video-toggle aria-label="Mettre la vidéo en pause" data-i18n-attr="aria-label:video.pause" hidden>
-          <span class="i-pause" aria-hidden="true"></span>
-        </button>
+        <div class="hero__clips" data-clips></div>
       </div>
     </div>
   </section>
@@ -211,22 +214,80 @@
       </div>
     </div>
 
+    <!-- Tres razones, cada una con una foto real del centro -->
     <div class="wrap facts">
-      <article class="fact reveal">
-        <span class="fact__mark" aria-hidden="true">✦</span>
-        <h3 data-i18n="fact1.t">Formation reconnue</h3>
-        <p data-i18n="fact1.d">Un parcours pensé pour l'obtention de la carte professionnelle de conducteur.</p>
+      <article class="fact fact--big reveal" data-tilt>
+        <figure class="fact__img"><img src="assets/img/salle-bureau-1600.webp" srcset="assets/img/salle-bureau-960.webp 960w, assets/img/salle-bureau-1600.webp 1600w" sizes="(min-width: 960px) 56vw, 92vw" alt="" loading="lazy" decoding="async" width="1600" height="1200" data-parallax-img></figure>
+        <div class="fact__body">
+          <span class="fact__mark" aria-hidden="true">01</span>
+          <h3 data-i18n="fact1.t">Formation reconnue</h3>
+          <p data-i18n="fact1.d">Un parcours pensé pour l'obtention de la carte professionnelle de conducteur.</p>
+        </div>
       </article>
-      <article class="fact reveal">
-        <span class="fact__mark" aria-hidden="true">✦</span>
-        <h3 data-i18n="fact2.t">Théorie et pratique</h3>
-        <p data-i18n="fact2.d">Des cours en salle et des mises en situation concrètes, avec un support de cours pour chaque stagiaire.</p>
+      <article class="fact reveal" data-tilt>
+        <figure class="fact__img"><img src="assets/img/salle-tableau-700.webp" srcset="assets/img/salle-tableau-700.webp 700w, assets/img/salle-tableau-1100.webp 1100w" sizes="(min-width: 960px) 36vw, 92vw" alt="" loading="lazy" decoding="async" width="700" height="933" data-parallax-img></figure>
+        <div class="fact__body">
+          <span class="fact__mark" aria-hidden="true">02</span>
+          <h3 data-i18n="fact2.t">Théorie et pratique</h3>
+          <p data-i18n="fact2.d">Des cours en salle et des mises en situation concrètes, avec un support de cours pour chaque stagiaire.</p>
+        </div>
       </article>
-      <article class="fact reveal">
-        <span class="fact__mark" aria-hidden="true">✦</span>
-        <h3 data-i18n="fact3.t">Le premier à Nador</h3>
-        <p data-i18n="fact3.d">Le premier centre de formation des conducteurs professionnels de la ville.</p>
+      <article class="fact reveal" data-tilt>
+        <figure class="fact__img"><img src="assets/img/salle-fenetre-700.webp" srcset="assets/img/salle-fenetre-700.webp 700w, assets/img/salle-fenetre-1100.webp 1100w" sizes="(min-width: 960px) 36vw, 92vw" alt="" loading="lazy" decoding="async" width="700" height="933" data-parallax-img></figure>
+        <div class="fact__body">
+          <span class="fact__mark" aria-hidden="true">03</span>
+          <h3 data-i18n="fact3.t">Le premier à Nador</h3>
+          <p data-i18n="fact3.d">Le premier centre de formation des conducteurs professionnels de la ville.</p>
+        </div>
       </article>
+    </div>
+
+    <!-- Cifras: banda oscura con contadores tipo cuentakilómetros; cada una lleva a su sección -->
+    <div class="wrap">
+      <div class="stats" data-stats>
+        <a class="stat reveal" href="#formations" data-tilt>
+          <span class="stat__n"><span data-odo="4">4</span></span>
+          <span class="stat__label" data-i18n="stat.1">formations</span>
+          <span class="stat__fig stat__veh" aria-hidden="true">
+            <svg viewBox="0 0 32 20"><path d="M3 15v-3.5l3-5h12l4 5h5a2 2 0 0 1 2 2V15M11 3.5h6"/><circle cx="9" cy="15.5" r="2.4"/><circle cx="23" cy="15.5" r="2.4"/></svg>
+            <svg viewBox="0 0 32 20"><path d="M2 15V5a2 2 0 0 1 2-2h22l4 6v6M2 9h28M8 3v6M14 3v6M20 3v6"/><circle cx="8" cy="15.5" r="2.4"/><circle cx="24" cy="15.5" r="2.4"/></svg>
+            <svg viewBox="0 0 32 20"><path d="M2 15V3h16v12M18 7h6l5 5v3H18"/><circle cx="7" cy="15.5" r="2.4"/><circle cx="24" cy="15.5" r="2.4"/></svg>
+            <svg viewBox="0 0 32 20"><path d="M3 15V6a3 3 0 0 1 3-3h15l6 6h1a2 2 0 0 1 2 2v4M3 9h24M10 3v6M17 3v6"/><circle cx="9" cy="15.5" r="2.4"/><circle cx="23" cy="15.5" r="2.4"/></svg>
+          </span>
+          <span class="stat__go" aria-hidden="true"><svg class="ico ico--arrow"><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="stat reveal" href="#programme" data-tilt>
+          <span class="stat__n"><span data-odo="4">4</span></span>
+          <span class="stat__label" data-i18n="stat.2">chapitres au programme</span>
+          <span class="stat__fig stat__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="stat__go" aria-hidden="true"><svg class="ico ico--arrow"><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="stat reveal" href="#contact" data-tilt>
+          <span class="stat__n"><span data-odo="1">1</span><sup data-i18n="stat.3s">er</sup></span>
+          <span class="stat__label" data-i18n="stat.3">centre de Nador</span>
+          <span class="stat__fig stat__pin" aria-hidden="true"><i></i><svg class="ico"><use href="#i-pin"/></svg><span>Hay El Matar · Nador</span></span>
+          <span class="stat__go" aria-hidden="true"><svg class="ico ico--arrow"><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LA SALLE EN GRAND (la foto crece hasta llenar la pantalla) ================= -->
+  <section class="zoom" data-zoom aria-labelledby="t-show">
+    <div class="zoom__pin">
+      <figure class="zoom__frame">
+        <img src="assets/img/salle-rangs-1600.webp" srcset="assets/img/salle-rangs-960.webp 960w, assets/img/salle-rangs-1600.webp 1600w" sizes="100vw" alt="La salle de cours avec ses chaises à tablette, le vidéoprojecteur et le support de cours sur le bureau" data-i18n-attr="alt:g1.alt" loading="lazy" decoding="async" width="1600" height="1200">
+      </figure>
+      <div class="zoom__copy">
+        <p class="zoom__kicker" data-i18n="show.kicker">Bienvenue au centre</p>
+        <h2 class="zoom__title" id="t-show" data-i18n="show.title">Une salle lumineuse, <em>prête pour vous.</em></h2>
+        <ul class="zoom__tags">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="9" rx="2"/><circle cx="15.5" cy="11.5" r="2.4"/><path d="M6 10h4M6 13h3M7 16v3M17 16v3"/></svg><span data-i18n="show.t1">Vidéoprojecteur</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18M4 4v11h16V4M12 15v3M8 21l4-3 4 3"/></svg><span data-i18n="show.t2">Grand écran</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="12" rx="1.5"/><path d="M12 15v4M8 21l4-2 4 2M8 7l3 3 5-4"/></svg><span data-i18n="show.t3">Tableau blanc</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4 9.5 4 12 6c2.5-2 5.5-2 8-.5V19c-2.5-1.5-5.5-1.5-8 .5-2.5-2-5.5-2-8-.5z"/><path d="M12 6v13.5"/></svg><span data-i18n="show.t4">Support de cours</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -239,7 +300,7 @@
     </div>
 
     <div class="cards" data-cards>
-      <article class="card reveal" data-formation="taxi">
+      <article class="card reveal" data-tilt data-formation="taxi">
         <span class="card__num">01</span>
         <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
           <path class="ground" d="M4 111H236"/>
@@ -258,7 +319,7 @@
         <a class="card__go" href="#contact" data-choose="taxi"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
-      <article class="card reveal" data-formation="autocar">
+      <article class="card reveal" data-tilt data-formation="autocar">
         <span class="card__num">02</span>
         <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
           <path class="ground" d="M4 111H236"/>
@@ -276,7 +337,7 @@
         <a class="card__go" href="#contact" data-choose="autocar"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
-      <article class="card reveal" data-formation="poids">
+      <article class="card reveal" data-tilt data-formation="poids">
         <span class="card__num">03</span>
         <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
           <path class="ground" d="M4 111H236"/>
@@ -296,7 +357,7 @@
         <a class="card__go" href="#contact" data-choose="poids"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
 
-      <article class="card reveal" data-formation="minibus">
+      <article class="card reveal" data-tilt data-formation="minibus">
         <span class="card__num">04</span>
         <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
           <path class="ground" d="M4 111H236"/>
@@ -316,6 +377,20 @@
     </div>
   </section>
 
+  <!-- Cinta de oficios: avanza sola y se inclina con la velocidad del scroll -->
+  <div class="ribbon" aria-hidden="true" data-ribbon>
+    <div class="ribbon__skew" data-ribbon-skew>
+      <div class="ribbon__track" data-ribbon-track>
+        <div class="ribbon__set">
+          <span data-i18n="c1.t">Taxi</span><svg class="ribbon__mark"><use href="#emblema"/></svg>
+          <span data-i18n="c2.t">Autocar</span><svg class="ribbon__mark"><use href="#emblema"/></svg>
+          <span data-i18n="c3.t">Poids lourd</span><svg class="ribbon__mark"><use href="#emblema"/></svg>
+          <span data-i18n="c4.t">Minibus</span><svg class="ribbon__mark"><use href="#emblema"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= 03 · PROGRAMME ================= -->
   <section class="sec programme" id="programme" aria-labelledby="t-programme">
     <div class="wrap head">
@@ -324,10 +399,13 @@
       <p class="lead reveal" data-i18n="prog.lead">Quatre chapitres, du tour du véhicule avant le départ jusqu'aux bons gestes en cas d'accident.</p>
     </div>
 
+    <!-- Programa: acordeón de capítulos + panel visual que cambia con cada capítulo -->
     <div class="wrap prog" data-prog>
       <div class="prog__visual" aria-hidden="true">
         <div class="prog__frame">
+          <img class="prog__photo" src="assets/img/salle-ecran-700.webp" alt="" loading="lazy" decoding="async" width="700" height="933">
           <span class="prog__big" data-prog-num>01</span>
+          <span class="prog__of">/ 04</span>
           <svg class="prog__icon is-on" data-prog-icon="0" viewBox="0 0 120 120">
             <rect class="dr" pathLength="1" x="28" y="22" width="64" height="82" rx="6"/>
             <path class="dr" pathLength="1" d="M46 22v-6h28v6"/>
@@ -349,41 +427,26 @@
             <rect class="dr" pathLength="1" x="18" y="18" width="84" height="84" rx="16"/>
             <path pathLength="1" class="dr acc" d="M51 36h18v15h15v18H69v15H51V69H36V51h15z"/>
           </svg>
+          <span class="prog__timer"><i data-prog-timer></i></span>
         </div>
       </div>
 
       <ol class="prog__list">
         <li class="chap is-active" data-chap="0">
-          <span class="chap__num">01</span>
-          <div>
-            <h3 data-i18n="ch1.t">Contrôle quotidien</h3>
-            <p class="chap__ar" lang="ar" dir="rtl">المراقبة اليومية</p>
-            <p data-i18n="ch1.d">Le tour du véhicule avant chaque départ&nbsp;: pneus, freins, feux, niveaux et documents de bord.</p>
-          </div>
+          <h3 class="chap__head"><button class="chap__btn" type="button" aria-expanded="true"><span class="chap__num">01</span><span data-i18n="ch1.t">Contrôle quotidien</span><i class="chap__plus" aria-hidden="true"></i></button></h3>
+          <div class="chap__body"><div><p data-i18n="ch1.d">Le tour du véhicule avant chaque départ&nbsp;: pneus, freins, feux, niveaux et documents de bord.</p></div></div>
         </li>
         <li class="chap" data-chap="1">
-          <span class="chap__num">02</span>
-          <div>
-            <h3 data-i18n="ch2.t">Mécanique de base</h3>
-            <p class="chap__ar" lang="ar" dir="rtl">الميكانيك الأولية</p>
-            <p data-i18n="ch2.d">Comprendre le moteur, la transmission et les organes de sécurité pour repérer une panne avant qu'elle ne s'aggrave.</p>
-          </div>
+          <h3 class="chap__head"><button class="chap__btn" type="button" aria-expanded="false"><span class="chap__num">02</span><span data-i18n="ch2.t">Mécanique de base</span><i class="chap__plus" aria-hidden="true"></i></button></h3>
+          <div class="chap__body"><div><p data-i18n="ch2.d">Comprendre le moteur, la transmission et les organes de sécurité pour repérer une panne avant qu'elle ne s'aggrave.</p></div></div>
         </li>
         <li class="chap" data-chap="2">
-          <span class="chap__num">03</span>
-          <div>
-            <h3 data-i18n="ch3.t">Sécurité routière</h3>
-            <p class="chap__ar" lang="ar" dir="rtl">السلامة الطرقية</p>
-            <p data-i18n="ch3.d">Distances, vitesse, angles morts, fatigue&nbsp;: les règles qui protègent vos passagers, votre chargement et les autres usagers.</p>
-          </div>
+          <h3 class="chap__head"><button class="chap__btn" type="button" aria-expanded="false"><span class="chap__num">03</span><span data-i18n="ch3.t">Sécurité routière</span><i class="chap__plus" aria-hidden="true"></i></button></h3>
+          <div class="chap__body"><div><p data-i18n="ch3.d">Distances, vitesse, angles morts, fatigue&nbsp;: les règles qui protègent vos passagers, votre chargement et les autres usagers.</p></div></div>
         </li>
         <li class="chap" data-chap="3">
-          <span class="chap__num">04</span>
-          <div>
-            <h3 data-i18n="ch4.t">En cas d'accident</h3>
-            <p class="chap__ar" lang="ar" dir="rtl">كيفية التصرف في حالة حادثة سير</p>
-            <p data-i18n="ch4.d">Protéger, alerter, secourir&nbsp;: les bons gestes et les démarches à suivre après un accident de la circulation.</p>
-          </div>
+          <h3 class="chap__head"><button class="chap__btn" type="button" aria-expanded="false"><span class="chap__num">04</span><span data-i18n="ch4.t">En cas d'accident</span><i class="chap__plus" aria-hidden="true"></i></button></h3>
+          <div class="chap__body"><div><p data-i18n="ch4.d">Protéger, alerter, secourir&nbsp;: les bons gestes et les démarches à suivre après un accident de la circulation.</p></div></div>
         </li>
       </ol>
     </div>
@@ -455,13 +518,15 @@
             <p data-i18n="s4.d">Formation terminée&nbsp;: vous êtes prêt à prendre la route en professionnel.</p>
             <div class="pcard" aria-hidden="true">
               <div class="pcard__top"><span>Royaume du Maroc</span><span lang="ar">المملكة المغربية</span></div>
-              <p class="pcard__title">Carte de conducteur professionnel</p>
-              <p class="pcard__ar" lang="ar">بطاقة السائق المهني</p>
-              <div class="pcard__row">
+              <div class="pcard__body">
                 <span class="pcard__photo"></span>
-                <span class="pcard__lines"><i></i><i></i><i></i></span>
-                <svg class="pcard__emblem"><use href="#emblema"/></svg>
+                <span class="pcard__info">
+                  <span class="pcard__title">Carte de conducteur professionnel</span>
+                  <span class="pcard__lines"><i></i><i></i></span>
+                  <span class="pcard__chip"></span>
+                </span>
               </div>
+              <svg class="pcard__emblem"><use href="#emblema"/></svg>
             </div>
             <a class="btn btn--ink" href="#contact"><span data-i18n="cta.start">Commencer maintenant</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
@@ -472,16 +537,26 @@
 
   <!-- ================= 05 · LA SALLE ================= -->
   <section class="sec salle" id="salle" aria-labelledby="t-salle">
-    <div class="wrap head head--split">
-      <div>
-        <p class="kicker reveal"><span>05</span> <span data-i18n="salle.kicker">La salle</span></p>
-        <h2 class="h2 reveal" id="t-salle" data-i18n="salle.title">Une salle pensée <em>pour apprendre.</em></h2>
-      </div>
-      <p class="lead reveal" data-i18n="salle.lead">Vidéoprojecteur, grand écran, tableau blanc et chaises à tablette, au rez-de-chaussée de l'immeuble Benamar, à Hay El Matar.</p>
-    </div>
-
+    <!-- En escritorio: título fijo a la izquierda y fotos que desfilan a la derecha con el scroll -->
     <div class="gallery" data-gallery>
-      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Photos de la salle" data-i18n-attr="aria-label:salle.aria">
+      <div class="gallery__pin" data-gallery-pin>
+        <div class="gallery__side">
+          <div class="gallery__head">
+            <p class="kicker reveal"><span>05</span> <span data-i18n="salle.kicker">La salle</span></p>
+            <h2 class="h2 reveal" id="t-salle" data-i18n="salle.title">Une salle pensée <em>pour apprendre.</em></h2>
+            <p class="lead reveal" data-i18n="salle.lead">Vidéoprojecteur, grand écran, tableau blanc et chaises à tablette, au rez-de-chaussée de l'immeuble Benamar, à Hay El Matar.</p>
+          </div>
+          <div class="gallery__ui">
+            <p class="gallery__count"><b data-gallery-current>01</b> / 05</p>
+            <div class="gallery__bar" aria-hidden="true"><span data-gallery-bar></span></div>
+            <div class="gallery__arrows">
+              <button class="round" type="button" data-gallery-prev aria-label="Photo précédente" data-i18n-attr="aria-label:salle.prev"><svg class="ico ico--arrow ico--back" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <button class="round" type="button" data-gallery-next aria-label="Photo suivante" data-i18n-attr="aria-label:salle.next"><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="gallery__view">
+          <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Photos de la salle" data-i18n-attr="aria-label:salle.aria">
         <figure class="shot">
           <button class="shot__btn" type="button" data-lightbox="0" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
             <img src="assets/img/salle-rangs-1600.webp" srcset="assets/img/salle-rangs-960.webp 960w, assets/img/salle-rangs-1600.webp 1600w" sizes="(min-width: 960px) 62vw, 86vw" alt="La salle de cours avec ses chaises à tablette, le vidéoprojecteur et le support de cours sur le bureau" data-i18n-attr="alt:g1.alt" loading="lazy" decoding="async" width="1600" height="1200">
@@ -512,13 +587,7 @@
           </button>
           <figcaption><span class="shot__n">05</span> <span data-i18n="g5">Une place pour chaque stagiaire</span></figcaption>
         </figure>
-      </div>
-      <div class="wrap gallery__ui">
-        <p class="gallery__count"><b data-gallery-current>01</b> / 05</p>
-        <div class="gallery__bar" aria-hidden="true"><span data-gallery-bar></span></div>
-        <div class="gallery__arrows">
-          <button class="round" type="button" data-gallery-prev aria-label="Photo précédente" data-i18n-attr="aria-label:salle.prev"><svg class="ico ico--arrow ico--back" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <button class="round" type="button" data-gallery-next aria-label="Photo suivante" data-i18n-attr="aria-label:salle.next"><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
         </div>
       </div>
     </div>
@@ -553,42 +622,41 @@
 
   <!-- ================= 07 · CONTACT ================= -->
   <section class="sec contact" id="contact" aria-labelledby="t-contact">
-    <div class="wrap head">
+    <div class="wrap head head--center">
       <p class="kicker reveal"><span>07</span> <span data-i18n="contact.kicker">Contact</span></p>
       <h2 class="h2 reveal" id="t-contact" data-i18n="contact.title">Venez <em>nous voir.</em></h2>
     </div>
 
     <div class="wrap contact__grid">
-      <div class="contact__info reveal">
-        <dl class="info">
-          <div class="info__row">
-            <dt><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> <span data-i18n="c.addr">Adresse</span></dt>
-            <dd data-i18n="addr.full">Hay El Matar, Lotissement Saada<br>Immeuble Benamar, rez-de-chaussée n° 2<br>Nador</dd>
-          </div>
-          <div class="info__row">
-            <dt><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <span data-i18n="c.tel">Téléphone</span></dt>
-            <dd><a class="big-link" href="tel:+212536380766" dir="ltr">05 36 38 07 66</a><br><a class="big-link" href="tel:+212755846785" dir="ltr">07 55 84 67 85</a></dd>
-          </div>
-          <div class="info__row">
-            <dt><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> <span data-i18n="c.mail">E-mail</span></dt>
-            <dd><a class="u-link" href="mailto:cfcmarchica@gmail.com">cfcmarchica@gmail.com</a></dd>
-          </div>
-          <div class="info__row">
-            <dt><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="c.hours">Horaires</span></dt>
-            <dd>
-              <span data-i18n="c.hours.v">De 9 h à 17 h</span>
-              <span class="clock"><span class="status status--ink" data-status><i aria-hidden="true"></i><span data-status-text>—</span></span><span class="clock__now"><span data-i18n="c.now">Heure à Nador</span> <b data-clock dir="ltr">--:--</b></span></span>
-            </dd>
-          </div>
-        </dl>
-        <div class="contact__btns">
-          <a class="btn btn--ink" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hay+El+Matar+Nador+Maroc" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="c.route">Itinéraire</span></a>
-          <a class="btn btn--line" href="tel:+212755846785"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="c.call">Appeler</span></a>
+      <!-- Mosaico de contacto: dirección con foto, teléfonos, horario en directo y redes -->
+      <div class="cbento">
+        <a class="ctile ctile--addr reveal" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hay+El+Matar+Nador+Maroc" target="_blank" rel="noopener" data-tilt>
+          <img class="ctile__bg" src="assets/img/salle-fenetre-700.webp" alt="" loading="lazy" decoding="async" width="700" height="933">
+          <span class="ctile__icon"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span>
+          <span class="ctile__label" data-i18n="c.addr">Adresse</span>
+          <span class="ctile__text" data-i18n="addr.full">Hay El Matar, Lotissement Saada<br>Immeuble Benamar, rez-de-chaussée n° 2<br>Nador</span>
+          <span class="ctile__cta"><span data-i18n="c.route">Itinéraire</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+        </a>
+        <div class="ctile ctile--tel reveal">
+          <span class="ctile__icon"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <span class="ctile__label" data-i18n="c.tel">Téléphone</span>
+          <a class="ctile__phone" href="tel:+212536380766" dir="ltr">05 36 38 07 66</a>
+          <a class="ctile__phone" href="tel:+212755846785" dir="ltr">07 55 84 67 85</a>
+          <a class="ctile__cta" href="tel:+212755846785"><span data-i18n="c.call">Appeler</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-        <ul class="socials">
-          <li><a href="https://www.instagram.com/cfcmarchica/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg> @cfcmarchica</a></li>
-          <li><a href="https://www.facebook.com/search/top?q=CFC%20Marchica" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-fb"/></svg> CFC Marchica</a></li>
-        </ul>
+        <div class="ctile ctile--hours reveal">
+          <span class="ctile__icon"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span>
+          <span class="ctile__label" data-i18n="c.hours">Horaires</span>
+          <b class="ctile__clock" data-clock dir="ltr">--:--</b>
+          <span class="ctile__small"><span data-i18n="c.now">Heure à Nador</span> · <span data-i18n="c.hours.v">De 9 h à 17 h</span></span>
+          <span class="daybar" data-daybar aria-hidden="true"><i></i><b></b><small>09:00</small><small>17:00</small></span>
+          <span class="status status--ink" data-status><i aria-hidden="true"></i><span data-status-text>—</span></span>
+        </div>
+        <div class="ctile ctile--social reveal">
+          <a class="cpill" href="mailto:cfcmarchica@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> cfcmarchica@gmail.com</a>
+          <a class="cpill" href="https://www.instagram.com/cfcmarchica/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg> @cfcmarchica</a>
+          <a class="cpill" href="https://www.facebook.com/search/top?q=CFC%20Marchica" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-fb"/></svg> CFC Marchica</a>
+        </div>
       </div>
 
       <form class="composer reveal" data-composer action="https://wa.me/212755846785" method="get" target="_blank" novalidate>
@@ -638,42 +706,6 @@
     </div>
   </section>
 
-  <!-- ================= 08 · FAQ ================= -->
-  <section class="sec faq" id="faq" aria-labelledby="t-faq">
-    <div class="wrap faq__grid">
-      <div class="faq__head">
-        <p class="kicker reveal"><span>08</span> <span data-i18n="faq.kicker">Questions</span></p>
-        <h2 class="h2 reveal" id="t-faq" data-i18n="faq.title">Vos <em>questions.</em></h2>
-        <p class="lead reveal" data-i18n="faq.lead">Une autre question&nbsp;? Appelez-nous ou écrivez-nous sur WhatsApp, on vous répond.</p>
-      </div>
-      <div class="faq__list" data-faq>
-        <details class="qa">
-          <summary data-i18n="q1">Qu'est-ce que la carte professionnelle&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a1">C'est la carte exigée pour conduire, à titre professionnel, un taxi, un autocar, un poids lourd ou un véhicule de transport touristique ou du personnel.</p></div>
-        </details>
-        <details class="qa">
-          <summary data-i18n="q2">Faut-il déjà avoir le permis de conduire&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a2">Oui. La carte professionnelle s'ajoute au permis de la catégorie du véhicule que vous conduisez.</p></div>
-        </details>
-        <details class="qa">
-          <summary data-i18n="q3">Combien coûte la formation et combien de temps dure-t-elle&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a3">Cela dépend de la formation et de la session. Appelez-nous au 05 36 38 07 66 ou écrivez-nous sur WhatsApp&nbsp;: nous vous donnons le détail.</p></div>
-        </details>
-        <details class="qa">
-          <summary data-i18n="q4">Quels documents faut-il apporter&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a4">En général&nbsp;: la CIN, le permis de conduire, des photos d'identité et un certificat médical. La liste exacte vous est confirmée à l'inscription.</p></div>
-        </details>
-        <details class="qa">
-          <summary data-i18n="q5">Les cours sont-ils en arabe&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a5">Le support de cours remis aux stagiaires est rédigé en arabe. Pour toute question sur la langue des cours, contactez-nous.</p></div>
-        </details>
-        <details class="qa">
-          <summary data-i18n="q6">Où se trouve le centre&nbsp;?</summary>
-          <div class="qa__a"><p data-i18n="a6">À Hay El Matar, lotissement Saada, immeuble Benamar, rez-de-chaussée n° 2, à Nador.</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="foot">
@@ -703,7 +735,12 @@
   </div>
   <div class="wrap foot__base">
     <p>© <span data-year>2026</span> C.F.C.P Marchica</p>
-    <button class="lang lang--text" type="button" data-lang-toggle><span class="lang__fr">Français</span><span class="lang__ar">العربية</span></button>
+    <div class="foot__langs">
+      <button type="button" data-set-lang="fr" lang="fr">Français</button>
+      <button type="button" data-set-lang="en" lang="en">English</button>
+      <button type="button" data-set-lang="es" lang="es">Español</button>
+      <button type="button" data-set-lang="de" lang="de">Deutsch</button>
+    </div>
     <a href="#accueil" class="u-link"><span data-i18n="foot.top">Haut de page</span> ↑</a>
   </div>
 </footer>
@@ -725,8 +762,10 @@
   <button class="menu__close lightbox__close" type="button" data-lightbox-close aria-label="Fermer" data-i18n-attr="aria-label:nav.close"><span aria-hidden="true"></span></button>
 </dialog>
 
-<script defer src="lib/manifest.js?v=20261008"></script>
-<script defer src="lib/i18n-ar.js?v=20261008"></script>
-<script defer src="main.js?v=20261008"></script>
+<script defer src="lib/manifest.js?v=20261008-2"></script>
+<script defer src="lib/i18n-en.js?v=20261008-2"></script>
+<script defer src="lib/i18n-es.js?v=20261008-2"></script>
+<script defer src="lib/i18n-de.js?v=20261008-2"></script>
+<script defer src="main.js?v=20261008-2"></script>
 </body>
 </html>
