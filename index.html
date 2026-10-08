@@ -1,363 +1,732 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CFC Marchica · Carte professionnelle à Nador</title>
-<meta name="description" content="CFC Marchica, centre de formation à la carte professionnelle de conducteur à Nador. Ouvert de 9 h à 17 h. WhatsApp : +212 6 61 21 42 01.">
-<meta name="theme-color" content="#0b0b0b">
-<meta property="og:title" content="CFC Marchica · Carte professionnelle à Nador">
-<meta property="og:description" content="Formation à la carte professionnelle de conducteur, à Nador.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>C.F.C.P Marchica · Carte professionnelle à Nador</title>
+<meta name="description" content="Centre de formation des conducteurs professionnels à Nador : carte professionnelle taxi, autocar, poids lourd et transport touristique. Cours théoriques et pratiques. 05 36 38 07 66 · 07 55 84 67 85.">
+<meta name="theme-color" content="#0E1A1C">
 <meta property="og:type" content="website">
-<link rel="icon" href="favicon.svg?v=20261006" type="image/svg+xml">
+<meta property="og:title" content="C.F.C.P Marchica · Carte professionnelle à Nador">
+<meta property="og:description" content="Le premier centre de formation des conducteurs professionnels de Nador. Taxi, autocar, poids lourd, transport touristique.">
+<meta property="og:image" content="assets/img/partage.jpg">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:locale:alternate" content="ar_MA">
+<link rel="icon" href="favicon.svg?v=20261008" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261006">
-<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="assets/video/hero-poster.webp" media="(orientation: landscape)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-poster-movil.webp" media="(orientation: portrait)" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=20261008">
+<script>document.documentElement.classList.add("js");try{if(localStorage.getItem("cfc-lang")==="ar"){document.documentElement.lang="ar";document.documentElement.dir="rtl";}}catch(e){}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "C.F.C.P Marchica — Centre de Formation des Conducteurs Professionnels",
+  "alternateName": "مركز تكوين السائقين المهنيين مارشيكا",
+  "telephone": ["+212536380766", "+212755846785"],
+  "email": "cfcmarchica@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Hay El Matar, Lotissement Saada, Immeuble Benamar, rez-de-chaussée n° 2",
+    "addressLocality": "Nador",
+    "addressCountry": "MA"
+  },
+  "sameAs": ["https://www.instagram.com/cfcmarchica/"]
+}
+</script>
 </head>
 <body>
+<a class="skip" href="#contenu" data-i18n="skip">Aller au contenu</a>
 
-<!-- Splash: se oculta solo a los 4,5 s aunque falle el JS -->
+<!-- Emblema del logo (se reutiliza con <use>) e iconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="disco"><circle cx="100" cy="100" r="96"/></clipPath>
+    <symbol id="emblema" viewBox="0 0 200 200">
+      <g clip-path="url(#disco)">
+        <path fill="#E7963F" d="M21.5 69.2C20.6 71.6 21.8 70.5 22 71.1C30.5 69.1 40.2 66.6 47.5 65.2C54.8 63.8 60 65 65.8 62.9C71.7 60.8 78.2 54.8 82.7 52.8C87.2 50.7 89.6 50.9 92.6 50.4C95.6 50 97 49.5 100.8 50C104.7 50.5 112.1 52.3 115.8 53.6C119.6 54.9 120.6 55.9 123.4 57.8C126.2 59.8 127 63.3 132.5 65.4C138 67.6 148.9 68.7 156.3 70.7C163.7 72.7 173.1 76.6 177 77.6C180.9 78.7 178.8 77.2 179.7 77C178.8 74.1 178.4 71.5 177 68.2C175.6 64.8 173.4 60.4 171.3 57C169.2 53.6 167.2 50.9 164.3 47.7C161.4 44.5 157.3 40.4 154 37.6C150.7 34.8 148.2 33 144.5 30.8C140.8 28.6 136.3 26.1 131.8 24.3C127.4 22.5 122.1 20.9 117.7 19.9C113.3 18.8 109.8 18.4 105.3 18.2C100.7 17.9 94.6 18.1 90.3 18.4C86 18.7 83.7 18.9 79.3 20.1C75 21.2 68.3 23.6 64.4 25.1C60.4 26.7 58.9 27.6 55.7 29.6C52.5 31.6 48.3 34.4 45 37.1C41.6 39.9 38.6 42.7 35.7 46C32.8 49.3 30 53.1 27.7 57C25.3 60.8 22.5 66.8 21.5 69.2Z"/>
+        <path fill="#7A7A7A" d="M156.9 98.7C150.6 98.5 144.7 98 138 98.1C131.2 98.2 123.1 99 116.7 99.6C110.3 100.2 106.4 100.7 99.6 101.9C92.8 103.1 82.9 105.2 76 107C69 108.7 65 109.9 58 112.2C51.1 114.6 43.5 117.2 34.2 121.1C24.9 125 12.9 130.8 2.3 135.6C2.5 136.3 1.8 134.9 3 137.5C4.2 140.2 6.5 146.3 9.6 151.4C12.7 156.6 17.6 163.6 21.6 168.3C25.5 173.1 29.3 176.4 33.4 179.8C37.4 183.3 41.6 185.8 45.8 188.7C49.5 183.5 53.4 177.7 57 173C60.5 168.2 63.3 164.6 67.1 160.3C70.9 156.1 73.8 152.7 79.8 147.4C85.7 142.2 95.4 134 102.5 128.7C109.7 123.4 113.7 120.6 122.8 115.6C131.8 110.6 145.6 104.4 156.9 98.7ZM203.2 87.3C195.5 86.3 186.7 85.6 180.1 84.4C173.6 83.2 171.5 81.7 164.1 80.2C156.8 78.7 146.1 76.5 136.1 75.5C126 74.5 113.1 74.3 103.8 74.3C94.5 74.3 88.2 74.7 80.2 75.5C72.2 76.4 62.9 78 55.9 79.3C49 80.7 48.3 81.5 38.4 83.5C28.5 85.5 10.4 88.7 -3.6 91.3C-3.7 93 -3.9 93.8 -3.9 96.3C-4 98.8 -4.2 102 -3.8 106.2C-3.5 110.3 -2.2 118.4 -1.8 121.2C-1.4 124.1 -1.5 122.8 -1.4 123.2C-1.3 123.7 -1.3 123.6 -1.2 123.8C9.1 119.9 20.3 115.5 29.8 112C39.2 108.5 44.7 105.9 55.5 102.7C66.3 99.6 81.6 95.5 94.3 93.2C107 91 122.7 89.9 131.8 89.2C140.9 88.6 141.1 88.8 148.9 89.2C156.8 89.7 170 92.1 179.1 92C188.2 91.8 195.3 89.6 203.3 88.4C203.3 88 203.3 87.7 203.2 87.3Z"/>
+        <path fill="#348F82" d="M204 99C204 99 204 98.9 204 98.8C191.7 101.4 178 103 167.1 106.8C156.1 110.5 144.2 116.8 138.2 121.1C132.1 125.4 133.5 129.2 130.6 132.7C127.6 136.2 123.5 139.7 120.5 142C117.4 144.2 116.1 145.1 112.4 146.4C108.8 147.7 101.3 148.6 98.3 149.6C95.3 150.6 97.5 149.3 94.3 152.3C91.1 155.3 82.8 163.7 79.1 167.7C75.5 171.7 73.6 174.3 72.4 176.1C71.2 177.9 72.1 177.7 72 178.5C73.8 179.2 75.1 180.2 77.6 180.8C80.2 181.4 81.6 182 87.1 182C92.7 182.1 103.8 182.2 110.8 181.2C117.8 180.1 123.5 178.1 129.1 175.7C134.8 173.4 139.7 170.7 144.7 167.1C149.7 163.5 155.5 157.8 159.1 154.2C162.6 150.7 163.3 149.8 165.8 145.8C168.3 141.8 171.7 136.2 174 130.2C176.3 124.1 174.7 114.5 179.7 109.3C184.7 104.1 195.9 102.5 204 99Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.5 4.2-2 1.4a12 12 0 0 0 6.2 6.2l1.4-2 4.2 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.9L2.3 21.7l4.7-1.2A9.8 9.8 0 1 0 12 2.2Zm5.6 13.8c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.1.1.7-.2 1.4Z" fill="currentColor"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4a21 21 0 0 0-2.4-.1c-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.6V21" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- Pantalla de entrada: el logo se monta. Se oculta sola a los 4,5 s aunque falle el JS -->
 <div class="splash" data-splash aria-hidden="true">
-  <div class="splash__stripes"></div>
-  <p class="splash__label mono">CFC MARCHICA <span>—</span> <b data-splash-count>0</b> km/h</p>
+  <div class="splash__inner">
+    <svg class="splash__logo" viewBox="0 0 200 200">
+      <g clip-path="url(#disco)">
+        <path class="p-sun" fill="#E7963F" d="M21.5 69.2C20.6 71.6 21.8 70.5 22 71.1C30.5 69.1 40.2 66.6 47.5 65.2C54.8 63.8 60 65 65.8 62.9C71.7 60.8 78.2 54.8 82.7 52.8C87.2 50.7 89.6 50.9 92.6 50.4C95.6 50 97 49.5 100.8 50C104.7 50.5 112.1 52.3 115.8 53.6C119.6 54.9 120.6 55.9 123.4 57.8C126.2 59.8 127 63.3 132.5 65.4C138 67.6 148.9 68.7 156.3 70.7C163.7 72.7 173.1 76.6 177 77.6C180.9 78.7 178.8 77.2 179.7 77C178.8 74.1 178.4 71.5 177 68.2C175.6 64.8 173.4 60.4 171.3 57C169.2 53.6 167.2 50.9 164.3 47.7C161.4 44.5 157.3 40.4 154 37.6C150.7 34.8 148.2 33 144.5 30.8C140.8 28.6 136.3 26.1 131.8 24.3C127.4 22.5 122.1 20.9 117.7 19.9C113.3 18.8 109.8 18.4 105.3 18.2C100.7 17.9 94.6 18.1 90.3 18.4C86 18.7 83.7 18.9 79.3 20.1C75 21.2 68.3 23.6 64.4 25.1C60.4 26.7 58.9 27.6 55.7 29.6C52.5 31.6 48.3 34.4 45 37.1C41.6 39.9 38.6 42.7 35.7 46C32.8 49.3 30 53.1 27.7 57C25.3 60.8 22.5 66.8 21.5 69.2Z"/>
+        <path class="p-road" fill="#7A7A7A" d="M156.9 98.7C150.6 98.5 144.7 98 138 98.1C131.2 98.2 123.1 99 116.7 99.6C110.3 100.2 106.4 100.7 99.6 101.9C92.8 103.1 82.9 105.2 76 107C69 108.7 65 109.9 58 112.2C51.1 114.6 43.5 117.2 34.2 121.1C24.9 125 12.9 130.8 2.3 135.6C2.5 136.3 1.8 134.9 3 137.5C4.2 140.2 6.5 146.3 9.6 151.4C12.7 156.6 17.6 163.6 21.6 168.3C25.5 173.1 29.3 176.4 33.4 179.8C37.4 183.3 41.6 185.8 45.8 188.7C49.5 183.5 53.4 177.7 57 173C60.5 168.2 63.3 164.6 67.1 160.3C70.9 156.1 73.8 152.7 79.8 147.4C85.7 142.2 95.4 134 102.5 128.7C109.7 123.4 113.7 120.6 122.8 115.6C131.8 110.6 145.6 104.4 156.9 98.7ZM203.2 87.3C195.5 86.3 186.7 85.6 180.1 84.4C173.6 83.2 171.5 81.7 164.1 80.2C156.8 78.7 146.1 76.5 136.1 75.5C126 74.5 113.1 74.3 103.8 74.3C94.5 74.3 88.2 74.7 80.2 75.5C72.2 76.4 62.9 78 55.9 79.3C49 80.7 48.3 81.5 38.4 83.5C28.5 85.5 10.4 88.7 -3.6 91.3C-3.7 93 -3.9 93.8 -3.9 96.3C-4 98.8 -4.2 102 -3.8 106.2C-3.5 110.3 -2.2 118.4 -1.8 121.2C-1.4 124.1 -1.5 122.8 -1.4 123.2C-1.3 123.7 -1.3 123.6 -1.2 123.8C9.1 119.9 20.3 115.5 29.8 112C39.2 108.5 44.7 105.9 55.5 102.7C66.3 99.6 81.6 95.5 94.3 93.2C107 91 122.7 89.9 131.8 89.2C140.9 88.6 141.1 88.8 148.9 89.2C156.8 89.7 170 92.1 179.1 92C188.2 91.8 195.3 89.6 203.3 88.4C203.3 88 203.3 87.7 203.2 87.3Z"/>
+        <path class="p-lagoon" fill="#348F82" d="M204 99C204 99 204 98.9 204 98.8C191.7 101.4 178 103 167.1 106.8C156.1 110.5 144.2 116.8 138.2 121.1C132.1 125.4 133.5 129.2 130.6 132.7C127.6 136.2 123.5 139.7 120.5 142C117.4 144.2 116.1 145.1 112.4 146.4C108.8 147.7 101.3 148.6 98.3 149.6C95.3 150.6 97.5 149.3 94.3 152.3C91.1 155.3 82.8 163.7 79.1 167.7C75.5 171.7 73.6 174.3 72.4 176.1C71.2 177.9 72.1 177.7 72 178.5C73.8 179.2 75.1 180.2 77.6 180.8C80.2 181.4 81.6 182 87.1 182C92.7 182.1 103.8 182.2 110.8 181.2C117.8 180.1 123.5 178.1 129.1 175.7C134.8 173.4 139.7 170.7 144.7 167.1C149.7 163.5 155.5 157.8 159.1 154.2C162.6 150.7 163.3 149.8 165.8 145.8C168.3 141.8 171.7 136.2 174 130.2C176.3 124.1 174.7 114.5 179.7 109.3C184.7 104.1 195.9 102.5 204 99Z"/>
+      </g>
+    </svg>
+    <p class="splash__word"><span>C.F.C.P</span> <b>Marchica</b></p>
+    <p class="splash__sub">Nador · الناظور</p>
+  </div>
 </div>
 
-<div class="progress" aria-hidden="true"><span data-progress></span></div>
-
-<div class="cursor" aria-hidden="true" data-cursor>
-  <span class="cursor__dot"></span>
-  <span class="cursor__label mono" data-cursor-label>N 35.1681° · W 2.9335°</span>
-</div>
-
-<header class="nav" data-nav>
-  <a class="nav__logo" href="#top" aria-label="CFC Marchica, accueil">
-    <span class="nav__mark">CFC</span><span class="nav__name">Marchica</span>
-  </a>
-  <nav class="nav__links" data-menu aria-label="Navigation principale">
-    <a href="#formation"><span class="mono">02</span> Formation</a>
-    <a href="#parcours"><span class="mono">03</span> Parcours</a>
-    <a href="#quiz"><span class="mono">04</span> Quiz</a>
-    <a href="#dossier"><span class="mono">05</span> Dossier</a>
-    <a href="#contact"><span class="mono">06</span> Contact</a>
-  </nav>
-  <span class="status mono" data-status><i></i><b data-status-text>09:00 — 17:00</b></span>
-  <a class="btn btn--ink nav__cta" href="https://wa.me/212661214201" target="_blank" rel="noopener">WhatsApp</a>
-  <button class="nav__burger mono" type="button" aria-expanded="false" aria-controls="menu" data-burger>Menu</button>
+<!-- Cabecera -->
+<header class="hdr" data-hdr>
+  <div class="hdr__bar">
+    <button class="hdr__menu" type="button" data-menu-open aria-expanded="false" aria-controls="menu">
+      <span class="burger" aria-hidden="true"><i></i><i></i></span>
+      <span class="hdr__menu-label" data-i18n="nav.menu">Menu</span>
+    </button>
+    <a class="hdr__brand" href="#accueil" aria-label="C.F.C.P Marchica">
+      <svg class="hdr__emblem" aria-hidden="true"><use href="#emblema"/></svg>
+      <span class="hdr__word"><span>C.F.C.P</span> <b>Marchica</b></span>
+    </a>
+    <div class="hdr__end">
+      <button class="lang" type="button" data-lang-toggle aria-label="Lire en arabe" data-i18n-attr="aria-label:lang.aria">
+        <span class="lang__fr">FR</span><span class="lang__ar">ع</span>
+      </button>
+      <a class="btn btn--sun btn--sm hdr__cta" href="#contact"><span data-i18n="nav.cta">S'inscrire</span></a>
+    </div>
+  </div>
+  <div class="hdr__progress" aria-hidden="true"><span data-progress></span></div>
 </header>
 
-<main id="top">
-
-  <!-- 01 · HERO -->
-  <section class="hero">
-    <div class="grid hero__grid">
-      <div class="cell hero__copy">
-        <p class="kicker mono">01 — Centre de formation · Nador, Maroc</p>
-        <h1 class="hero__title">
-          <span class="line"><span>Prenez</span></span>
-          <span class="line"><span>la route</span></span>
-          <span class="line"><span><mark>en pro.</mark></span></span>
-        </h1>
-        <p class="hero__lead">Formation à la carte professionnelle de conducteur, à Nador. Vous apprenez la réglementation, la sécurité et les réflexes d'un conducteur professionnel.</p>
-        <div class="hero__ctas">
-          <a class="btn btn--yellow" href="#contact">Je m'inscris <span aria-hidden="true">→</span></a>
-          <a class="btn btn--line" href="#quiz">Faire le quiz</a>
-        </div>
+<!-- Menú a pantalla completa -->
+<div class="menu" id="menu" data-menu hidden>
+  <div class="menu__inner">
+    <nav class="menu__nav" aria-label="Navigation principale" data-i18n-attr="aria-label:nav.aria">
+      <a href="#centre" data-menu-img="assets/img/salle-rangs-960.webp"><span class="menu__num">01</span><span data-i18n="nav.centre">Le centre</span></a>
+      <a href="#formations" data-menu-img="assets/img/salle-bureau-960.webp"><span class="menu__num">02</span><span data-i18n="nav.formations">Formations</span></a>
+      <a href="#programme" data-menu-img="assets/img/salle-tableau-700.webp"><span class="menu__num">03</span><span data-i18n="nav.programme">Programme</span></a>
+      <a href="#parcours" data-menu-img="assets/img/salle-ecran-700.webp"><span class="menu__num">04</span><span data-i18n="nav.parcours">Parcours</span></a>
+      <a href="#salle" data-menu-img="assets/img/salle-fenetre-700.webp"><span class="menu__num">05</span><span data-i18n="nav.salle">La salle</span></a>
+      <a href="#quiz" data-menu-img="assets/img/salle-rangs-960.webp"><span class="menu__num">06</span><span data-i18n="nav.quiz">Quiz</span></a>
+      <a href="#contact" data-menu-img="assets/img/salle-bureau-960.webp"><span class="menu__num">07</span><span data-i18n="nav.contact">Contact</span></a>
+      <a href="#faq" data-menu-img="assets/img/salle-tableau-700.webp"><span class="menu__num">08</span><span data-i18n="nav.faq">Questions</span></a>
+    </nav>
+    <aside class="menu__side">
+      <figure class="menu__fig"><img src="assets/img/salle-rangs-960.webp" alt="" data-menu-fig loading="lazy" decoding="async" width="960" height="720"></figure>
+      <div class="menu__info">
+        <p data-i18n="addr.short">Hay El Matar · Lotissement Saada · Nador</p>
+        <p><a href="tel:+212536380766" dir="ltr">05 36 38 07 66</a> · <a href="tel:+212755846785" dir="ltr">07 55 84 67 85</a></p>
+        <a class="btn btn--sun" href="https://wa.me/212755846785" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="cta.wa">Écrire sur WhatsApp</span></a>
       </div>
+    </aside>
+  </div>
+  <button class="menu__close" type="button" data-menu-close aria-label="Fermer le menu" data-i18n-attr="aria-label:nav.close"><span aria-hidden="true"></span></button>
+</div>
 
-      <div class="cell hero__card">
-        <div class="pcard" data-pcard tabindex="0" role="button" aria-pressed="false" aria-label="Retourner la carte">
-          <div class="pcard__inner">
-            <div class="pcard__face pcard__front">
-              <div class="pcard__band mono"><span>CFC MARCHICA</span><span>SPÉCIMEN</span></div>
-              <p class="pcard__title">Carte<br>professionnelle</p>
-              <p class="pcard__sub mono">Conducteur · Transport</p>
-              <div class="pcard__body">
-                <div class="pcard__photo" aria-hidden="true">
-                  <svg viewBox="0 0 60 70"><circle cx="30" cy="24" r="13"/><path d="M6 70c0-15 11-25 24-25s24 10 24 25z"/></svg>
-                </div>
-                <dl class="pcard__fields mono">
-                  <div><dt>Nom</dt><dd>VOTRE NOM</dd></div>
-                  <div><dt>Centre</dt><dd>NADOR</dd></div>
-                  <div><dt>Statut</dt><dd data-pcard-status>EN ROUTE…</dd></div>
-                </dl>
-              </div>
-              <div class="pcard__code" aria-hidden="true"></div>
-            </div>
-            <div class="pcard__face pcard__back">
-              <p class="mono">Verso</p>
-              <p class="pcard__big">Votre nom<br>ici&nbsp;?</p>
-              <p class="pcard__call mono">Appelez le<br><strong>+212 6 61 21 42 01</strong></p>
-            </div>
-          </div>
-        </div>
-        <p class="hint mono">↻ Cliquez sur la carte</p>
-      </div>
+<main id="contenu">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="accueil" aria-labelledby="hero-title">
+    <div class="hero__media" aria-hidden="true">
+      <video class="hero__video" data-hero-video muted loop playsinline autoplay preload="metadata"
+        poster="assets/video/hero-poster.webp"
+        data-src-wide="assets/video/hero-1080.mp4"
+        data-src-mid="assets/video/hero-720.mp4"
+        data-src-tall="assets/video/hero-movil.mp4"
+        data-src-webm="assets/video/hero-720.webm"
+        data-src-tall-webm="assets/video/hero-movil.webm"
+        data-poster-tall="assets/video/hero-poster-movil.webp"></video>
+    </div>
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-hero" data-i18n="hero.eyebrow">Centre de formation des conducteurs professionnels · Nador</p>
+      <h1 class="hero__title" id="hero-title" data-i18n="hero.title"><span class="ln"><span>La route est</span></span> <span class="ln"><span><em>un métier.</em></span></span></h1>
+      <p class="hero__lead reveal-hero" data-i18n="hero.lead">Préparez votre carte professionnelle dans le premier centre de Nador&nbsp;: cours théoriques et pratiques pour les chauffeurs de taxi, d'autocar, de poids lourd et de transport touristique.</p>
     </div>
 
-    <div class="grid hero__facts">
-      <a class="cell fact" href="tel:+212661214201"><span class="mono">Téléphone</span><strong>+212 6 61 21 42 01</strong></a>
-      <div class="cell fact"><span class="mono">Horaires</span><strong>09:00 — 17:00</strong></div>
-      <div class="cell fact"><span class="mono">Ville</span><strong>Nador</strong></div>
-      <a class="cell fact" href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener"><span class="mono">Instagram</span><strong>@cfcmarchica</strong></a>
-    </div>
-
-    <div class="road" aria-hidden="true" data-road>
-      <div class="road__lines"></div>
-      <div class="truck" data-truck>
-        <svg viewBox="0 0 260 112" class="truck__svg">
-          <rect class="t-box" x="2" y="8" width="168" height="72"/>
-          <text x="86" y="52" text-anchor="middle" class="t-label">CFC MARCHICA</text>
-          <rect class="t-cab" x="176" y="26" width="64" height="54"/>
-          <rect class="t-win" x="206" y="34" width="26" height="20"/>
-          <rect class="t-light" x="236" y="64" width="8" height="8"/>
-          <rect class="t-chassis" x="0" y="80" width="246" height="7"/>
-          <g class="wheel" style="transform-origin:36px 92px"><circle cx="36" cy="92" r="15"/><rect x="34" y="80" width="4" height="24"/></g>
-          <g class="wheel" style="transform-origin:72px 92px"><circle cx="72" cy="92" r="15"/><rect x="70" y="80" width="4" height="24"/></g>
-          <g class="wheel" style="transform-origin:146px 92px"><circle cx="146" cy="92" r="15"/><rect x="144" y="80" width="4" height="24"/></g>
-          <g class="wheel" style="transform-origin:216px 92px"><circle cx="216" cy="92" r="15"/><rect x="214" y="80" width="4" height="24"/></g>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <section class="marquee" aria-hidden="true">
-    <div class="marquee__track" data-marquee>
-      <span>Carte professionnelle <i>◆</i> Nador <i>◆</i> Marchandises <i>◆</i> Voyageurs <i>◆</i> Sécurité <i>◆</i>&nbsp;</span>
-      <span>Carte professionnelle <i>◆</i> Nador <i>◆</i> Marchandises <i>◆</i> Voyageurs <i>◆</i> Sécurité <i>◆</i>&nbsp;</span>
-    </div>
-  </section>
-
-  <!-- 02 · FORMATION -->
-  <section class="section" id="formation">
-    <div class="grid section__head">
-      <p class="cell kicker mono">02 — La formation</p>
-      <h2 class="cell reveal">Une carte.<br>Un métier.</h2>
-      <p class="cell lead reveal">Au Maroc, la carte professionnelle est exigée pour conduire, à titre professionnel, un véhicule de transport de marchandises ou de voyageurs. CFC Marchica vous prépare à l'obtenir.</p>
-    </div>
-    <div class="grid modules">
-      <article class="cell module reveal">
-        <span class="module__num">01</span>
-        <h3>Réglementation</h3>
-        <p>Code de la route, règles du transport professionnel, documents de bord.</p>
-      </article>
-      <article class="cell module reveal">
-        <span class="module__num">02</span>
-        <h3>Sécurité routière</h3>
-        <p>Anticiper, garder ses distances, connaître les angles morts de son véhicule.</p>
-      </article>
-      <article class="cell module reveal">
-        <span class="module__num">03</span>
-        <h3>Conduite rationnelle</h3>
-        <p>Rouler souple pour consommer moins et user moins le véhicule.</p>
-      </article>
-      <article class="cell module reveal">
-        <span class="module__num">04</span>
-        <h3>Premiers secours</h3>
-        <p>Protéger, alerter, secourir : les bons gestes en cas d'accident.</p>
-      </article>
-      <article class="cell module reveal">
-        <span class="module__num">05</span>
-        <h3>Chargement &amp; passagers</h3>
-        <p>Répartir et arrimer une charge, assurer la sécurité des personnes à bord.</p>
-      </article>
-      <article class="cell module reveal">
-        <span class="module__num">06</span>
-        <h3>Vérifications</h3>
-        <p>Pneus, freins, feux, niveaux : le tour du véhicule avant chaque départ.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- 03 · PARCOURS (horizontal en escritorio) -->
-  <section class="parcours" id="parcours" data-parcours>
-    <div class="parcours__pin">
-      <div class="parcours__head">
-        <p class="kicker mono">03 — Le parcours</p>
-        <h2>Quatre étapes<br>jusqu'à votre carte.</h2>
-      </div>
-      <div class="parcours__track" data-track>
-        <article class="stop">
-          <p class="stop__km mono">KM 00</p>
-          <h3>Premier contact</h3>
-          <p>Un message WhatsApp ou un passage au centre, de 9 h à 17 h. On répond à vos questions et on vous indique la prochaine session.</p>
-        </article>
-        <article class="stop">
-          <p class="stop__km mono">KM 01</p>
-          <h3>Inscription</h3>
-          <p>Vous déposez votre dossier. On vérifie avec vous qu'il ne manque rien.</p>
-        </article>
-        <article class="stop">
-          <p class="stop__km mono">KM 02</p>
-          <h3>Formation</h3>
-          <p>Cours théoriques et mises en situation : réglementation, sécurité, conduite rationnelle, premiers secours.</p>
-        </article>
-        <article class="stop stop--end">
-          <p class="stop__km mono">KM 03</p>
-          <h3>Carte en main</h3>
-          <p>Formation validée : vous pouvez prendre la route en professionnel.</p>
-          <a class="btn btn--ink" href="#contact">Commencer <span aria-hidden="true">→</span></a>
-        </article>
-      </div>
-      <div class="parcours__road" aria-hidden="true">
-        <span class="parcours__fill" data-parcours-fill></span>
-        <span class="parcours__truck" data-parcours-truck>
-          <svg viewBox="0 0 60 30"><rect x="0" y="2" width="38" height="20"/><rect x="40" y="8" width="16" height="14"/><circle cx="10" cy="25" r="4.5"/><circle cx="30" cy="25" r="4.5"/><circle cx="48" cy="25" r="4.5"/></svg>
+    <!-- Barra de reserva (inspirada en la de un hotel) -->
+    <form class="booking reveal-hero" data-booking action="https://wa.me/212755846785" method="get" target="_blank" novalidate>
+      <div class="booking__bar">
+      <label class="booking__field">
+        <span class="booking__label" data-i18n="book.formation">Votre formation</span>
+        <span class="select">
+          <select name="formation" data-formation-select>
+            <option value="taxi" data-i18n="f.taxi">Taxi · petit et grand</option>
+            <option value="autocar" data-i18n="f.autocar">Autocar · voyageurs</option>
+            <option value="poids" data-i18n="f.poids">Poids lourd · marchandises</option>
+            <option value="minibus" data-i18n="f.minibus">Transport touristique et du personnel</option>
+            <option value="nsp" data-i18n="f.nsp">Je ne sais pas encore</option>
+          </select>
         </span>
+      </label>
+      <label class="booking__field">
+        <span class="booking__label" data-i18n="book.name">Votre prénom</span>
+        <input type="text" name="nom" autocomplete="given-name" placeholder="Ex. Youssef" data-i18n-attr="placeholder:book.ph" data-name-input>
+      </label>
+      <button class="btn btn--sun booking__go" type="submit">
+        <span data-i18n="book.go">Réserver ma place</span>
+        <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </button>
+      </div>
+      <p class="booking__note"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="book.note">Réponse sur WhatsApp</span> · <span dir="ltr">07 55 84 67 85</span></p>
+    </form>
+
+    <div class="hero__foot">
+      <p class="hero__place"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> <span data-i18n="hero.place">Hay El Matar · Nador</span></p>
+      <a class="hero__scroll" href="#centre"><span data-i18n="hero.scroll">Découvrir</span><i aria-hidden="true"></i></a>
+      <div class="hero__tools">
+        <p class="status" data-status><i aria-hidden="true"></i><span data-status-text>9 h — 17 h</span></p>
+        <button class="hero__pause" type="button" data-video-toggle aria-label="Mettre la vidéo en pause" data-i18n-attr="aria-label:video.pause" hidden>
+          <span class="i-pause" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- 04 · QUIZ -->
-  <section class="section quiz" id="quiz">
-    <div class="grid section__head">
-      <p class="cell kicker mono">04 — Testez-vous</p>
-      <h2 class="cell reveal">Prêt pour<br>la route&nbsp;?</h2>
-      <p class="cell lead reveal">Six questions de sécurité routière. Pas d'inscription, pas de note officielle : juste pour voir où vous en êtes.</p>
-    </div>
-    <div class="quiz__box" data-quiz>
-      <div class="quiz__top mono">
-        <span data-quiz-step>6 questions</span>
-        <span data-quiz-score>Score 0</span>
+  <!-- ================= 01 · LE CENTRE ================= -->
+  <section class="sec intro" id="centre" aria-labelledby="t-centre">
+    <div class="wrap intro__grid">
+      <div class="intro__copy">
+        <p class="kicker reveal"><span>01</span> <span data-i18n="centre.kicker">Le centre</span></p>
+        <h2 class="sr-only" id="t-centre" data-i18n="centre.title">Le centre C.F.C.P Marchica</h2>
+        <p class="intro__words" data-words data-i18n="centre.words">Conduire pour les autres demande plus qu'un permis. Chez C.F.C.P Marchica, vous apprenez les règles, les gestes et les réflexes d'un conducteur professionnel, pour obtenir votre carte et rouler en confiance.</p>
       </div>
-      <div class="quiz__bar"><span data-quiz-bar></span></div>
-      <div class="quiz__body" data-quiz-body>
-        <div class="quiz__start">
-          <p class="quiz__q">Panneaux, distances, premiers secours… vous connaissez&nbsp;?</p>
-          <button class="btn btn--yellow" type="button" data-quiz-start>Commencer le quiz <span aria-hidden="true">→</span></button>
+      <div class="intro__emblem" data-assemble aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <g clip-path="url(#disco)">
+            <path class="a-sun" fill="#E7963F" d="M21.5 69.2C20.6 71.6 21.8 70.5 22 71.1C30.5 69.1 40.2 66.6 47.5 65.2C54.8 63.8 60 65 65.8 62.9C71.7 60.8 78.2 54.8 82.7 52.8C87.2 50.7 89.6 50.9 92.6 50.4C95.6 50 97 49.5 100.8 50C104.7 50.5 112.1 52.3 115.8 53.6C119.6 54.9 120.6 55.9 123.4 57.8C126.2 59.8 127 63.3 132.5 65.4C138 67.6 148.9 68.7 156.3 70.7C163.7 72.7 173.1 76.6 177 77.6C180.9 78.7 178.8 77.2 179.7 77C178.8 74.1 178.4 71.5 177 68.2C175.6 64.8 173.4 60.4 171.3 57C169.2 53.6 167.2 50.9 164.3 47.7C161.4 44.5 157.3 40.4 154 37.6C150.7 34.8 148.2 33 144.5 30.8C140.8 28.6 136.3 26.1 131.8 24.3C127.4 22.5 122.1 20.9 117.7 19.9C113.3 18.8 109.8 18.4 105.3 18.2C100.7 17.9 94.6 18.1 90.3 18.4C86 18.7 83.7 18.9 79.3 20.1C75 21.2 68.3 23.6 64.4 25.1C60.4 26.7 58.9 27.6 55.7 29.6C52.5 31.6 48.3 34.4 45 37.1C41.6 39.9 38.6 42.7 35.7 46C32.8 49.3 30 53.1 27.7 57C25.3 60.8 22.5 66.8 21.5 69.2Z"/>
+            <path class="a-road" fill="#7A7A7A" d="M156.9 98.7C150.6 98.5 144.7 98 138 98.1C131.2 98.2 123.1 99 116.7 99.6C110.3 100.2 106.4 100.7 99.6 101.9C92.8 103.1 82.9 105.2 76 107C69 108.7 65 109.9 58 112.2C51.1 114.6 43.5 117.2 34.2 121.1C24.9 125 12.9 130.8 2.3 135.6C2.5 136.3 1.8 134.9 3 137.5C4.2 140.2 6.5 146.3 9.6 151.4C12.7 156.6 17.6 163.6 21.6 168.3C25.5 173.1 29.3 176.4 33.4 179.8C37.4 183.3 41.6 185.8 45.8 188.7C49.5 183.5 53.4 177.7 57 173C60.5 168.2 63.3 164.6 67.1 160.3C70.9 156.1 73.8 152.7 79.8 147.4C85.7 142.2 95.4 134 102.5 128.7C109.7 123.4 113.7 120.6 122.8 115.6C131.8 110.6 145.6 104.4 156.9 98.7ZM203.2 87.3C195.5 86.3 186.7 85.6 180.1 84.4C173.6 83.2 171.5 81.7 164.1 80.2C156.8 78.7 146.1 76.5 136.1 75.5C126 74.5 113.1 74.3 103.8 74.3C94.5 74.3 88.2 74.7 80.2 75.5C72.2 76.4 62.9 78 55.9 79.3C49 80.7 48.3 81.5 38.4 83.5C28.5 85.5 10.4 88.7 -3.6 91.3C-3.7 93 -3.9 93.8 -3.9 96.3C-4 98.8 -4.2 102 -3.8 106.2C-3.5 110.3 -2.2 118.4 -1.8 121.2C-1.4 124.1 -1.5 122.8 -1.4 123.2C-1.3 123.7 -1.3 123.6 -1.2 123.8C9.1 119.9 20.3 115.5 29.8 112C39.2 108.5 44.7 105.9 55.5 102.7C66.3 99.6 81.6 95.5 94.3 93.2C107 91 122.7 89.9 131.8 89.2C140.9 88.6 141.1 88.8 148.9 89.2C156.8 89.7 170 92.1 179.1 92C188.2 91.8 195.3 89.6 203.3 88.4C203.3 88 203.3 87.7 203.2 87.3Z"/>
+            <path class="a-lagoon" fill="#348F82" d="M204 99C204 99 204 98.9 204 98.8C191.7 101.4 178 103 167.1 106.8C156.1 110.5 144.2 116.8 138.2 121.1C132.1 125.4 133.5 129.2 130.6 132.7C127.6 136.2 123.5 139.7 120.5 142C117.4 144.2 116.1 145.1 112.4 146.4C108.8 147.7 101.3 148.6 98.3 149.6C95.3 150.6 97.5 149.3 94.3 152.3C91.1 155.3 82.8 163.7 79.1 167.7C75.5 171.7 73.6 174.3 72.4 176.1C71.2 177.9 72.1 177.7 72 178.5C73.8 179.2 75.1 180.2 77.6 180.8C80.2 181.4 81.6 182 87.1 182C92.7 182.1 103.8 182.2 110.8 181.2C117.8 180.1 123.5 178.1 129.1 175.7C134.8 173.4 139.7 170.7 144.7 167.1C149.7 163.5 155.5 157.8 159.1 154.2C162.6 150.7 163.3 149.8 165.8 145.8C168.3 141.8 171.7 136.2 174 130.2C176.3 124.1 174.7 114.5 179.7 109.3C184.7 104.1 195.9 102.5 204 99Z"/>
+          </g>
+        </svg>
+        <ul class="intro__legend">
+          <li class="l-sun" data-i18n="centre.l1">Le soleil de l'Oriental</li>
+          <li class="l-road" data-i18n="centre.l2">La route</li>
+          <li class="l-lagoon" data-i18n="centre.l3">La lagune Marchica</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap facts">
+      <article class="fact reveal">
+        <span class="fact__mark" aria-hidden="true">✦</span>
+        <h3 data-i18n="fact1.t">Formation reconnue</h3>
+        <p data-i18n="fact1.d">Un parcours pensé pour l'obtention de la carte professionnelle de conducteur.</p>
+      </article>
+      <article class="fact reveal">
+        <span class="fact__mark" aria-hidden="true">✦</span>
+        <h3 data-i18n="fact2.t">Théorie et pratique</h3>
+        <p data-i18n="fact2.d">Des cours en salle et des mises en situation concrètes, avec un support de cours pour chaque stagiaire.</p>
+      </article>
+      <article class="fact reveal">
+        <span class="fact__mark" aria-hidden="true">✦</span>
+        <h3 data-i18n="fact3.t">Le premier à Nador</h3>
+        <p data-i18n="fact3.d">Le premier centre de formation des conducteurs professionnels de la ville.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= 02 · FORMATIONS ================= -->
+  <section class="sec formations" id="formations" aria-labelledby="t-formations">
+    <div class="wrap head">
+      <p class="kicker reveal"><span>02</span> <span data-i18n="form.kicker">Formations</span></p>
+      <h2 class="h2 reveal" id="t-formations" data-i18n="form.title">Une carte, <em>quatre métiers.</em></h2>
+      <p class="lead reveal" data-i18n="form.lead">La carte professionnelle est exigée pour transporter des personnes ou des marchandises. Choisissez la formation qui correspond à votre véhicule.</p>
+    </div>
+
+    <div class="cards" data-cards>
+      <article class="card reveal" data-formation="taxi">
+        <span class="card__num">01</span>
+        <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="ground" d="M4 111H236"/>
+          <path class="dr" pathLength="1" d="M16 96V82c0-6 4-9 10-10l34-6 20-17c4-3 8-5 14-5h48c6 0 10 2 14 5l18 17 30 5c7 1 12 5 12 12v13"/>
+          <path class="dr" pathLength="1" d="M16 96h22M86 96h68M202 96h22"/>
+          <path pathLength="1" class="dr glass" d="M86 64l12-12c2-2 4-3 7-3h17v15zM128 49h19c3 0 5 1 7 3l12 12h-38z"/>
+          <path class="dr" pathLength="1" d="M126 66v26M100 72h8M150 72h8"/>
+          <rect class="sign" x="110" y="34" width="28" height="9" rx="2"/>
+          <path class="dr" pathLength="1" d="M38 96a24 24 0 0 1 48 0M154 96a24 24 0 0 1 48 0M218 80h6M16 84h8"/>
+          <g class="wheel"><circle cx="62" cy="98" r="13"/><circle cx="62" cy="98" r="5"/><path d="M62 85v8M62 103v8M49 98h8M67 98h8"/></g>
+          <g class="wheel"><circle cx="178" cy="98" r="13"/><circle cx="178" cy="98" r="5"/><path d="M178 85v8M178 103v8M165 98h8M183 98h8"/></g>
+        </svg>
+        <h3 data-i18n="c1.t">Taxi</h3>
+        <p class="card__sub" data-i18n="c1.s">Petit et grand taxi</p>
+        <p class="card__txt" data-i18n="c1.d">En ville ou entre les villes, vos passagers comptent sur votre conduite.</p>
+        <a class="card__go" href="#contact" data-choose="taxi"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="card reveal" data-formation="autocar">
+        <span class="card__num">02</span>
+        <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="ground" d="M4 111H236"/>
+          <path class="dr" pathLength="1" d="M10 96V36c0-6 4-10 10-10h178c8 0 13 3 17 9l13 20c2 3 3 6 3 10v31"/>
+          <path class="dr" pathLength="1" d="M10 96h18M76 96h72M196 96h35"/>
+          <path pathLength="1" class="dr glass" d="M18 36h30v20H18zM54 36h30v20H54zM90 36h30v20H90zM126 36h30v20h-30zM162 36h26v20h-26zM196 36h6c3 0 6 2 8 4l11 16h-25z"/>
+          <path class="dr" pathLength="1" d="M10 66h221M204 62v30M216 62v30"/>
+          <path class="dr" pathLength="1" d="M28 96a24 24 0 0 1 48 0M148 96a24 24 0 0 1 48 0M224 84h7"/>
+          <g class="wheel"><circle cx="52" cy="98" r="13"/><circle cx="52" cy="98" r="5"/><path d="M52 85v8M52 103v8M39 98h8M57 98h8"/></g>
+          <g class="wheel"><circle cx="172" cy="98" r="13"/><circle cx="172" cy="98" r="5"/><path d="M172 85v8M172 103v8M159 98h8M177 98h8"/></g>
+        </svg>
+        <h3 data-i18n="c2.t">Autocar</h3>
+        <p class="card__sub" data-i18n="c2.s">Transport de voyageurs</p>
+        <p class="card__txt" data-i18n="c2.d">Des dizaines de passagers à bord&nbsp;: la sécurité passe avant tout.</p>
+        <a class="card__go" href="#contact" data-choose="autocar"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="card reveal" data-formation="poids">
+        <span class="card__num">03</span>
+        <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="ground" d="M4 111H236"/>
+          <path class="dr" pathLength="1" d="M6 88V24h140v64z"/>
+          <path pathLength="1" class="dr glass" d="M30 40h70M30 52h46"/>
+          <path class="dr" pathLength="1" d="M152 96V44c0-5 3-8 8-8h32c5 0 8 2 10 6l14 24c3 4 4 8 4 12v18"/>
+          <path pathLength="1" class="dr glass" d="M178 44h14c3 0 5 1 6 3l11 19h-31z"/>
+          <path class="dr" pathLength="1" d="M152 70h68M168 44v24M146 80h6M196 96h24M152 96h2M154 96a21 21 0 0 1 42 0"/>
+          <g class="wheel"><circle cx="31" cy="99" r="12"/><circle cx="31" cy="99" r="4.5"/><path d="M31 87v7M31 104v7M19 99h7M36 99h7"/></g>
+          <g class="wheel"><circle cx="99" cy="99" r="12"/><circle cx="99" cy="99" r="4.5"/><path d="M99 87v7M99 104v7M87 99h7M104 99h7"/></g>
+          <g class="wheel"><circle cx="125" cy="99" r="12"/><circle cx="125" cy="99" r="4.5"/><path d="M125 87v7M125 104v7M113 99h7M130 99h7"/></g>
+          <g class="wheel"><circle cx="175" cy="99" r="12"/><circle cx="175" cy="99" r="4.5"/><path d="M175 87v7M175 104v7M163 99h7M180 99h7"/></g>
+        </svg>
+        <h3 data-i18n="c3.t">Poids lourd</h3>
+        <p class="card__sub" data-i18n="c3.s">Transport de marchandises</p>
+        <p class="card__txt" data-i18n="c3.d">Chargement, freinage, angles morts&nbsp;: maîtriser un véhicule de plusieurs tonnes.</p>
+        <a class="card__go" href="#contact" data-choose="poids"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="card reveal" data-formation="minibus">
+        <span class="card__num">04</span>
+        <svg class="veh" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="ground" d="M4 111H236"/>
+          <path class="dr" pathLength="1" d="M14 96V40c0-7 5-12 12-12h126c7 0 12 2 16 7l26 30 22 5c6 1 10 6 10 12v14"/>
+          <path class="dr" pathLength="1" d="M14 96h22M88 96h66M206 96h18"/>
+          <path pathLength="1" class="dr glass" d="M24 40h30v22H24zM62 40h36v22H62zM106 40h36v22h-36zM150 40h6c3 0 6 1 8 4l17 18h-31z"/>
+          <path class="dr" pathLength="1" d="M100 70v22M148 66v28M14 72h8M220 80h6"/>
+          <path class="dr" pathLength="1" d="M36 96a26 26 0 0 1 52 0M154 96a26 26 0 0 1 52 0"/>
+          <g class="wheel"><circle cx="62" cy="98" r="13"/><circle cx="62" cy="98" r="5"/><path d="M62 85v8M62 103v8M49 98h8M67 98h8"/></g>
+          <g class="wheel"><circle cx="180" cy="98" r="13"/><circle cx="180" cy="98" r="5"/><path d="M180 85v8M180 103v8M167 98h8M185 98h8"/></g>
+        </svg>
+        <h3 data-i18n="c4.t">Minibus</h3>
+        <p class="card__sub" data-i18n="c4.s">Transport touristique et du personnel</p>
+        <p class="card__txt" data-i18n="c4.d">Touristes ou salariés&nbsp;: un trajet sûr, ponctuel et confortable.</p>
+        <a class="card__go" href="#contact" data-choose="minibus"><span data-i18n="card.go">Choisir cette formation</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= 03 · PROGRAMME ================= -->
+  <section class="sec programme" id="programme" aria-labelledby="t-programme">
+    <div class="wrap head">
+      <p class="kicker reveal"><span>03</span> <span data-i18n="prog.kicker">Programme</span></p>
+      <h2 class="h2 reveal" id="t-programme" data-i18n="prog.title">Ce que vous <em>apprenez.</em></h2>
+      <p class="lead reveal" data-i18n="prog.lead">Quatre chapitres, du tour du véhicule avant le départ jusqu'aux bons gestes en cas d'accident.</p>
+    </div>
+
+    <div class="wrap prog" data-prog>
+      <div class="prog__visual" aria-hidden="true">
+        <div class="prog__frame">
+          <span class="prog__big" data-prog-num>01</span>
+          <svg class="prog__icon is-on" data-prog-icon="0" viewBox="0 0 120 120">
+            <rect class="dr" pathLength="1" x="28" y="22" width="64" height="82" rx="6"/>
+            <path class="dr" pathLength="1" d="M46 22v-6h28v6"/>
+            <path pathLength="1" class="dr acc" d="M40 46l6 6 10-12M40 68l6 6 10-12"/>
+            <path class="dr" pathLength="1" d="M64 48h18M64 70h18M40 90h4M64 90h18"/>
+          </svg>
+          <svg class="prog__icon" data-prog-icon="1" viewBox="0 0 120 120">
+            <circle class="teeth" cx="54" cy="56" r="27" stroke-dasharray="7 7.14"/>
+            <circle class="dr" pathLength="1" cx="54" cy="56" r="22"/>
+            <circle pathLength="1" class="dr acc" cx="54" cy="56" r="8"/>
+            <path class="dr" pathLength="1" d="M78 80l20 20a6 6 0 0 0 8-8L86 72M80 66a14 14 0 0 1 14-16l-6 8 4 6 8-2a14 14 0 0 1-18 12"/>
+          </svg>
+          <svg class="prog__icon" data-prog-icon="2" viewBox="0 0 120 120">
+            <path class="dr" pathLength="1" d="M60 16 106 98H14Z"/>
+            <path class="dr" pathLength="1" d="M60 30 92 88H28Z"/>
+            <path pathLength="1" class="dr acc" d="M60 48v22M60 79v1"/>
+          </svg>
+          <svg class="prog__icon" data-prog-icon="3" viewBox="0 0 120 120">
+            <rect class="dr" pathLength="1" x="18" y="18" width="84" height="84" rx="16"/>
+            <path pathLength="1" class="dr acc" d="M51 36h18v15h15v18H69v15H51V69H36V51h15z"/>
+          </svg>
         </div>
       </div>
+
+      <ol class="prog__list">
+        <li class="chap is-active" data-chap="0">
+          <span class="chap__num">01</span>
+          <div>
+            <h3 data-i18n="ch1.t">Contrôle quotidien</h3>
+            <p class="chap__ar" lang="ar" dir="rtl">المراقبة اليومية</p>
+            <p data-i18n="ch1.d">Le tour du véhicule avant chaque départ&nbsp;: pneus, freins, feux, niveaux et documents de bord.</p>
+          </div>
+        </li>
+        <li class="chap" data-chap="1">
+          <span class="chap__num">02</span>
+          <div>
+            <h3 data-i18n="ch2.t">Mécanique de base</h3>
+            <p class="chap__ar" lang="ar" dir="rtl">الميكانيك الأولية</p>
+            <p data-i18n="ch2.d">Comprendre le moteur, la transmission et les organes de sécurité pour repérer une panne avant qu'elle ne s'aggrave.</p>
+          </div>
+        </li>
+        <li class="chap" data-chap="2">
+          <span class="chap__num">03</span>
+          <div>
+            <h3 data-i18n="ch3.t">Sécurité routière</h3>
+            <p class="chap__ar" lang="ar" dir="rtl">السلامة الطرقية</p>
+            <p data-i18n="ch3.d">Distances, vitesse, angles morts, fatigue&nbsp;: les règles qui protègent vos passagers, votre chargement et les autres usagers.</p>
+          </div>
+        </li>
+        <li class="chap" data-chap="3">
+          <span class="chap__num">04</span>
+          <div>
+            <h3 data-i18n="ch4.t">En cas d'accident</h3>
+            <p class="chap__ar" lang="ar" dir="rtl">كيفية التصرف في حالة حادثة سير</p>
+            <p data-i18n="ch4.d">Protéger, alerter, secourir&nbsp;: les bons gestes et les démarches à suivre après un accident de la circulation.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- 05 · DOSSIER -->
-  <section class="section dossier" id="dossier">
-    <div class="grid dossier__grid">
-      <div class="cell dossier__intro">
-        <p class="kicker mono">05 — Votre dossier</p>
-        <h2 class="reveal">Cochez.<br>C'est prêt.</h2>
-        <p class="lead">Préparez vos documents avant de venir. Liste indicative : elle vous est confirmée à l'inscription.</p>
-        <div class="gauge" aria-hidden="true">
-          <div class="gauge__cells" data-gauge><span></span><span></span><span></span><span></span></div>
-          <p class="gauge__pct mono"><b data-gauge-pct>0</b>%</p>
-        </div>
-        <p class="gauge__msg mono" data-gauge-msg>Réservoir vide. On commence ?</p>
-      </div>
-      <ul class="cell checklist" data-checklist>
-        <li><label><input type="checkbox" value="cin"><span class="box" aria-hidden="true"></span><span>Copie de la CIN</span></label></li>
-        <li><label><input type="checkbox" value="permis"><span class="box" aria-hidden="true"></span><span>Copie du permis de conduire</span></label></li>
-        <li><label><input type="checkbox" value="photos"><span class="box" aria-hidden="true"></span><span>Photos d'identité</span></label></li>
-        <li><label><input type="checkbox" value="medical"><span class="box" aria-hidden="true"></span><span>Certificat médical</span></label></li>
-      </ul>
+  <!-- ================= 04 · PARCOURS (la carretera que se dibuja) ================= -->
+  <section class="sec route" id="parcours" aria-labelledby="t-parcours" data-route>
+    <div class="wrap head head--center">
+      <p class="kicker reveal"><span>04</span> <span data-i18n="route.kicker">Parcours</span></p>
+      <h2 class="h2 reveal" id="t-parcours" data-i18n="route.title">De la première visite <em>à la carte en main.</em></h2>
     </div>
-  </section>
 
-  <!-- 06 · CONTACT -->
-  <section class="contact" id="contact">
-    <div class="grid contact__grid">
-      <div class="cell contact__form">
-        <p class="kicker mono">06 — Contact</p>
-        <h2 class="reveal">Écrivez-nous<br>sur WhatsApp.</h2>
-        <form class="wa" data-wa action="https://wa.me/212661214201" method="get" target="_blank">
-          <label class="field">
-            <span class="mono">Votre prénom</span>
-            <input type="text" name="nom" autocomplete="given-name" placeholder="Ex. Youssef" data-wa-name>
-          </label>
-          <fieldset class="field">
-            <legend class="mono">Vous voulez…</legend>
-            <div class="chips">
-              <label><input type="radio" name="objet" value="inscription" checked><span>M'inscrire</span></label>
-              <label><input type="radio" name="objet" value="infos"><span>Des informations</span></label>
-              <label><input type="radio" name="objet" value="session"><span>La prochaine session</span></label>
-              <label><input type="radio" name="objet" value="tarifs"><span>Les tarifs</span></label>
+    <div class="route__body wrap" data-route-body>
+      <svg class="route__svg" data-route-svg aria-hidden="true">
+        <path class="route__asphalt" data-route-path/>
+        <path class="route__line" data-route-line/>
+        <path class="route__done" data-route-done/>
+        <g class="route__car" data-route-car>
+          <rect x="-11" y="-6" width="22" height="12" rx="4"/>
+          <rect class="route__car-glass" x="1" y="-4.5" width="5" height="9" rx="1.5"/>
+          <circle class="route__car-light" cx="11" cy="-3.5" r="1.4"/>
+          <circle class="route__car-light" cx="11" cy="3.5" r="1.4"/>
+        </g>
+      </svg>
+
+      <ol class="route__steps">
+        <li class="step" data-step>
+          <span class="step__dot" aria-hidden="true"></span>
+          <div class="step__card">
+            <span class="step__km">KM 0</span>
+            <h3 data-i18n="s1.t">Premier contact</h3>
+            <p data-i18n="s1.d">Passez au centre ou écrivez-nous sur WhatsApp. On vous oriente vers la formation qui correspond à votre véhicule.</p>
+          </div>
+        </li>
+        <li class="step" data-step>
+          <span class="step__dot" aria-hidden="true"></span>
+          <div class="step__card">
+            <span class="step__km">KM 1</span>
+            <h3 data-i18n="s2.t">Votre dossier</h3>
+            <p data-i18n="s2.d">Vous déposez votre dossier, on vérifie avec vous qu'il est complet. Cochez ce que vous avez déjà&nbsp;:</p>
+            <div class="docs" data-docs>
+              <ul class="docs__list">
+                <li><label><input type="checkbox" value="cin"><span class="docs__box" aria-hidden="true"></span><span data-i18n="d1">Copie de la CIN</span></label></li>
+                <li><label><input type="checkbox" value="permis"><span class="docs__box" aria-hidden="true"></span><span data-i18n="d2">Copie du permis de conduire</span></label></li>
+                <li><label><input type="checkbox" value="photos"><span class="docs__box" aria-hidden="true"></span><span data-i18n="d3">Photos d'identité</span></label></li>
+                <li><label><input type="checkbox" value="medical"><span class="docs__box" aria-hidden="true"></span><span data-i18n="d4">Certificat médical</span></label></li>
+              </ul>
+              <div class="docs__gauge" aria-live="polite">
+                <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19"/><circle class="docs__arc" data-docs-arc cx="22" cy="22" r="19" pathLength="1"/></svg>
+                <span><b data-docs-count>0</b>/4</span>
+              </div>
+              <p class="docs__msg" data-docs-msg>Liste indicative, confirmée à l'inscription.</p>
             </div>
-          </fieldset>
-          <label class="field">
-            <span class="mono">Message (facultatif)</span>
-            <textarea name="text" rows="3" placeholder="Une question ?" data-wa-msg></textarea>
-          </label>
-          <div class="bubble" aria-live="polite">
-            <span class="mono">Aperçu</span>
-            <p data-wa-preview>Bonjour CFC Marchica, je souhaite m'inscrire à la formation carte professionnelle.</p>
           </div>
-          <button class="btn btn--yellow" type="submit">Envoyer sur WhatsApp <span aria-hidden="true">→</span></button>
-        </form>
-      </div>
+        </li>
+        <li class="step" data-step>
+          <span class="step__dot" aria-hidden="true"></span>
+          <div class="step__card">
+            <span class="step__km">KM 2</span>
+            <h3 data-i18n="s3.t">La formation</h3>
+            <p data-i18n="s3.d">Cours théoriques en salle et mises en pratique, avec un support de cours remis à chaque stagiaire.</p>
+          </div>
+        </li>
+        <li class="step step--end" data-step>
+          <span class="step__dot" aria-hidden="true"></span>
+          <div class="step__card">
+            <span class="step__km">KM 3</span>
+            <h3 data-i18n="s4.t">Carte en main</h3>
+            <p data-i18n="s4.d">Formation terminée&nbsp;: vous êtes prêt à prendre la route en professionnel.</p>
+            <div class="pcard" aria-hidden="true">
+              <div class="pcard__top"><span>Royaume du Maroc</span><span lang="ar">المملكة المغربية</span></div>
+              <p class="pcard__title">Carte de conducteur professionnel</p>
+              <p class="pcard__ar" lang="ar">بطاقة السائق المهني</p>
+              <div class="pcard__row">
+                <span class="pcard__photo"></span>
+                <span class="pcard__lines"><i></i><i></i><i></i></span>
+                <svg class="pcard__emblem"><use href="#emblema"/></svg>
+              </div>
+            </div>
+            <a class="btn btn--ink" href="#contact"><span data-i18n="cta.start">Commencer maintenant</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-      <div class="cell contact__side">
-        <div class="clock">
-          <p class="mono">Heure à Nador</p>
-          <p class="clock__time mono" data-clock>--:--:--</p>
-          <p class="clock__state mono" data-clock-state>Ouvert de 09:00 à 17:00</p>
-          <div class="day" aria-hidden="true">
-            <span class="day__open"></span>
-            <span class="day__now" data-day-now></span>
-            <span class="day__lbl mono" style="left:0">00</span>
-            <span class="day__lbl mono" style="left:37.5%">09</span>
-            <span class="day__lbl mono" style="left:70.83%">17</span>
-            <span class="day__lbl mono day__lbl--end">24</span>
-          </div>
-        </div>
-        <a class="contact__line" href="tel:+212661214201"><span class="mono">Téléphone</span><strong>+212 6 61 21 42 01</strong></a>
-        <a class="contact__line" href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener"><span class="mono">Instagram</span><strong>@cfcmarchica</strong></a>
-        <div class="map">
-          <iframe title="Carte : Nador, Maroc" src="https://www.google.com/maps?q=Nador%2C%20Maroc&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- ================= 05 · LA SALLE ================= -->
+  <section class="sec salle" id="salle" aria-labelledby="t-salle">
+    <div class="wrap head head--split">
+      <div>
+        <p class="kicker reveal"><span>05</span> <span data-i18n="salle.kicker">La salle</span></p>
+        <h2 class="h2 reveal" id="t-salle" data-i18n="salle.title">Une salle pensée <em>pour apprendre.</em></h2>
+      </div>
+      <p class="lead reveal" data-i18n="salle.lead">Vidéoprojecteur, grand écran, tableau blanc et chaises à tablette, au rez-de-chaussée de l'immeuble Benamar, à Hay El Matar.</p>
+    </div>
+
+    <div class="gallery" data-gallery>
+      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Photos de la salle" data-i18n-attr="aria-label:salle.aria">
+        <figure class="shot">
+          <button class="shot__btn" type="button" data-lightbox="0" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
+            <img src="assets/img/salle-rangs-1600.webp" srcset="assets/img/salle-rangs-960.webp 960w, assets/img/salle-rangs-1600.webp 1600w" sizes="(min-width: 960px) 62vw, 86vw" alt="La salle de cours avec ses chaises à tablette, le vidéoprojecteur et le support de cours sur le bureau" data-i18n-attr="alt:g1.alt" loading="lazy" decoding="async" width="1600" height="1200">
+          </button>
+          <figcaption><span class="shot__n">01</span> <span data-i18n="g1">La salle de cours</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <button class="shot__btn" type="button" data-lightbox="1" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
+            <img src="assets/img/salle-bureau-1600.webp" srcset="assets/img/salle-bureau-960.webp 960w, assets/img/salle-bureau-1600.webp 1600w" sizes="(min-width: 960px) 62vw, 86vw" alt="Le bureau du formateur face à l'écran de projection" data-i18n-attr="alt:g2.alt" loading="lazy" decoding="async" width="1600" height="1200">
+          </button>
+          <figcaption><span class="shot__n">02</span> <span data-i18n="g2">Le poste du formateur</span></figcaption>
+        </figure>
+        <figure class="shot shot--tall">
+          <button class="shot__btn" type="button" data-lightbox="2" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
+            <img src="assets/img/salle-tableau-1100.webp" srcset="assets/img/salle-tableau-700.webp 700w, assets/img/salle-tableau-1100.webp 1100w" sizes="(min-width: 960px) 30vw, 70vw" alt="Écran de projection et tableau blanc sur roulettes" data-i18n-attr="alt:g3.alt" loading="lazy" decoding="async" width="1100" height="1467">
+          </button>
+          <figcaption><span class="shot__n">03</span> <span data-i18n="g3">Écran et tableau blanc</span></figcaption>
+        </figure>
+        <figure class="shot shot--tall">
+          <button class="shot__btn" type="button" data-lightbox="3" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
+            <img src="assets/img/salle-ecran-1100.webp" srcset="assets/img/salle-ecran-700.webp 700w, assets/img/salle-ecran-1100.webp 1100w" sizes="(min-width: 960px) 30vw, 70vw" alt="Écran sur trépied près de la baie vitrée" data-i18n-attr="alt:g4.alt" loading="lazy" decoding="async" width="1100" height="1467">
+          </button>
+          <figcaption><span class="shot__n">04</span> <span data-i18n="g4">Projection près de la baie vitrée</span></figcaption>
+        </figure>
+        <figure class="shot shot--tall">
+          <button class="shot__btn" type="button" data-lightbox="4" aria-label="Agrandir la photo" data-i18n-attr="aria-label:salle.zoom">
+            <img src="assets/img/salle-fenetre-1100.webp" srcset="assets/img/salle-fenetre-700.webp 700w, assets/img/salle-fenetre-1100.webp 1100w" sizes="(min-width: 960px) 30vw, 70vw" alt="Rangées de chaises à tablette devant la fenêtre" data-i18n-attr="alt:g5.alt" loading="lazy" decoding="async" width="1100" height="1467">
+          </button>
+          <figcaption><span class="shot__n">05</span> <span data-i18n="g5">Une place pour chaque stagiaire</span></figcaption>
+        </figure>
+      </div>
+      <div class="wrap gallery__ui">
+        <p class="gallery__count"><b data-gallery-current>01</b> / 05</p>
+        <div class="gallery__bar" aria-hidden="true"><span data-gallery-bar></span></div>
+        <div class="gallery__arrows">
+          <button class="round" type="button" data-gallery-prev aria-label="Photo précédente" data-i18n-attr="aria-label:salle.prev"><svg class="ico ico--arrow ico--back" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="round" type="button" data-gallery-next aria-label="Photo suivante" data-i18n-attr="aria-label:salle.next"><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 07 · FAQ -->
-  <section class="section faq" id="faq">
-    <div class="grid section__head">
-      <p class="cell kicker mono">07 — Questions</p>
-      <h2 class="cell reveal">On vous<br>répond.</h2>
-      <p class="cell lead reveal">Votre question n'est pas dans la liste&nbsp;? Écrivez-nous sur WhatsApp au <a href="https://wa.me/212661214201" target="_blank" rel="noopener">+212&nbsp;6&nbsp;61&nbsp;21&nbsp;42&nbsp;01</a>.</p>
+  <!-- ================= 06 · QUIZ ================= -->
+  <section class="sec quiz" id="quiz" aria-labelledby="t-quiz">
+    <div class="wrap quiz__grid">
+      <div class="quiz__intro">
+        <p class="kicker kicker--light reveal"><span>06</span> <span data-i18n="quiz.kicker">Quiz</span></p>
+        <h2 class="h2 reveal" id="t-quiz" data-i18n="quiz.title">Prêt pour <em>la route&nbsp;?</em></h2>
+        <p class="lead reveal" data-i18n="quiz.lead">Six questions de sécurité routière, sans inscription. Juste pour voir où vous en êtes.</p>
+      </div>
+      <div class="qbox reveal" data-quiz>
+        <div class="qbox__top">
+          <span data-quiz-step>6 questions</span>
+          <span><span data-i18n="quiz.score">Score</span> <b data-quiz-score>0</b></span>
+        </div>
+        <div class="qbox__road" aria-hidden="true">
+          <span class="qbox__fill" data-quiz-bar></span>
+          <span class="qbox__car" data-quiz-car></span>
+        </div>
+        <div class="qbox__body" data-quiz-body aria-live="polite">
+          <div class="qbox__start">
+            <p class="qbox__q" data-i18n="quiz.start.q">Panneaux, distances, premiers secours… vous connaissez&nbsp;?</p>
+            <button class="btn btn--sun" type="button" data-quiz-start><span data-i18n="quiz.start">Commencer le quiz</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="faq__list">
-      <details>
-        <summary>Faut-il déjà avoir le permis de conduire&nbsp;?</summary>
-        <p>Oui. La carte professionnelle s'ajoute au permis correspondant à la catégorie du véhicule que vous conduisez.</p>
-      </details>
-      <details>
-        <summary>Combien coûte la formation&nbsp;?</summary>
-        <p>Les tarifs dépendent de la session. Écrivez-nous sur WhatsApp au +212 6 61 21 42 01 et nous vous donnons le détail.</p>
-      </details>
-      <details>
-        <summary>Quels sont vos horaires&nbsp;?</summary>
-        <p>Le centre vous accueille de 9 h à 17 h.</p>
-      </details>
-      <details>
-        <summary>Où se trouve le centre&nbsp;?</summary>
-        <p>À Nador. Envoyez-nous un message et nous vous partageons la localisation exacte.</p>
-      </details>
-      <details>
-        <summary>Comment connaître les dates des prochaines sessions&nbsp;?</summary>
-        <p>Nous les publions sur Instagram, <a href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener">@cfcmarchica</a>. Vous pouvez aussi nous les demander sur WhatsApp.</p>
-      </details>
+  </section>
+
+  <!-- ================= 07 · CONTACT ================= -->
+  <section class="sec contact" id="contact" aria-labelledby="t-contact">
+    <div class="wrap head">
+      <p class="kicker reveal"><span>07</span> <span data-i18n="contact.kicker">Contact</span></p>
+      <h2 class="h2 reveal" id="t-contact" data-i18n="contact.title">Venez <em>nous voir.</em></h2>
+    </div>
+
+    <div class="wrap contact__grid">
+      <div class="contact__info reveal">
+        <dl class="info">
+          <div class="info__row">
+            <dt><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> <span data-i18n="c.addr">Adresse</span></dt>
+            <dd data-i18n="addr.full">Hay El Matar, Lotissement Saada<br>Immeuble Benamar, rez-de-chaussée n° 2<br>Nador</dd>
+          </div>
+          <div class="info__row">
+            <dt><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg> <span data-i18n="c.tel">Téléphone</span></dt>
+            <dd><a class="big-link" href="tel:+212536380766" dir="ltr">05 36 38 07 66</a><br><a class="big-link" href="tel:+212755846785" dir="ltr">07 55 84 67 85</a></dd>
+          </div>
+          <div class="info__row">
+            <dt><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg> <span data-i18n="c.mail">E-mail</span></dt>
+            <dd><a class="u-link" href="mailto:cfcmarchica@gmail.com">cfcmarchica@gmail.com</a></dd>
+          </div>
+          <div class="info__row">
+            <dt><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="c.hours">Horaires</span></dt>
+            <dd>
+              <span data-i18n="c.hours.v">De 9 h à 17 h</span>
+              <span class="clock"><span class="status status--ink" data-status><i aria-hidden="true"></i><span data-status-text>—</span></span><span class="clock__now"><span data-i18n="c.now">Heure à Nador</span> <b data-clock dir="ltr">--:--</b></span></span>
+            </dd>
+          </div>
+        </dl>
+        <div class="contact__btns">
+          <a class="btn btn--ink" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hay+El+Matar+Nador+Maroc" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="c.route">Itinéraire</span></a>
+          <a class="btn btn--line" href="tel:+212755846785"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="c.call">Appeler</span></a>
+        </div>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/cfcmarchica/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg> @cfcmarchica</a></li>
+          <li><a href="https://www.facebook.com/search/top?q=CFC%20Marchica" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-fb"/></svg> CFC Marchica</a></li>
+        </ul>
+      </div>
+
+      <form class="composer reveal" data-composer action="https://wa.me/212755846785" method="get" target="_blank" novalidate>
+        <p class="composer__title"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> <span data-i18n="w.title">Écrivez-nous sur WhatsApp</span></p>
+        <fieldset class="composer__set">
+          <legend data-i18n="w.want">Je souhaite…</legend>
+          <div class="chips">
+            <label><input type="radio" name="objet" value="inscription" checked><span data-i18n="w.o1">M'inscrire</span></label>
+            <label><input type="radio" name="objet" value="infos"><span data-i18n="w.o2">Des informations</span></label>
+            <label><input type="radio" name="objet" value="session"><span data-i18n="w.o3">La prochaine session</span></label>
+            <label><input type="radio" name="objet" value="tarifs"><span data-i18n="w.o4">Les tarifs</span></label>
+          </div>
+        </fieldset>
+        <div class="composer__row">
+          <label class="field">
+            <span data-i18n="book.formation">Votre formation</span>
+            <span class="select select--light">
+              <select name="formation" data-formation-select>
+                <option value="taxi" data-i18n="f.taxi">Taxi · petit et grand</option>
+                <option value="autocar" data-i18n="f.autocar">Autocar · voyageurs</option>
+                <option value="poids" data-i18n="f.poids">Poids lourd · marchandises</option>
+                <option value="minibus" data-i18n="f.minibus">Transport touristique et du personnel</option>
+                <option value="nsp" data-i18n="f.nsp">Je ne sais pas encore</option>
+              </select>
+            </span>
+          </label>
+          <label class="field">
+            <span data-i18n="book.name">Votre prénom</span>
+            <input type="text" name="nom" autocomplete="given-name" placeholder="Ex. Youssef" data-i18n-attr="placeholder:book.ph" data-name-input>
+          </label>
+        </div>
+        <label class="field">
+          <span data-i18n="w.msg">Message (facultatif)</span>
+          <textarea name="text" rows="2" placeholder="Une question ?" data-i18n-attr="placeholder:w.msg.ph" data-wa-msg></textarea>
+        </label>
+        <div class="bubble">
+          <span class="bubble__label" data-i18n="w.preview">Aperçu</span>
+          <p data-wa-preview>Bonjour C.F.C.P Marchica, je souhaite m'inscrire à la formation taxi.</p>
+          <span class="bubble__time" aria-hidden="true" data-clock-short>--:--</span>
+        </div>
+        <button class="btn btn--sun composer__send" type="submit"><span data-i18n="w.send">Envoyer sur WhatsApp</span> <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </form>
+    </div>
+
+    <div class="wrap map reveal">
+      <iframe title="Plan : Hay El Matar, Nador" data-i18n-attr="title:c.map" src="https://www.google.com/maps?q=Hay%20El%20Matar%2C%20Nador%2C%20Maroc&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <!-- ================= 08 · FAQ ================= -->
+  <section class="sec faq" id="faq" aria-labelledby="t-faq">
+    <div class="wrap faq__grid">
+      <div class="faq__head">
+        <p class="kicker reveal"><span>08</span> <span data-i18n="faq.kicker">Questions</span></p>
+        <h2 class="h2 reveal" id="t-faq" data-i18n="faq.title">Vos <em>questions.</em></h2>
+        <p class="lead reveal" data-i18n="faq.lead">Une autre question&nbsp;? Appelez-nous ou écrivez-nous sur WhatsApp, on vous répond.</p>
+      </div>
+      <div class="faq__list" data-faq>
+        <details class="qa">
+          <summary data-i18n="q1">Qu'est-ce que la carte professionnelle&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a1">C'est la carte exigée pour conduire, à titre professionnel, un taxi, un autocar, un poids lourd ou un véhicule de transport touristique ou du personnel.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q2">Faut-il déjà avoir le permis de conduire&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a2">Oui. La carte professionnelle s'ajoute au permis de la catégorie du véhicule que vous conduisez.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q3">Combien coûte la formation et combien de temps dure-t-elle&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a3">Cela dépend de la formation et de la session. Appelez-nous au 05 36 38 07 66 ou écrivez-nous sur WhatsApp&nbsp;: nous vous donnons le détail.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q4">Quels documents faut-il apporter&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a4">En général&nbsp;: la CIN, le permis de conduire, des photos d'identité et un certificat médical. La liste exacte vous est confirmée à l'inscription.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q5">Les cours sont-ils en arabe&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a5">Le support de cours remis aux stagiaires est rédigé en arabe. Pour toute question sur la langue des cours, contactez-nous.</p></div>
+        </details>
+        <details class="qa">
+          <summary data-i18n="q6">Où se trouve le centre&nbsp;?</summary>
+          <div class="qa__a"><p data-i18n="a6">À Hay El Matar, lotissement Saada, immeuble Benamar, rez-de-chaussée n° 2, à Nador.</p></div>
+        </details>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <p class="footer__big" aria-hidden="true">CFC MARCHICA</p>
-  <div class="grid footer__grid mono">
-    <p class="cell">Centre de formation<br>Carte professionnelle</p>
-    <p class="cell">Nador, Maroc<br>09:00 — 17:00</p>
-    <p class="cell"><a href="tel:+212661214201">+212 6 61 21 42 01</a><br><a href="https://instagram.com/cfcmarchica" target="_blank" rel="noopener">@cfcmarchica</a></p>
-    <p class="cell">© <span data-year>2026</span> CFC Marchica<br><a href="#top">Haut de page ↑</a></p>
+<footer class="foot">
+  <div class="wrap foot__top">
+    <svg class="foot__emblem" aria-hidden="true"><use href="#emblema"/></svg>
+    <p class="foot__word">C.F.C.P <em>Marchica</em></p>
+    <p class="foot__tag" data-i18n="foot.tag">Centre de formation des conducteurs professionnels</p>
+    <p class="foot__tag foot__tag--ar" lang="ar" dir="rtl">مركز تكوين السائقين المهنيين</p>
+  </div>
+  <div class="wrap foot__cols">
+    <div>
+      <h3 data-i18n="c.addr">Adresse</h3>
+      <p data-i18n="addr.full">Hay El Matar, Lotissement Saada<br>Immeuble Benamar, rez-de-chaussée n° 2<br>Nador</p>
+    </div>
+    <div>
+      <h3 data-i18n="c.tel">Téléphone</h3>
+      <p><a href="tel:+212536380766" dir="ltr">05 36 38 07 66</a><br><a href="tel:+212755846785" dir="ltr">07 55 84 67 85</a><br><a href="mailto:cfcmarchica@gmail.com">cfcmarchica@gmail.com</a></p>
+    </div>
+    <div>
+      <h3 data-i18n="c.hours">Horaires</h3>
+      <p data-i18n="c.hours.v">De 9 h à 17 h</p>
+    </div>
+    <div>
+      <h3 data-i18n="foot.follow">Suivez-nous</h3>
+      <p><a href="https://www.instagram.com/cfcmarchica/" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.facebook.com/search/top?q=CFC%20Marchica" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+  </div>
+  <div class="wrap foot__base">
+    <p>© <span data-year>2026</span> C.F.C.P Marchica</p>
+    <button class="lang lang--text" type="button" data-lang-toggle><span class="lang__fr">Français</span><span class="lang__ar">العربية</span></button>
+    <a href="#accueil" class="u-link"><span data-i18n="foot.top">Haut de page</span> ↑</a>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/212661214201" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">
-  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.1.1.7-.2 1.4Z"/></svg>
-</a>
+<!-- Barra fija en móvil -->
+<nav class="mbar" data-mbar aria-label="Contact rapide" data-i18n-attr="aria-label:mbar.aria">
+  <a href="tel:+212755846785"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="c.call">Appeler</span></a>
+  <a href="https://wa.me/212755846785" target="_blank" rel="noopener" class="mbar__wa"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+</nav>
 
-<script defer src="lib/gsap.min.js?v=20261006"></script>
-<script defer src="lib/ScrollTrigger.min.js?v=20261006"></script>
-<script defer src="lib/manifest.js?v=20261006"></script>
-<script defer src="main.js?v=20261006"></script>
+<!-- Visor de fotos -->
+<dialog class="lightbox" data-lightbox-dialog aria-label="Photo agrandie" data-i18n-attr="aria-label:salle.big">
+  <figure class="lightbox__fig">
+    <img src="assets/img/salle-rangs-1600.webp" alt="" data-lightbox-img>
+    <figcaption data-lightbox-cap></figcaption>
+  </figure>
+  <button class="round lightbox__prev" type="button" data-lightbox-prev aria-label="Photo précédente" data-i18n-attr="aria-label:salle.prev"><svg class="ico ico--arrow ico--back" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <button class="round lightbox__next" type="button" data-lightbox-next aria-label="Photo suivante" data-i18n-attr="aria-label:salle.next"><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <button class="menu__close lightbox__close" type="button" data-lightbox-close aria-label="Fermer" data-i18n-attr="aria-label:nav.close"><span aria-hidden="true"></span></button>
+</dialog>
+
+<script defer src="lib/manifest.js?v=20261008"></script>
+<script defer src="lib/i18n-ar.js?v=20261008"></script>
+<script defer src="main.js?v=20261008"></script>
 </body>
 </html>

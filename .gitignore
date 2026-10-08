@@ -1,0 +1,7 @@
+# Herramientas locales del vídeo
+tools/video/node_modules/
+tools/video/frames/
+
+# Sistema
+.DS_Store
+Thumbs.db
