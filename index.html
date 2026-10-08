@@ -725,6 +725,69 @@
   <button class="menu__close lightbox__close" type="button" data-lightbox-close aria-label="Fermer" data-i18n-attr="aria-label:nav.close"><span aria-hidden="true"></span></button>
 </dialog>
 
+<!-- Modo edición: solo aparece dentro de Claude (artifact); en el hosting real no hace nada -->
+<script type="application/json" id="cfc-edits">{}</script>
+<script>
+(function(){
+  var SEL = "h1,h2,h3,p,dd,dt span,li,a,span,b,em,figcaption span";
+  var SKIP = "svg,script,.splash,[data-status-text],[data-clock],[data-quiz-body],[data-docs-msg],[data-gallery-current],[data-docs-count],[data-quiz-score],[data-quiz-step],#cfc-edit-ui";
+  function nodes(){
+    return Array.prototype.filter.call(document.body.querySelectorAll(SEL), function(el){
+      if (el.closest(SKIP)) return false;
+      for (var n = el.firstChild; n; n = n.nextSibling) if (n.nodeType === 3 && n.nodeValue.trim()) return true;
+      return false;
+    });
+  }
+  var edits = {};
+  try { edits = JSON.parse(document.getElementById("cfc-edits").textContent) || {}; } catch(e) {}
+  var list = nodes();
+  Object.keys(edits).forEach(function(k){ if (list[k]) list[k].innerHTML = edits[k]; });
+
+  window.addEventListener("load", function(){
+    if (!window.claude || !claude.use) return;
+    claude.use("artifact").then(function(art){
+      if (!art) return;
+      var css = document.createElement("style");
+      css.textContent = "#cfc-edit-ui{position:fixed;z-index:99999;right:16px;bottom:16px;display:flex;gap:8px;font:600 14px Manrope,sans-serif}#cfc-edit-ui button{border:0;border-radius:999px;padding:12px 18px;cursor:pointer;background:#E7963F;color:#0E1A1C;box-shadow:0 6px 20px rgba(0,0,0,.3)}#cfc-edit-ui .sec{background:#fff}#cfc-edit-ui .msg{align-self:center;background:#0E1A1C;color:#fff;border-radius:8px;padding:8px 12px}html.cfc-editing [data-cfc-ed]{outline:1px dashed rgba(231,150,63,.7);outline-offset:2px;cursor:text}html.cfc-editing [data-cfc-ed]:hover,html.cfc-editing [data-cfc-ed]:focus{outline:2px solid #E7963F;background:rgba(231,150,63,.12)}";
+      document.head.appendChild(css);
+      var ui = document.createElement("div"); ui.id = "cfc-edit-ui";
+      ui.innerHTML = '<span class="msg" hidden></span><button class="sec" data-cancel hidden>Cancelar</button><button data-go>✏️ Editar textos</button>';
+      document.body.appendChild(ui);
+      var go = ui.querySelector("[data-go]"), cancel = ui.querySelector("[data-cancel]"), msg = ui.querySelector(".msg");
+      var editing = false, before = [];
+      function say(t){ msg.textContent = t; msg.hidden = !t; }
+      function block(e){ if (editing && e.target.closest("[data-cfc-ed]")) { e.preventDefault(); e.stopPropagation(); } }
+      document.addEventListener("click", block, true);
+      go.onclick = function(){
+        if (!editing) {
+          editing = true; list = nodes();
+          before = list.map(function(el){ return el.innerHTML; });
+          list.forEach(function(el){ el.setAttribute("data-cfc-ed",""); el.contentEditable = "true"; });
+          document.documentElement.classList.add("cfc-editing");
+          go.textContent = "💾 Guardar"; cancel.hidden = false; say("Toca cualquier texto para cambiarlo");
+          return;
+        }
+        var changed = 0;
+        list.forEach(function(el, i){
+          if (el.innerHTML !== before[i]) { edits[i] = el.hasAttribute("data-words") ? el.textContent : el.innerHTML; changed++; }
+        });
+        if (!changed) { location.reload(); return; }
+        go.disabled = true; say("Guardando…");
+        fetch(location.href, {cache: "no-store"}).then(function(r){ return r.text(); }).then(function(src){
+          var re = /(<script type="application\/json" id="cfc-edits">)[\s\S]*?(<\/script>)/;
+          if (!re.test(src)) throw new Error("source");
+          var json = JSON.stringify(edits).replace(/</g, "\\u003c");
+          return art.publish(src.replace(re, function(_, a, b){ return a + json + b; }));
+        }).then(function(){ say("Guardado ✔"); }).catch(function(e){
+          go.disabled = false;
+          say(e && e.code === "conflict" ? "Otra persona guardó a la vez; recarga" : "No se pudo guardar: " + (e && (e.code || e.message) || e));
+        });
+      };
+      cancel.onclick = function(){ location.reload(); };
+    });
+  });
+})();
+</script>
 <script defer src="lib/manifest.js?v=20261008"></script>
 <script defer src="lib/i18n-ar.js?v=20261008"></script>
 <script defer src="main.js?v=20261008"></script>
