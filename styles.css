@@ -1600,3 +1600,76 @@ html:lang(ar) .ctile__label { letter-spacing: 0; text-transform: none; }
 
 .ctile--addr .ctile__label { margin-top: auto; }
 .ctile--addr .ctile__cta { margin-top: .5rem; }
+
+/* tarjeta: rectangular (esquinas fijas) y texto legible aunque sea estrecha */
+.step .pcard { width: 100%; max-width: 320px; border-radius: 12px; }
+.step .pcard .pcard__top { font-size: 4.3cqw; padding: 4cqw 5.5cqw 3cqw; }
+.step .pcard .pcard__top span[lang] { font-size: 5.4cqw; }
+.step .pcard .pcard__body { inset: 17cqw 5.5cqw auto; gap: 4.5cqw; }
+.step .pcard .pcard__photo { width: 18cqw; height: 23cqw; }
+.step .pcard .pcard__title { font-size: 7.2cqw; line-height: 1.12; }
+.step .pcard .pcard__info { gap: 2.4cqw; }
+.step .pcard .pcard__emblem { width: 14cqw; height: 14cqw; inset: auto 4.5cqw 4.5cqw auto; }
+@container (max-width: 240px) {
+  .step .pcard .pcard__lines { display: none; }
+}
+
+/* ---------- 35. Señales de tráfico decorativas junto a los títulos ---------- */
+.formations .head, .programme .head { position: relative; }
+.rsign { position: absolute; top: -1rem; width: clamp(64px, 7vw, 96px); display: none; pointer-events: none; transform-origin: 50% 100%; }
+.rsign svg { position: relative; z-index: 1; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(14, 26, 28, .22)); animation: signSway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+.rsign i { position: absolute; left: 50%; top: 70%; width: 6px; height: clamp(70px, 9vw, 120px); margin-left: -3px; border-radius: 3px; background: linear-gradient(90deg, #8d9497, #c9cfd1 45%, #7a8285); }
+.rsign--l { inset-inline-start: var(--pad); }
+.rsign--r { inset-inline-end: var(--pad); }
+.rsign--r svg { animation-delay: -2.5s; }
+@keyframes signSway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.js-ok .rsign { transition: transform .9s cubic-bezier(.34, 1.56, .64, 1), opacity .5s ease-out; }
+.js-ok .head:not(:has(.reveal.is-in)) .rsign { opacity: 0; transform: translateY(30px) scale(.85); }
+@media (min-width: 1100px) { .rsign { display: block; } }
+
+/* ---------- 36. Semáforo (pie y final del recorrido) ---------- */
+.tlight {
+  display: grid; gap: 7px; padding: 9px; flex: none;
+  border-radius: 16px; background: linear-gradient(180deg, #1d2a2e, #0b1416);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 18px 30px -12px rgba(0, 0, 0, .55);
+}
+.tlight i { display: block; width: 26px; height: 26px; border-radius: 50%; background: #2a3437; box-shadow: inset 0 2px 4px rgba(0, 0, 0, .6); transition: background .25s ease, box-shadow .25s ease; }
+.tlight.is-r .tl-r { background: #ff4b3a; box-shadow: 0 0 14px 3px rgba(255, 75, 58, .7), inset 0 -2px 4px rgba(0, 0, 0, .25); }
+.tlight.is-a .tl-a { background: #ffb02e; box-shadow: 0 0 14px 3px rgba(255, 176, 46, .7), inset 0 -2px 4px rgba(0, 0, 0, .25); }
+.tlight.is-g .tl-g { background: #3ee08f; box-shadow: 0 0 16px 4px rgba(62, 224, 143, .75), inset 0 -2px 4px rgba(0, 0, 0, .25); }
+
+/* ---------- 37. Pie profesional ---------- */
+.foot { padding-top: clamp(3rem, 6vw, 5rem); }
+.fcta {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr; gap: 1.4rem 2rem; align-items: center;
+  padding: clamp(1.6rem, 4vw, 3rem); border-radius: 28px;
+  background: radial-gradient(70% 140% at 100% 0%, rgba(231, 150, 63, .3), transparent 60%), radial-gradient(60% 120% at 0% 100%, rgba(52, 143, 130, .35), transparent 60%), #16262b;
+  border: 1px solid var(--line-light);
+}
+.fcta__title { font-family: var(--serif); font-size: clamp(1.9rem, 4.2vw, 3.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -.03em; color: var(--cream); }
+.fcta__title em { font-style: normal; color: var(--sun); }
+.fcta__lead { margin-top: .6rem; color: var(--cream-2); max-width: 34rem; }
+.fcta__btns { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .7rem; }
+.btn--light { --fg: var(--cream); --hv: var(--cream); --hfg: var(--ink); border-color: rgba(243, 238, 228, .45); }
+@media (min-width: 960px) {
+  .fcta { grid-template-columns: auto 1fr auto; }
+  .fcta__btns { grid-column: auto; flex-direction: column; align-items: stretch; }
+}
+.foot__cols { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.foot__brand { display: grid; gap: 1rem; align-content: start; }
+.foot__logo { display: inline-flex; align-items: center; gap: .8rem; color: var(--cream); }
+.foot__logo .foot__emblem { width: 52px; height: 52px; margin: 0; border-radius: 50%; background: #fff; padding: 3px; }
+.foot__logo span { display: grid; gap: .3rem; line-height: 1; }
+.foot__logo b { font-family: var(--serif); font-size: 1.5rem; font-weight: 800; letter-spacing: -.025em; }
+.foot__logo small { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .7; }
+.foot__brand .foot__tag { margin: 0; max-width: 18rem; font-size: .9rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--cream-2); line-height: 1.5; }
+@media (min-width: 960px) { .foot__cols { grid-template-columns: 1.5fr repeat(4, 1fr); } }
+
+/* ---------- 38. Semáforo al final de la carretera del recorrido ---------- */
+.route__light { position: absolute; z-index: 2; transform: translate(-50%, -100%) scale(.82); transform-origin: 50% 100%; pointer-events: none; }
+.route__light::after { content: ""; position: absolute; left: 50%; top: 100%; width: 6px; height: 26px; margin-left: -3px; background: #5d676a; border-radius: 0 0 3px 3px; }
+
+.foot__logo small { white-space: nowrap; }
+@media (max-width: 1199px) { .foot__brand { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: center; column-gap: 2rem; } }
+@media (min-width: 960px) and (max-width: 1199px) { .foot__cols { grid-template-columns: 1.3fr 1.2fr .9fr .9fr; } }

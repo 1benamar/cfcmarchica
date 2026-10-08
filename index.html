@@ -294,6 +294,7 @@
   <!-- ================= 02 · FORMATIONS ================= -->
   <section class="sec formations" id="formations" aria-labelledby="t-formations">
     <div class="wrap head">
+      <span class="rsign rsign--l" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#fff" stroke="#D52B1E" stroke-width="10"/><text x="50" y="64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="40" fill="#0E1A1C">60</text></svg><i></i></span>
       <p class="kicker reveal"><span>02</span> <span data-i18n="form.kicker">Formations</span></p>
       <h2 class="h2 reveal" id="t-formations" data-i18n="form.title">Une carte, <em>quatre métiers.</em></h2>
       <p class="lead reveal" data-i18n="form.lead">La carte professionnelle est exigée pour transporter des personnes ou des marchandises. Choisissez la formation qui correspond à votre véhicule.</p>
@@ -394,6 +395,7 @@
   <!-- ================= 03 · PROGRAMME ================= -->
   <section class="sec programme" id="programme" aria-labelledby="t-programme">
     <div class="wrap head">
+      <span class="rsign rsign--r" aria-hidden="true"><svg viewBox="0 0 100 90"><path d="M50 6 95 84H5z" fill="#fff" stroke="#D52B1E" stroke-width="9" stroke-linejoin="round"/><path d="M33 66c4-10 9-14 17-14s13 4 17 14M38 66h24" fill="none" stroke="#0E1A1C" stroke-width="4" stroke-linecap="round"/><circle cx="41" cy="68" r="4" fill="#0E1A1C"/><circle cx="59" cy="68" r="4" fill="#0E1A1C"/><path d="M30 46c4-3 8-3 12 0M58 46c4-3 8-3 12 0" fill="none" stroke="#0E1A1C" stroke-width="3" stroke-linecap="round"/></svg><i></i></span>
       <p class="kicker reveal"><span>03</span> <span data-i18n="prog.kicker">Programme</span></p>
       <h2 class="h2 reveal" id="t-programme" data-i18n="prog.title">Ce que vous <em>apprenez.</em></h2>
       <p class="lead reveal" data-i18n="prog.lead">Quatre chapitres, du tour du véhicule avant le départ jusqu'aux bons gestes en cas d'accident.</p>
@@ -709,13 +711,29 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot__top">
-    <svg class="foot__emblem" aria-hidden="true"><use href="#emblema"/></svg>
-    <p class="foot__word">C.F.C.P <em>Marchica</em></p>
-    <p class="foot__tag" data-i18n="foot.tag">Centre de formation des conducteurs professionnels</p>
-    <p class="foot__tag foot__tag--ar" lang="ar" dir="rtl">مركز تكوين السائقين المهنيين</p>
+  <!-- Franja final: llamada a la acción con un semáforo que se pone en verde -->
+  <div class="wrap">
+    <div class="fcta reveal" data-fcta>
+      <div class="tlight" data-tlight aria-hidden="true"><i class="tl-r"></i><i class="tl-a"></i><i class="tl-g"></i></div>
+      <div class="fcta__copy">
+        <h2 class="fcta__title" data-i18n="foot.cta.t">Prêt à prendre <em>la route&nbsp;?</em></h2>
+        <p class="fcta__lead" data-i18n="foot.cta.d">Écrivez-nous ou appelez-nous&nbsp;: on vous oriente vers la bonne formation.</p>
+      </div>
+      <div class="fcta__btns">
+        <a class="btn btn--sun" href="https://wa.me/212755846785" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="cta.wa">Écrire sur WhatsApp</span></a>
+        <a class="btn btn--line btn--light" href="tel:+212755846785"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span data-i18n="c.call">Appeler</span></a>
+      </div>
+    </div>
   </div>
+
   <div class="wrap foot__cols">
+    <div class="foot__brand">
+      <a class="foot__logo" href="#accueil" aria-label="C.F.C.P Marchica">
+        <svg class="foot__emblem" aria-hidden="true"><use href="#emblema"/></svg>
+        <span><b>Marchica</b><small>C.F.C.P · Nador</small></span>
+      </a>
+      <p class="foot__tag" data-i18n="foot.tag">Centre de formation des conducteurs professionnels</p>
+    </div>
     <div>
       <h3 data-i18n="c.addr">Adresse</h3>
       <p data-i18n="addr.full">Hay El Matar, Lotissement Saada<br>Immeuble Benamar, rez-de-chaussée n° 2<br>Nador</p>

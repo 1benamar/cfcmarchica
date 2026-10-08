@@ -452,6 +452,32 @@
     });
   }
 
+  /* ================= Semáforo del pie: rojo → ámbar → verde; en verde fijo al apuntar a los botones ================= */
+  function initTrafficLight() {
+    var box = $("[data-fcta]"), tl = $("[data-tlight]");
+    if (!box || !tl) return;
+    var seq = ["is-r", "is-r", "is-a", "is-g", "is-g", "is-g"], i = 0, timer = 0, hold = false, visible = false;
+    function set(c) { tl.classList.remove("is-r", "is-a", "is-g"); tl.classList.add(c); }
+    function stepLight() {
+      clearTimeout(timer);
+      if (hold || !visible) return;
+      set(seq[i % seq.length]);
+      i++;
+      timer = setTimeout(stepLight, 700);
+    }
+    set("is-r");
+    var btns = $(".fcta__btns", box);
+    if (btns) {
+      btns.addEventListener("pointerenter", function () { hold = true; clearTimeout(timer); set("is-g"); });
+      btns.addEventListener("pointerleave", function () { hold = false; stepLight(); });
+      btns.addEventListener("focusin", function () { hold = true; clearTimeout(timer); set("is-g"); });
+      btns.addEventListener("focusout", function () { hold = false; stepLight(); });
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) stepLight(); else clearTimeout(timer); }, { threshold: 0.2 }).observe(box);
+    } else { visible = true; stepLight(); }
+  }
+
   /* ================= Cifras tipo cuentakilómetros: la columna rueda 0-9 y para en el número ================= */
   function initOdometers() {
     var els = $$("[data-odo]");
@@ -711,7 +737,7 @@
     var asphalt = $("[data-route-path]"), line = $("[data-route-line]"), done = $("[data-route-done]"), car = $("[data-route-car]");
     var steps = $$("[data-step]", body);
     var dots = steps.map(function (s) { return $(".step__dot", s); });
-    var len = 0, stepAt = [], cur = 0, built = false, horiz = false;
+    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "";
     var mqH = matchMedia("(min-width: 960px)");   // en escritorio los pasos van en fila y la carretera en horizontal
 
     // longitud del trazado en la que se alcanza una coordenada (x en horizontal, y en vertical)
@@ -752,6 +778,17 @@
         }
       }
       [asphalt, line, done].forEach(function (p) { p.setAttribute("d", d); });
+      // semáforo al final de la carretera: se pone en verde cuando llega el coche
+      var end = all[all.length - 1];
+      if (!light) {
+        light = doc.createElement("div");
+        light.className = "route__light tlight is-r";
+        light.setAttribute("aria-hidden", "true");
+        light.innerHTML = '<i class="tl-r"></i><i class="tl-a"></i><i class="tl-g"></i>';
+        body.appendChild(light);
+      }
+      light.style.left = (horiz ? end.x + (rtlH ? 26 : -26) : end.x).toFixed(1) + "px";
+      light.style.top = (horiz ? end.y - 22 : end.y - 8).toFixed(1) + "px";
       len = done.getTotalLength();
       done.style.strokeDasharray = len + " " + len;
       stepAt = pts.map(function (p) { return lengthAt(horiz ? p.x : p.y); });
@@ -784,6 +821,11 @@
       if (cur >= len - 2) ang = horiz ? (root.dir === "rtl" ? 180 : 0) : 90;
       car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")");
       steps.forEach(function (s, i) { s.classList.toggle("is-reached", cur >= stepAt[i] - 4); });
+      if (light) {
+        var ratio = len ? cur / len : 0;
+        var stt = ratio > 0.96 ? "is-g" : ratio > 0.6 ? "is-a" : "is-r";
+        if (stt !== lightState) { light.classList.remove("is-r", "is-a", "is-g"); light.classList.add(stt); lightState = stt; }
+      }
       return Math.abs(target - cur) > 0.4;
     });
   }
@@ -1182,6 +1224,7 @@
     safe(initPhotoParallax, "initPhotoParallax");
     safe(initCounters, "initCounters");
     safe(initOdometers, "initOdometers");
+    safe(initTrafficLight, "initTrafficLight");
     safe(initTilt, "initTilt");
     safe(initMagnetic, "initMagnetic");
     safe(initFormations, "initFormations");
