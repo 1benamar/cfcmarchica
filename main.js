@@ -459,8 +459,7 @@
     });
   }
 
-  /* ================= GPS: ruta animada, brújula y distancia real (si la persona lo permite) =================
-     La posición solo se usa en el navegador para calcular distancia y rumbo; no se envía a ningún sitio. */
+  /* ================= GPS: pestañas, coche que recorre la ruta y brújula que sigue al ratón ================= */
   function initGps() {
     var box = $("[data-gps]");
     if (!box) return;
@@ -489,7 +488,7 @@
       requestAnimationFrame(drive);
     }
 
-    // brújula: sigue al ratón; tras localizar, apunta hacia el centro
+    // brújula: sigue al ratón (en móvil se mueve sola un poco)
     var comp = $("[data-compass]", box), needle = $("[data-compass-needle]", box);
     var target = 0, cur = 0, locked = false, spinning = 0;
     function turn() {
@@ -517,42 +516,6 @@
         if (visible && !driving && L) { driving = true; requestAnimationFrame(drive); }
       }, { threshold: 0.1 }).observe(box);
     }
-
-    // localización opcional
-    var btn = $("[data-gps-locate]", box), distEl = $("[data-gps-dist]", box), hint = $("[data-gps-hint]", box);
-    var P = B.place || { lat: 35.1681, lng: -2.9335 }, res = null;
-    function rad(x) { return x * Math.PI / 180; }
-    function render() {
-      if (!res || !distEl || !hint) return;
-      if (res.err) { hint.textContent = t("gps.denied"); return; }
-      if (res.km < 3) { distEl.textContent = "Nador"; hint.textContent = t("gps.near"); return; }
-      var num;
-      try { num = new Intl.NumberFormat(I18N.lang, { maximumFractionDigits: res.km < 100 ? 1 : 0 }).format(res.km); } catch (e) { num = res.km.toFixed(res.km < 100 ? 1 : 0); }
-      var dirs = t("compass");
-      distEl.textContent = "≈ " + num + " km";
-      hint.textContent = t("gps.far", { d: num, c: dirs[Math.round(res.brg / 45) % 8] || "" });
-    }
-    onLang(render);
-    if (btn) btn.addEventListener("click", function () {
-      if (!navigator.geolocation) { res = { err: true }; render(); return; }
-      btn.classList.add("is-busy");
-      if (hint) hint.textContent = t("gps.locating");
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        btn.classList.remove("is-busy");
-        var la1 = rad(pos.coords.latitude), la2 = rad(P.lat), dl = rad(P.lng - pos.coords.longitude);
-        var h = Math.pow(Math.sin((la2 - la1) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin(dl / 2), 2);
-        var km = 12742 * Math.asin(Math.min(1, Math.sqrt(h)));
-        var brg = (Math.atan2(Math.sin(dl) * Math.cos(la2), Math.cos(la1) * Math.sin(la2) - Math.sin(la1) * Math.cos(la2) * Math.cos(dl)) * 180 / Math.PI + 360) % 360;
-        res = { km: km, brg: brg };
-        locked = true;
-        aim(brg);
-        render();
-      }, function () {
-        btn.classList.remove("is-busy");
-        res = { err: true };
-        render();
-      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 });
-    });
   }
 
   /* ================= Semáforo del pie: rojo → ámbar → verde; en verde fijo al apuntar a los botones ================= */

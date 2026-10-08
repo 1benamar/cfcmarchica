@@ -73,18 +73,15 @@ el coche, contadores, inclinación 3D y botones magnéticos (solo con ratón).
 
 ## GPS del contacto
 
-Pantalla de navegación con ruta animada, brújula y botón «Me localiser»: con
-permiso de la persona calcula la distancia y el rumbo hasta `place` de
-`lib/manifest.js`. La posición solo se usa en el navegador. La pestaña «Carte»
-carga el mapa de Google solo cuando se abre.
+Pantalla de navegación decorativa: ruta animada con un coche, brújula que sigue
+al ratón y botón «Lancer l'itinéraire» que abre Google Maps. La pestaña
+«Carte» carga el mapa de Google solo cuando se abre.
 
 ## Pendiente de confirmar con el centro
 
 - Días de apertura: la web considera abierto de lunes a sábado de 9 h a 17 h
   (`hours.openDays` en `lib/manifest.js`).
 - Enlace exacto de la página de Facebook (ahora lleva a una búsqueda de «CFC Marchica»).
-- Ubicación exacta: el mapa apunta a Hay El Matar y el GPS usa el centro de
-  Nador (`place` en `lib/manifest.js`). Con las coordenadas exactas del centro
-  basta con cambiar esos dos números.
+- Ubicación exacta en el mapa (ahora apunta a Hay El Matar, Nador).
 - Si se cambia de dominio: actualizar `og:url`, `og:image` y `canonical` en
   `index.html` (ahora apuntan a https://1benamar.github.io/cfcmarchica/).

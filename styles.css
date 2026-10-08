@@ -1714,17 +1714,7 @@ html:not(:lang(ar)) .hdr__word { font-size: inherit; letter-spacing: 0; }
 .compass__needle .n { fill: #ff5a46; }
 .compass__needle .s { fill: #e9e4d9; }
 .compass__needle circle { fill: #fff; stroke: #0b1517; stroke-width: 2; }
-.gps__info {
-  position: absolute; inset-inline-start: 1rem; bottom: 1rem; max-width: min(28rem, calc(100% - 2rem));
-  display: grid; gap: .15rem; padding: .75rem 1rem; border-radius: 14px;
-  background: rgba(11, 23, 25, .82); box-shadow: inset 0 0 0 1px rgba(243, 238, 228, .1);
-}
-@supports (backdrop-filter: blur(8px)) { .gps__info { background: rgba(11, 23, 25, .6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); } }
-.gps__info b { font-family: var(--serif); font-size: 1.15rem; font-weight: 800; color: var(--sun); }
-.gps__info span { font-size: .85rem; color: var(--cream-2); }
 .gps__actions { display: flex; flex-wrap: wrap; gap: .6rem; padding: 1rem; border-top: 1px solid rgba(243, 238, 228, .08); }
-.gps__actions .btn--ink { --bg: #1d2c30; --hv: var(--lagoon); }
-.gps__actions .btn.is-busy .ico { animation: spin 1s linear infinite; }
 @media (max-width: 539px) {
   .gps__bar { flex-wrap: wrap; }
   .gps__tabs { margin-inline-start: 0; width: 100%; }
@@ -1752,7 +1742,6 @@ html:not(:lang(ar)) .route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
 
 /* GPS: brújula sobre la laguna (abajo a la derecha) e información arriba a la izquierda, sin tapar el pin ni la posición */
 .compass { top: auto; bottom: 1rem; }
-.gps__info { bottom: auto; top: 1rem; }
 
 /* dirección: el icono nunca tapa el texto (en móvil la ficha es más baja) */
 .ctile--addr { padding-top: 5rem; min-height: 15rem; }
