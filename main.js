@@ -478,6 +478,24 @@
     } else { visible = true; stepLight(); }
   }
 
+  /* ================= Señales que se inclinan con la velocidad del scroll y vuelven a su sitio ================= */
+  function initSignLean() {
+    var signs = $$(".rsign");
+    if (!signs.length) return;
+    var last = scrollY, v = 0, lean = 0, raf = 0;
+    function loop() {
+      var dy = scrollY - last;
+      last = scrollY;
+      v += (dy - v) * 0.2;
+      lean += (clamp(v * 0.35, -14, 14) - lean) * 0.12;
+      var deg = lean.toFixed(2) + "deg";
+      signs.forEach(function (s) { s.style.setProperty("--lean", deg); });
+      if (Math.abs(lean) > 0.05 || Math.abs(v) > 0.05) raf = requestAnimationFrame(loop);
+      else { raf = 0; signs.forEach(function (s) { s.style.removeProperty("--lean"); }); }
+    }
+    addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(loop); }, { passive: true });
+  }
+
   /* ================= Cifras tipo cuentakilómetros: la columna rueda 0-9 y para en el número ================= */
   function initOdometers() {
     var els = $$("[data-odo]");
@@ -788,7 +806,8 @@
         body.appendChild(light);
       }
       light.style.left = (horiz ? end.x + (rtlH ? 26 : -26) : end.x).toFixed(1) + "px";
-      light.style.top = (horiz ? end.y - 22 : end.y - 8).toFixed(1) + "px";
+      // en fila va debajo del final de la carretera, en el margen, para no tapar el título
+      light.style.top = (horiz ? end.y + 112 : end.y - 8).toFixed(1) + "px";
       len = done.getTotalLength();
       done.style.strokeDasharray = len + " " + len;
       stepAt = pts.map(function (p) { return lengthAt(horiz ? p.x : p.y); });
@@ -1225,6 +1244,7 @@
     safe(initCounters, "initCounters");
     safe(initOdometers, "initOdometers");
     safe(initTrafficLight, "initTrafficLight");
+    safe(initSignLean, "initSignLean");
     safe(initTilt, "initTilt");
     safe(initMagnetic, "initMagnetic");
     safe(initFormations, "initFormations");
