@@ -1749,3 +1749,106 @@ html:lang(ar) .ctile__label { letter-spacing: 0; text-transform: none; }
   .step:nth-child(3) .step__card { transition-delay: .12s; }
   .step:nth-child(4) .step__card { transition-delay: .18s; }
 }
+
+/* sala compacta: el bloque fijado mide su contenido y se centra (top lo calcula main.js) */
+.gallery.is-pinned .gallery__pin { top: var(--pin-top, 84px); height: auto; padding-top: 0; padding-block: 1rem; }
+.gallery.is-pinned .gallery__view { align-self: center; }
+.salle { padding-block: clamp(3rem, 6vw, 5rem); }
+/* la formación elegida en el formulario lleva un visto */
+.card.is-picked::before { transform: none; }
+.card .card__check { position: absolute; top: 1.1rem; inset-inline-end: 1.1rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--sun); color: var(--ink); transform: scale(0); transition: transform .35s cubic-bezier(.34, 1.56, .64, 1); }
+.card.is-picked .card__check { transform: none; }
+
+/* ---------- 41. GPS interactivo ---------- */
+.contact { padding-bottom: clamp(3rem, 6vw, 5rem); }
+.gps {
+  margin-top: clamp(1.5rem, 3vw, 2.2rem); overflow: hidden; border-radius: 26px;
+  background: #0b1719; color: var(--cream);
+  box-shadow: 0 50px 90px -50px rgba(14, 26, 28, .7), inset 0 0 0 1px rgba(243, 238, 228, .08);
+}
+.gps__bar { display: flex; align-items: center; gap: 1rem; padding: .9rem 1rem; background: #1f6e63; }
+.gps__turn { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border-radius: 14px; background: rgba(255, 255, 255, .14); }
+.gps__turn svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; animation: turnNudge 2.4s ease-in-out infinite; }
+@keyframes turnNudge { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(2px, -2px); } }
+.gps__dest { display: grid; gap: .1rem; line-height: 1.2; min-width: 0; }
+.gps__dest small { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.gps__dest b { font-family: var(--serif); font-size: 1.2rem; font-weight: 800; letter-spacing: -.01em; }
+.gps__dest span { font-size: .84rem; opacity: .85; }
+.gps__tabs { margin-inline-start: auto; display: flex; padding: 4px; border-radius: 999px; background: rgba(0, 0, 0, .22); }
+.gps__tabs button { padding: .5rem .95rem; border-radius: 999px; font-size: .84rem; font-weight: 700; color: rgba(255, 255, 255, .8); transition: background .2s ease, color .2s ease; }
+.gps__tabs button[aria-selected="true"] { background: #fff; color: var(--ink); }
+.gps__screen { position: relative; height: clamp(260px, 38vw, 380px); }
+.gps__panel { position: absolute; inset: 0; }
+.gps__panel[hidden] { display: none; }
+.gps__panel iframe { width: 100%; height: 100%; border: 0; filter: saturate(.9); }
+.gps__map { width: 100%; height: 100%; display: block; }
+.gps__lagoon { fill: #1c4f4a; }
+.gps__label { fill: rgba(220, 239, 234, .55); font: italic 600 15px var(--sans); letter-spacing: .08em; }
+.gps__streets path { fill: none; stroke: rgba(243, 238, 228, .14); stroke-width: 10; stroke-linecap: round; }
+.gps__route-bg { fill: none; stroke: rgba(231, 150, 63, .22); stroke-width: 14; stroke-linecap: round; }
+.gps__route { fill: none; stroke: var(--sun); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 2 14; animation: routeFlow 1s linear infinite; }
+@keyframes routeFlow { to { stroke-dashoffset: -16; } }
+.gps__me { transform: translate(95px, 320px); }
+.gps__me circle { fill: #4FA3FF; }
+.gps__me circle:last-child { stroke: #fff; stroke-width: 3; }
+.gps__pulse { fill: rgba(79, 163, 255, .35) !important; transform-origin: center; animation: gpsPulse 2s cubic-bezier(.23, 1, .32, 1) infinite; }
+@keyframes gpsPulse { 0% { transform: scale(.5); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+.gps__pin path { fill: var(--sun); stroke: #fff; stroke-width: 2.5; }
+.gps__pin-dot { fill: #fff; }
+.gps__pin { animation: pinBob 2.4s ease-in-out infinite; }
+@keyframes pinBob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+.gps__car circle { fill: #fff; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .5)); }
+.gps__car path { fill: var(--ink); }
+/* brújula */
+.compass {
+  position: absolute; top: 1rem; inset-inline-end: 1rem; width: clamp(78px, 9vw, 104px); aspect-ratio: 1;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%, #23383d, #0b1517 70%);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .7), inset 0 0 0 3px rgba(243, 238, 228, .12);
+}
+.compass svg { width: 100%; height: 100%; display: block; }
+.compass__ring { fill: none; stroke: rgba(231, 150, 63, .45); stroke-width: 1.5; stroke-dasharray: 2 4; }
+.compass__ticks path { stroke: rgba(243, 238, 228, .55); stroke-width: 2; }
+.compass__n { fill: var(--sun); font: 700 12px var(--sans); }
+.compass__needle { transform-origin: 50px 50px; transform: rotate(var(--deg, 0deg)); }
+.compass__needle .n { fill: #ff5a46; }
+.compass__needle .s { fill: #e9e4d9; }
+.compass__needle circle { fill: #fff; stroke: #0b1517; stroke-width: 2; }
+.gps__info {
+  position: absolute; inset-inline-start: 1rem; bottom: 1rem; max-width: min(28rem, calc(100% - 2rem));
+  display: grid; gap: .15rem; padding: .75rem 1rem; border-radius: 14px;
+  background: rgba(11, 23, 25, .82); box-shadow: inset 0 0 0 1px rgba(243, 238, 228, .1);
+}
+@supports (backdrop-filter: blur(8px)) { .gps__info { background: rgba(11, 23, 25, .6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); } }
+.gps__info b { font-family: var(--serif); font-size: 1.15rem; font-weight: 800; color: var(--sun); }
+.gps__info span { font-size: .85rem; color: var(--cream-2); }
+.gps__actions { display: flex; flex-wrap: wrap; gap: .6rem; padding: 1rem; border-top: 1px solid rgba(243, 238, 228, .08); }
+.gps__actions .btn--ink { --bg: #1d2c30; --hv: var(--lagoon); }
+.gps__actions .btn.is-busy .ico { animation: spin 1s linear infinite; }
+@media (max-width: 539px) {
+  .gps__bar { flex-wrap: wrap; }
+  .gps__tabs { margin-inline-start: 0; width: 100%; }
+  .gps__tabs button { flex: 1; }
+  .gps__actions .btn { flex: 1; }
+}
+
+/* ---------- 42. Flechas de dirección sobre la carretera del recorrido ---------- */
+.route__chev { fill: rgba(243, 238, 228, .55); font: 700 16px var(--sans); dominant-baseline: central; pointer-events: none; }
+
+/* ---------- 43. Brújula pequeña en el hero ---------- */
+.mini-compass { width: 1.35em; height: 1.35em; flex: none; }
+.mini-compass circle { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: .7; }
+.mini-compass .nd { transform-origin: 12px 12px; animation: needleSeek 6s ease-in-out infinite; }
+.mini-compass .nd path:first-child { fill: var(--sun); }
+.mini-compass .nd path:last-child { fill: currentColor; opacity: .7; }
+@keyframes needleSeek { 0%, 100% { transform: rotate(-25deg); } 30% { transform: rotate(35deg); } 55% { transform: rotate(10deg); } 75% { transform: rotate(20deg); } }
+
+/* título del recorrido un poco más pequeño */
+.route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
+
+html:not(:lang(ar)) .route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
+
+.route.has-chev .route__line { display: none; }
+
+/* GPS: brújula sobre la laguna (abajo a la derecha) e información arriba a la izquierda, sin tapar el pin ni la posición */
+.compass { top: auto; bottom: 1rem; }
+.gps__info { bottom: auto; top: 1rem; }

@@ -452,6 +452,102 @@
     });
   }
 
+  /* ================= GPS: ruta animada, brújula y distancia real (si la persona lo permite) =================
+     La posición solo se usa en el navegador para calcular distancia y rumbo; no se envía a ningún sitio. */
+  function initGps() {
+    var box = $("[data-gps]");
+    if (!box) return;
+    var tabs = $$("[data-gps-tab]", box), panels = $$("[data-gps-panel]", box);
+    tabs.forEach(function (tb) {
+      tb.addEventListener("click", function () {
+        var k = tb.getAttribute("data-gps-tab");
+        tabs.forEach(function (o) { o.setAttribute("aria-selected", o === tb ? "true" : "false"); });
+        panels.forEach(function (p) { p.hidden = p.getAttribute("data-gps-panel") !== k; });
+        var fr = $("iframe[data-src]", box);
+        if (k === "map" && fr && !fr.getAttribute("src")) fr.setAttribute("src", fr.getAttribute("data-src"));   // el mapa real solo carga si se pide
+      });
+    });
+
+    var visible = false;
+    // coche que recorre la ruta
+    var route = $("[data-gps-route]", box), car = $("[data-gps-car]", box), driving = false, t0 = 0;
+    var L = route && route.getTotalLength ? route.getTotalLength() : 0;
+    function drive(now) {
+      if (!visible || !L) { driving = false; return; }
+      if (!t0) t0 = now;
+      var p = ((now - t0) / 9000) % 1, e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      var a = route.getPointAtLength(e * L), b = route.getPointAtLength(Math.min(L, e * L + 1));
+      var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI + 90;
+      car.setAttribute("transform", "translate(" + a.x.toFixed(1) + " " + a.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")");
+      requestAnimationFrame(drive);
+    }
+
+    // brújula: sigue al ratón; tras localizar, apunta hacia el centro
+    var comp = $("[data-compass]", box), needle = $("[data-compass-needle]", box);
+    var target = 0, cur = 0, locked = false, spinning = 0;
+    function turn() {
+      var d = ((target - cur + 540) % 360) - 180;
+      cur += d * 0.08;
+      needle.style.setProperty("--deg", cur.toFixed(1) + "deg");
+      spinning = Math.abs(d) > 0.1 ? requestAnimationFrame(turn) : 0;
+    }
+    function aim(deg) { target = deg; if (!spinning) spinning = requestAnimationFrame(turn); }
+    if (comp && needle) {
+      if (fineHover) {
+        addEventListener("pointermove", function (e) {
+          if (locked || !visible) return;
+          var r = comp.getBoundingClientRect();
+          aim(Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI + 90);
+        }, { passive: true });
+      } else {
+        setInterval(function () { if (!locked && visible) aim(-40 + Math.random() * 80); }, 2600);
+      }
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible && !driving && L) { driving = true; requestAnimationFrame(drive); }
+      }, { threshold: 0.1 }).observe(box);
+    }
+
+    // localización opcional
+    var btn = $("[data-gps-locate]", box), distEl = $("[data-gps-dist]", box), hint = $("[data-gps-hint]", box);
+    var P = B.place || { lat: 35.1681, lng: -2.9335 }, res = null;
+    function rad(x) { return x * Math.PI / 180; }
+    function render() {
+      if (!res || !distEl || !hint) return;
+      if (res.err) { hint.textContent = t("gps.denied"); return; }
+      if (res.km < 3) { distEl.textContent = "Nador"; hint.textContent = t("gps.near"); return; }
+      var num;
+      try { num = new Intl.NumberFormat(I18N.lang, { maximumFractionDigits: res.km < 100 ? 1 : 0 }).format(res.km); } catch (e) { num = res.km.toFixed(res.km < 100 ? 1 : 0); }
+      var dirs = t("compass");
+      distEl.textContent = "≈ " + num + " km";
+      hint.textContent = t("gps.far", { d: num, c: dirs[Math.round(res.brg / 45) % 8] || "" });
+    }
+    onLang(render);
+    if (btn) btn.addEventListener("click", function () {
+      if (!navigator.geolocation) { res = { err: true }; render(); return; }
+      btn.classList.add("is-busy");
+      if (hint) hint.textContent = t("gps.locating");
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        btn.classList.remove("is-busy");
+        var la1 = rad(pos.coords.latitude), la2 = rad(P.lat), dl = rad(P.lng - pos.coords.longitude);
+        var h = Math.pow(Math.sin((la2 - la1) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin(dl / 2), 2);
+        var km = 12742 * Math.asin(Math.min(1, Math.sqrt(h)));
+        var brg = (Math.atan2(Math.sin(dl) * Math.cos(la2), Math.cos(la1) * Math.sin(la2) - Math.sin(la1) * Math.cos(la2) * Math.cos(dl)) * 180 / Math.PI + 360) % 360;
+        res = { km: km, brg: brg };
+        locked = true;
+        aim(brg);
+        render();
+      }, function () {
+        btn.classList.remove("is-busy");
+        res = { err: true };
+        render();
+      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 });
+    });
+  }
+
   /* ================= Semáforo del pie: rojo → ámbar → verde; en verde fijo al apuntar a los botones ================= */
   function initTrafficLight() {
     var box = $("[data-fcta]"), tl = $("[data-tlight]");
@@ -685,6 +781,15 @@
     if (comp) comp.dispatchEvent(new Event("change"));
   }
   function initFormations() {
+    // visto que marca la formación elegida en el formulario
+    $$(".card").forEach(function (c) {
+      if ($(".card__check", c)) return;
+      var s = doc.createElement("span");
+      s.className = "card__check";
+      s.setAttribute("aria-hidden", "true");
+      s.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      c.appendChild(s);
+    });
     $$("[data-choose]").forEach(function (a) {
       a.addEventListener("click", function () { setFormation(a.getAttribute("data-choose")); });
     });
@@ -755,7 +860,7 @@
     var asphalt = $("[data-route-path]"), line = $("[data-route-line]"), done = $("[data-route-done]"), car = $("[data-route-car]");
     var steps = $$("[data-step]", body);
     var dots = steps.map(function (s) { return $(".step__dot", s); });
-    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "";
+    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "", chev = null, chevPath = null;
     var mqH = matchMedia("(min-width: 960px)");   // en escritorio los pasos van en fila y la carretera en horizontal
 
     // longitud del trazado en la que se alcanza una coordenada (x en horizontal, y en vertical)
@@ -796,6 +901,29 @@
         }
       }
       [asphalt, line, done].forEach(function (p) { p.setAttribute("d", d); });
+      // flechas de dirección que avanzan por la carretera, como marcas viales
+      if (!chev) {
+        var NS = "http://www.w3.org/2000/svg";
+        asphalt.id = "route-road";
+        chev = doc.createElementNS(NS, "text");
+        chev.setAttribute("class", "route__chev");
+        chevPath = doc.createElementNS(NS, "textPath");
+        chevPath.setAttribute("href", "#route-road");
+        var an = doc.createElementNS(NS, "animate");
+        an.setAttribute("attributeName", "startOffset");
+        an.setAttribute("from", "0");
+        an.setAttribute("to", "48");
+        an.setAttribute("dur", "1.4s");
+        an.setAttribute("repeatCount", "indefinite");
+        chevPath.appendChild(an);
+        chev.appendChild(chevPath);
+        svg.insertBefore(chev, done);
+        $(".route").classList.add("has-chev");
+      }
+      var pathLen = asphalt.getTotalLength ? asphalt.getTotalLength() : 1000;
+      var unit = "›     ";
+      while (chevPath.firstChild && chevPath.firstChild.nodeType === 3) chevPath.removeChild(chevPath.firstChild);
+      chevPath.insertBefore(doc.createTextNode(new Array(Math.ceil(pathLen / 48) + 2).join(unit)), chevPath.firstChild);
       // semáforo al final de la carretera: se pone en verde cuando llega el coche
       var end = all[all.length - 1];
       if (!light) {
@@ -888,14 +1016,19 @@
       if (!pinned) { g.style.height = ""; track.style.transform = ""; update(); return; }
       track.scrollLeft = 0;
       dist = Math.max(0, track.offsetWidth - track.parentNode.clientWidth);   // la pista se mueve dentro de su ventana
-      g.style.height = (dist + innerHeight) + "px";
+      // el bloque fijado mide lo que su contenido y queda centrado en pantalla (sin huecos en blanco)
+      var pin = $("[data-gallery-pin]", g), ph = pin ? pin.offsetHeight : innerHeight;
+      pinTop = Math.max((innerWidth >= 960 ? 84 : 76), (innerHeight - ph) / 2);
+      g.style.setProperty("--pin-top", pinTop.toFixed(0) + "px");
+      g.style.height = (dist + ph) + "px";
       kick();
     }
+    var pinTop = 0;
     fx.push(function () {
       if (!pinned) return false;
       var r = g.getBoundingClientRect();
       if (r.bottom < -50 || r.top > innerHeight + 50) return false;
-      pinP = dist > 0 ? clamp(-r.top / dist, 0, 1) : 0;
+      pinP = dist > 0 ? clamp((pinTop - r.top) / dist, 0, 1) : 0;
       track.style.transform = "translate3d(" + ((rtl() ? 1 : -1) * pinP * dist).toFixed(1) + "px,0,0)";
       update();
       return false;
@@ -934,7 +1067,7 @@
       if (pinned) {
         // fijada: se lleva la página al punto del scroll que corresponde a esa foto
         var p = shots.length > 1 ? i / (shots.length - 1) : 0;
-        scrollTo({ top: g.getBoundingClientRect().top + scrollY + p * dist + 1, behavior: reduced ? "auto" : "smooth" });
+        scrollTo({ top: g.getBoundingClientRect().top + scrollY - pinTop + p * dist + 1, behavior: reduced ? "auto" : "smooth" });
         return;
       }
       var tr = track.getBoundingClientRect(), r = shots[i].getBoundingClientRect();
@@ -1244,6 +1377,7 @@
     safe(initCounters, "initCounters");
     safe(initOdometers, "initOdometers");
     safe(initTrafficLight, "initTrafficLight");
+    safe(initGps, "initGps");
     safe(initSignLean, "initSignLean");
     safe(initTilt, "initTilt");
     safe(initMagnetic, "initMagnetic");

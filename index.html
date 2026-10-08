@@ -191,7 +191,7 @@
     </form>
 
     <div class="hero__foot">
-      <p class="hero__place"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> <span data-i18n="hero.place">Hay El Matar · Nador</span></p>
+      <p class="hero__place"><svg class="mini-compass" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><g class="nd"><path d="M12 4l2.6 8h-5.2z"/><path d="M12 20l-2.6-8h5.2z"/></g></svg> <span data-i18n="hero.place">Hay El Matar · Nador</span></p>
       <div class="hero__tools">
         <p class="status" data-status><i aria-hidden="true"></i><span data-status-text>9 h — 17 h</span></p>
         <div class="hero__clips" data-clips></div>
@@ -718,8 +718,66 @@
       </form>
     </div>
 
-    <div class="wrap map reveal">
-      <iframe title="Plan : Hay El Matar, Nador" data-i18n-attr="title:c.map" src="https://www.google.com/maps?q=Hay%20El%20Matar%2C%20Nador%2C%20Maroc&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- GPS: pantalla de navegación con ruta animada, brújula y localización opcional; pestaña con el mapa real -->
+    <div class="wrap">
+      <div class="gps reveal" data-gps>
+        <div class="gps__bar">
+          <span class="gps__turn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 20V11a4 4 0 0 1 4-4h7"/><path d="M14 3l4 4-4 4"/></svg></span>
+          <div class="gps__dest">
+            <small data-i18n="gps.dest">Destination</small>
+            <b>C.F.C.P Marchica</b>
+            <span data-i18n="hero.place">Hay El Matar · Nador</span>
+          </div>
+          <div class="gps__tabs" role="tablist" aria-label="GPS">
+            <button type="button" role="tab" aria-selected="true" data-gps-tab="nav"><span data-i18n="gps.nav">Navigation</span></button>
+            <button type="button" role="tab" aria-selected="false" data-gps-tab="map"><span data-i18n="gps.map">Carte</span></button>
+          </div>
+        </div>
+        <div class="gps__screen">
+          <div class="gps__panel" data-gps-panel="nav">
+            <svg class="gps__map" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <pattern id="gps-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="rgba(243,238,228,.05)" stroke-width="1"/></pattern>
+                <radialGradient id="gps-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E7963F" stop-opacity=".35"/><stop offset="1" stop-color="#E7963F" stop-opacity="0"/></radialGradient>
+              </defs>
+              <rect width="800" height="380" fill="#10201f"/>
+              <rect width="800" height="380" fill="url(#gps-grid)"/>
+              <path class="gps__lagoon" d="M520 380c10-60 70-90 140-100s120-40 140-80v180z"/>
+              <text class="gps__label" x="575" y="338">Marchica</text>
+              <g class="gps__streets">
+                <path d="M0 300C120 290 210 250 300 250s200 30 290 10 160-90 210-110"/>
+                <path d="M60 0c20 90 30 180 10 380"/>
+                <path d="M250 0c-10 120 20 250 60 380"/>
+                <path d="M0 140c160 10 300-10 440-40S690 30 800 40"/>
+                <path d="M470 0c-20 100-10 200 30 260"/>
+                <path d="M140 380c40-80 120-130 220-150"/>
+                <path d="M620 0c0 80 40 130 100 160"/>
+              </g>
+              <path class="gps__route-bg" id="gps-route-bg" d="M95 320C150 300 200 270 250 250s120-20 180-60 70-80 140-95 120 0 150-20"/>
+              <path class="gps__route" data-gps-route d="M95 320C150 300 200 270 250 250s120-20 180-60 70-80 140-95 120 0 150-20"/>
+              <g class="gps__me"><circle r="16" class="gps__pulse"/><circle r="7"/></g>
+              <g class="gps__pin" transform="translate(720 75)"><circle r="34" fill="url(#gps-glow)"/><path d="M0 0c-10-14-16-22-16-30a16 16 0 0 1 32 0c0 8-6 16-16 30z" transform="translate(0 6)"/><circle cy="-24" r="6" class="gps__pin-dot"/></g>
+              <g class="gps__car" data-gps-car><circle r="13"/><path d="M-6 6 0-8 6 6 0 3z"/></g>
+            </svg>
+            <div class="compass" data-compass aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="47" class="compass__ring"/>
+                <g class="compass__ticks"><path d="M50 6v8M50 86v8M6 50h8M86 50h8"/></g>
+                <text x="50" y="25" text-anchor="middle" class="compass__n">N</text>
+                <g class="compass__needle" data-compass-needle><path d="M50 18 57 50H43z" class="n"/><path d="M50 82 43 50h14z" class="s"/><circle cx="50" cy="50" r="4.5"/></g>
+              </svg>
+            </div>
+            <p class="gps__info" aria-live="polite"><b data-gps-dist>Nador</b><span data-gps-hint data-i18n="gps.hint">Activez la localisation pour voir à quelle distance vous êtes.</span></p>
+          </div>
+          <div class="gps__panel" data-gps-panel="map" hidden>
+            <iframe title="Plan : Hay El Matar, Nador" data-i18n-attr="title:c.map" data-src="https://www.google.com/maps?q=Hay%20El%20Matar%2C%20Nador%2C%20Maroc&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="gps__actions">
+          <button class="btn btn--ink" type="button" data-gps-locate><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span data-i18n="gps.locate">Me localiser</span></button>
+          <a class="btn btn--sun" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hay+El+Matar+Nador+Maroc" target="_blank" rel="noopener"><span data-i18n="gps.go">Lancer l'itinéraire</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
     </div>
   </section>
 
