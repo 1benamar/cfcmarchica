@@ -82,6 +82,6 @@ al ratón y botón «Lancer l'itinéraire» que abre Google Maps. La pestaña
 - Días de apertura: la web considera abierto de lunes a sábado de 9 h a 17 h
   (`hours.openDays` en `lib/manifest.js`).
 - Enlace exacto de la página de Facebook (ahora lleva a una búsqueda de «CFC Marchica»).
-- Ubicación exacta en el mapa (ahora apunta a Hay El Matar, Nador).
+- Ubicación exacta en el mapa (apunta a la ficha de Google del centro).
 - Si se cambia de dominio: actualizar `og:url`, `og:image` y `canonical` en
   `index.html` (ahora apuntan a https://cfcmarchica.com/).
