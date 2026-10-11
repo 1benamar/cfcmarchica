@@ -29,7 +29,7 @@
 
   --serif: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --arabic-serif: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  --arabic-serif: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
 
   --pad: clamp(1.25rem, 5vw, 4rem);
   --max: 1320px;
@@ -1762,3 +1762,9 @@ html:not(:lang(ar)) .route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
   .madeby:hover .c3 { transform: translate(-3px, 3px); }
   .madeby:hover .c4 { transform: translate(3px, 3px); }
 }
+/* Árabe: una sola familia para titulares y texto, sin cursivas ni espaciado
+   entre letras (rompe la unión de las letras árabes). */
+html:lang(ar) { --serif: var(--arabic-serif); --sans: var(--arabic-serif); }
+html:lang(ar) body { line-height: 1.85; }
+html:lang(ar) em, html:lang(ar) i:not([aria-hidden]) { font-style: normal; font-weight: inherit; }
+html:lang(ar) body * { letter-spacing: 0 !important; text-transform: none !important; }

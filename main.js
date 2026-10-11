@@ -30,7 +30,7 @@
   }
 
   /* ================= Idioma (FR por defecto · EN · ES · DE) ================= */
-  var LANGS = ["fr", "en", "es", "de"];
+  var LANGS = ["fr", "en", "es", "de", "ar"];
   var I18N = { lang: "fr", listeners: [] };
   // texto de la página en el idioma actual; si falta la traducción, el francés
   function tr(key, frText) {

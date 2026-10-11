@@ -24,15 +24,16 @@
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="ar_MA">
 <link rel="icon" href="favicon.svg?v=20261008-4" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <link rel="preload" as="image" href="assets/video/clip-bus.webp" media="(min-width: 760px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/video/clip-volant.webp" media="(max-width: 759px)" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20261008-4">
-<script>document.documentElement.classList.add("js");try{var l=localStorage.getItem("cfc-lang");if(/^(en|es|de)$/.test(l)){document.documentElement.lang=l;}}catch(e){}</script>
+<link rel="stylesheet" href="styles.css?v=20261011-1">
+<script>document.documentElement.classList.add("js");try{var l=localStorage.getItem("cfc-lang");if(/^(en|es|de|ar)$/.test(l)){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,7 +60,8 @@
     "fr",
     "en",
     "es",
-    "de"
+    "de",
+    "ar"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -198,6 +200,7 @@
           <button type="button" data-set-lang="en" lang="en">English <small>EN</small></button>
           <button type="button" data-set-lang="es" lang="es">Español <small>ES</small></button>
           <button type="button" data-set-lang="de" lang="de">Deutsch <small>DE</small></button>
+          <button type="button" data-set-lang="ar" lang="ar" dir="rtl">العربية <small>ع</small></button>
         </div>
       </div>
       <a class="btn btn--sun btn--sm hdr__cta" href="#contact"><span data-i18n="nav.cta">S'inscrire</span></a>
@@ -916,6 +919,7 @@
       <button type="button" data-set-lang="en" lang="en">English</button>
       <button type="button" data-set-lang="es" lang="es">Español</button>
       <button type="button" data-set-lang="de" lang="de">Deutsch</button>
+      <button type="button" data-set-lang="ar" lang="ar" dir="rtl">العربية</button>
     </div>
     <a href="#accueil" class="u-link"><span data-i18n="foot.top">Haut de page</span> ↑</a>
   </div>
@@ -958,6 +962,7 @@
 <script defer src="lib/i18n-en.js?v=20261008-4"></script>
 <script defer src="lib/i18n-es.js?v=20261008-4"></script>
 <script defer src="lib/i18n-de.js?v=20261008-4"></script>
-<script defer src="main.js?v=20261008-4"></script>
+<script defer src="lib/i18n-ar.js?v=20261011-1"></script>
+<script defer src="main.js?v=20261011-1"></script>
 </body>
 </html>
