@@ -1104,7 +1104,7 @@ html:not(:lang(ar)) .lead { line-height: 1.7; }
 /* ---------- 23. La salle en grand: la foto crece hasta llenar la pantalla ---------- */
 .zoom { position: relative; background: var(--paper); --iy: 0%; --ix: 0%; --ir: 0px; --zs: 1; --to: 1; }
 .zoom__pin { position: relative; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center; }
-.zoom.zb-active { height: 250vh; height: 250svh; }
+.zoom.zb-active { height: 180vh; height: 180svh; }
 .zoom.zb-active .zoom__pin { position: sticky; top: 0; }
 .zoom__frame {
   position: absolute; inset: 0; margin: 0; overflow: hidden;

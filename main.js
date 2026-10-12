@@ -364,14 +364,14 @@
         var r = sec.getBoundingClientRect(), vh = innerHeight;
         if (r.bottom < -50 || r.top > vh + 50) return false;
         var total = Math.max(1, r.height - vh);
-        var p = clamp(-r.top / (total * 0.7), 0, 1);
+        var p = clamp(-r.top / (total * 0.6), 0, 1);
         var e = easeInOut(p);
         var mx = innerWidth < 700 ? 6 : 24;
         sec.style.setProperty("--iy", ((1 - e) * 14).toFixed(2) + "%");
         sec.style.setProperty("--ix", ((1 - e) * mx).toFixed(2) + "%");
         sec.style.setProperty("--ir", ((1 - e) * 28).toFixed(1) + "px");
         sec.style.setProperty("--zs", (1.22 - 0.22 * e).toFixed(4));
-        sec.style.setProperty("--to", clamp((p - 0.42) / 0.38, 0, 1).toFixed(3));
+        sec.style.setProperty("--to", clamp((p - 0.3) / 0.35, 0, 1).toFixed(3));
         return false;
       });
     });
