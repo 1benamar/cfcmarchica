@@ -822,7 +822,7 @@
       while (eyesBox.firstChild) eyesBox.removeChild(eyesBox.firstChild);
       eyes = []; eyeAt = []; lit = 0;
       var rw = parseFloat(getComputedStyle(svg).getPropertyValue("--rw")) || 30;
-      var off = rw / 2 - 4.2;
+      var off = rw / 2 - 5.4;
       for (var L = 22; L < len - 6; L += 44) {
         var p = done.getPointAtLength(L), q = done.getPointAtLength(Math.min(len, L + 1));
         var ang = Math.atan2(q.y - p.y, q.x - p.x), nx = -Math.sin(ang), ny = Math.cos(ang);
@@ -922,7 +922,7 @@
       var p = done.getPointAtLength(cur), q = done.getPointAtLength(Math.min(len, cur + 2));
       var ang = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
       if (cur >= stop - 2) ang = horiz ? (root.dir === "rtl" ? 180 : 0) : 90;
-      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")" + (horiz ? " scale(1.15)" : " scale(.9)"));
+      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")" + (horiz ? " scale(1.05)" : " scale(.84)"));
       car.classList.toggle("is-moving", speed > 1.5);
       car.classList.toggle("is-parked", cur >= stop - 2);
       // catadióptricos: solo se tocan los que cambian
