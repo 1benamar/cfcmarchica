@@ -469,26 +469,10 @@
         var k = tb.getAttribute("data-gps-tab");
         tabs.forEach(function (o) { o.setAttribute("aria-selected", o === tb ? "true" : "false"); });
         panels.forEach(function (p) { p.hidden = p.getAttribute("data-gps-panel") !== k; });
-        if (k === "nav") fit();
         var fr = $("iframe[data-src]", box);
         if (k === "map" && fr && !fr.getAttribute("src")) fr.setAttribute("src", fr.getAttribute("data-src"));   // el mapa real solo carga si se pide
       });
     });
-
-    // encuadre del plano: en pantallas estrechas se centra en el centre en vez de en el medio del mapa
-    var map = $(".nmap", box), scale = $("[data-nm-scale]", box);
-    function fit() {
-      if (!map) return;
-      var w = map.clientWidth, h = map.clientHeight;
-      if (!w || !h) return;
-      var vw = Math.min(960, 400 * w / h), x0 = 0;
-      if (vw < 940) x0 = Math.max(0, Math.min(960 - vw, 376.8 - vw * 0.42));
-      map.setAttribute("viewBox", x0.toFixed(1) + " 0 " + vw.toFixed(1) + " 400");
-      if (scale) scale.setAttribute("transform", "translate(" + (x0 + 24).toFixed(1) + " 372)");
-    }
-    fit();
-    var ft;
-    addEventListener("resize", function () { clearTimeout(ft); ft = setTimeout(fit, 120); });
 
     var visible = false;
     // coche que recorre la ruta
@@ -729,38 +713,6 @@
     }
   }
 
-  /* ================= Leyenda del emblema: cada línea enciende su pieza del logo ================= */
-  function initLegend() {
-    var em = $("[data-assemble]"), btns = $$("[data-part]");
-    if (!em || !btns.length) return;
-    var pinned = null, touched = false;
-    function show(part) {
-      if (part) em.setAttribute("data-focus", part); else em.removeAttribute("data-focus");
-      btns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-part") === part ? "true" : "false"); });
-    }
-    btns.forEach(function (b) {
-      var part = b.getAttribute("data-part");
-      b.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { touched = true; show(part); } });
-      b.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(pinned); });
-      b.addEventListener("focus", function () { touched = true; show(part); });
-      b.addEventListener("blur", function () { show(pinned); });
-      b.addEventListener("click", function () { touched = true; pinned = pinned === part ? null : part; show(pinned); });
-    });
-    // una sola pasada de presentación cuando el emblema ya está montado: sol, carretera, laguna
-    if (reduced || !("IntersectionObserver" in window)) return;
-    var io = new IntersectionObserver(function (en) {
-      if (!en[0].isIntersecting) return;
-      io.disconnect();
-      var seq = ["sun", "road", "lagoon", null], i = 0;
-      setTimeout(function step() {
-        if (touched) return;
-        show(seq[i]);
-        if (++i < seq.length) setTimeout(step, 1100);
-      }, 1400);
-    }, { threshold: 0.75 });
-    io.observe(em.querySelector("svg"));
-  }
-
   /* ================= 02 · Formaciones ================= */
   function setFormation(v) {
     $$("[data-formation-select]").forEach(function (s) { s.value = v; });
@@ -801,7 +753,7 @@
   function initProgramme() {
     var box = $("[data-prog]");
     if (!box) return;
-    var chaps = $$("[data-chap]", box), icons = $$("[data-prog-icon]", box), photos = $$("[data-prog-photo]", box);
+    var chaps = $$("[data-chap]", box), icons = $$("[data-prog-icon]", box);
     var num = $("[data-prog-num]", box), timer = $("[data-prog-timer]", box);
     var btns = chaps.map(function (c) { return $(".chap__btn", c); });
     var STEP = 6000, cur = 0, auto = true, inView = false, hovering = false, tm = 0;
@@ -818,7 +770,6 @@
       chaps.forEach(function (c, j) { c.classList.toggle("is-active", j === cur); });
       btns.forEach(function (b, j) { if (b) b.setAttribute("aria-expanded", j === cur ? "true" : "false"); });
       icons.forEach(function (ic, j) { ic.classList.toggle("is-on", j === cur); });
-      photos.forEach(function (ph, j) { ph.classList.toggle("is-on", j === cur); });
       if (num) num.textContent = pad2(cur + 1);
       if (byUser) auto = false;
       schedule();
@@ -1333,7 +1284,6 @@
     safe(initReveals, "initReveals");
     safe(initWords, "initWords");
     safe(initZoom, "initZoom");
-    safe(initLegend, "initLegend");
     safe(initRibbon, "initRibbon");
     safe(initPhotoParallax, "initPhotoParallax");
     safe(initOdometers, "initOdometers");
