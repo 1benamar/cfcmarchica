@@ -666,25 +666,45 @@ html:not(.js-ok) .hdr { position: absolute; }
 .route .h2 em { color: var(--sun); }
 .route__body { position: relative; padding-block: 1rem 2rem; }
 .route__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-/* carretera: sombra, bordes blancos, asfalto con grano, línea central discontinua; el tramo recorrido se ilumina */
+/* carretera: sombra, arcén oscuro, asfalto con grano, líneas blancas laterales metidas hacia dentro,
+   ligero abombado en el centro y línea central discontinua; el tramo recorrido se ilumina */
 .route__svg { --rw: 30px; }
-.route__shadow { fill: none; stroke: rgba(0, 0, 0, .55); stroke-width: calc(var(--rw) + 18px); stroke-linejoin: round; filter: url(#rt-soft); transform: translateY(7px); }
-.route__edge { fill: none; stroke: rgba(243, 238, 228, .58); stroke-width: calc(var(--rw) + 3px); stroke-linejoin: round; }
-.route__asphalt { fill: none; stroke: url(#rt-grain); stroke-width: calc(var(--rw) - 2px); stroke-linejoin: round; }
-.route__line { fill: none; stroke: rgba(243, 238, 228, .62); stroke-width: 2; stroke-dasharray: 18 16; }
-.route__glow { fill: none; stroke: rgba(231, 150, 63, .2); stroke-width: calc(var(--rw) - 8px); stroke-linecap: round; }
-.route__done { fill: none; stroke: var(--sun); stroke-width: 3.5; stroke-linecap: round; }
+/* la carretera aparece y se pierde en la oscuridad, sin principio ni final bruscos */
+.route__svg {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%);
+}
+.route__svg.is-h {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+}
+.route__road path { fill: none; stroke-linejoin: round; }
+.route__shadow { stroke: rgba(0, 0, 0, .6); stroke-width: calc(var(--rw) + 20px); filter: url(#rt-soft); transform: translateY(8px); }
+.route__shoulder { stroke: #18272b; stroke-width: calc(var(--rw) + 6px); }
+.route__asphalt { stroke: url(#rt-grain); stroke-width: var(--rw); }
+.route__edges { stroke: rgba(243, 238, 228, .7); stroke-width: calc(var(--rw) - 6px); }
+.route__asphalt--top { stroke-width: calc(var(--rw) - 9.5px); }
+.route__crown { stroke: rgba(255, 255, 255, .035); stroke-width: calc(var(--rw) * .42); }
+.route__line { stroke: rgba(243, 238, 228, .66); stroke-width: 2; stroke-dasharray: 18 16; }
+.route__eyes circle { fill: #5a4a33; transition: fill .35s ease, filter .35s ease; }
+.route__eyes circle.on { fill: #FFC066; filter: drop-shadow(0 0 2.5px rgba(255, 176, 80, .95)); }
+.route__glow { stroke: rgba(231, 150, 63, .16); stroke-width: calc(var(--rw) - 12px); stroke-linecap: round; }
+.route__done { stroke: var(--sun); stroke-width: 3.5; stroke-linecap: round; }
+.route__trail { stroke: rgba(255, 214, 150, .55); stroke-width: 9; stroke-linecap: round; opacity: 0; }
 /* coche visto desde arriba: faros que alumbran la carretera y pilotos que se encienden al aparcar */
-.route__beam { fill: url(#rt-beam); opacity: .75; }
-.route__car-shadow { fill: rgba(0, 0, 0, .65); filter: url(#rt-car-shadow); }
-.route__car-body { fill: url(#rt-body); stroke: rgba(70, 40, 10, .35); stroke-width: .6; }
-.route__car-roof { fill: #F0A24E; stroke: rgba(70, 40, 10, .18); stroke-width: .5; }
-.route__car-glass { fill: #10202A; }
-.route__car-mirror { fill: #C77A2A; }
+.route__beam { fill: url(#rt-beam); opacity: .8; }
+.route__car-shadow { fill: rgba(0, 0, 0, .7); filter: url(#rt-car-shadow); }
+.route__car-wheel { fill: #0b1316; }
+.route__car-body { fill: url(#rt-body); stroke: rgba(70, 40, 10, .4); stroke-width: .6; }
+.route__car-hood { fill: none; stroke: rgba(120, 66, 18, .45); stroke-width: .7; stroke-linecap: round; }
+.route__car-roof { fill: #F2A651; stroke: rgba(70, 40, 10, .2); stroke-width: .5; }
+.route__car-shine { fill: none; stroke: rgba(255, 240, 215, .7); stroke-width: 1.1; stroke-linecap: round; }
+.route__car-glass { fill: url(#rt-glass); }
+.route__car-mirror { fill: #B96F25; }
 .route__car-light { fill: #FFF6DD; }
-.route__car-tail { fill: #9E3127; transition: fill .3s ease; }
+.route__car-tail { fill: #8E2B22; transition: fill .3s ease; }
 .route__car.is-parked .route__car-tail { fill: #FF4B3A; }
-.route__car.is-parked .route__beam { opacity: .4; }
+.route__car.is-parked .route__beam { opacity: .35; }
 .route__steps { position: relative; display: grid; gap: clamp(4rem, 12vh, 8rem); padding-inline-start: 3.6rem; }
 .step { position: relative; }
 .step__dot {
@@ -1771,4 +1791,4 @@ html:lang(ar) { --serif: var(--arabic-serif); --sans: var(--arabic-serif); }
 html:lang(ar) body { line-height: 1.85; }
 html:lang(ar) em, html:lang(ar) i:not([aria-hidden]) { font-style: normal; font-weight: inherit; }
 html:lang(ar) body * { letter-spacing: 0 !important; text-transform: none !important; }
-@media (prefers-reduced-motion: reduce) { .route__glow { display: none; } }
+@media (prefers-reduced-motion: reduce) { .route__trail { display: none; } }

@@ -797,11 +797,14 @@
   function initRoute() {
     var body = $("[data-route-body]"), svg = $("[data-route-svg]");
     if (!body || !svg) return;
+    var NS = "http://www.w3.org/2000/svg";
     var asphalt = $("[data-route-path]"), line = $("[data-route-line]"), done = $("[data-route-done]"), car = $("[data-route-car]");
-    var glow = $("[data-route-glow]"), segs = $$("[data-route-seg]", svg);
+    var glow = $("[data-route-glow]"), trail = $("[data-route-trail]"), eyesBox = $("[data-route-eyes]"), segs = $$("[data-route-seg]", svg);
     var steps = $$("[data-step]", body);
     var dots = steps.map(function (s) { return $(".step__dot", s); });
-    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "";
+    var len = 0, stepAt = [], cur = -1, built = false, horiz = false, light = null, lightState = "";
+    var eyes = [], eyeAt = [], lit = 0, start = 0, stop = 0;
+    var TRAIL = 70;
     var mqH = matchMedia("(min-width: 960px)");   // en escritorio los pasos van en fila y la carretera en horizontal
 
     // longitud del trazado en la que se alcanza una coordenada (x en horizontal, y en vertical)
@@ -814,10 +817,30 @@
       }
       return lo;
     }
+    // catadióptricos: puntos ámbar en los dos bordes, cada 36 px, que se encienden al paso del coche
+    function placeEyes() {
+      while (eyesBox.firstChild) eyesBox.removeChild(eyesBox.firstChild);
+      eyes = []; eyeAt = []; lit = 0;
+      var rw = parseFloat(getComputedStyle(svg).getPropertyValue("--rw")) || 30;
+      var off = rw / 2 - 4.2;
+      for (var L = 22; L < len - 6; L += 44) {
+        var p = done.getPointAtLength(L), q = done.getPointAtLength(Math.min(len, L + 1));
+        var ang = Math.atan2(q.y - p.y, q.x - p.x), nx = -Math.sin(ang), ny = Math.cos(ang);
+        [-1, 1].forEach(function (s) {
+          var c = doc.createElementNS(NS, "circle");
+          c.setAttribute("cx", (p.x + nx * off * s).toFixed(1));
+          c.setAttribute("cy", (p.y + ny * off * s).toFixed(1));
+          c.setAttribute("r", "1.5");
+          eyesBox.appendChild(c);
+          eyes.push(c); eyeAt.push(L);
+        });
+      }
+    }
     function build() {
       var br = body.getBoundingClientRect();
       if (!br.width || !br.height) return;
       horiz = mqH.matches;
+      svg.classList.toggle("is-h", horiz);
       svg.setAttribute("viewBox", "0 0 " + br.width.toFixed(1) + " " + br.height.toFixed(1));
       var pts = dots.map(function (d) {
         var r = d.getBoundingClientRect();
@@ -827,7 +850,6 @@
       var all = horiz
         ? [{ x: rtlH ? br.width : 0, y: first.y }].concat(pts, [{ x: rtlH ? 0 : br.width, y: last.y }])
         : [{ x: first.x, y: 0 }].concat(pts, [{ x: last.x, y: br.height }]);
-      var wide = innerWidth >= 960;
       var d = "M" + all[0].x.toFixed(1) + " " + all[0].y.toFixed(1);
       for (var i = 1; i < all.length; i++) {
         var a = all[i - 1], b = all[i];
@@ -836,12 +858,13 @@
           d += " C" + (a.x + mx).toFixed(1) + " " + a.y.toFixed(1) + " " + (b.x - mx).toFixed(1) + " " + b.y.toFixed(1) + " " + b.x.toFixed(1) + " " + b.y.toFixed(1);
         } else {
           var my = (b.y - a.y) * 0.5;
-          // en móvil la línea es recta: se le da una ligera curva en S
-          var wig = wide ? 0 : (i % 2 ? 22 : -22);
+          // en vertical, curvas suaves entre kilómetros; el primer y el último tramo van rectos
+          var inner = i > 1 && i < all.length - 1;
+          var wig = inner ? Math.min(18, Math.abs(b.y - a.y) * 0.08) * (i % 2 ? 1 : -1) : 0;
           d += " C" + (a.x + wig).toFixed(1) + " " + (a.y + my).toFixed(1) + " " + (b.x - wig).toFixed(1) + " " + (b.y - my).toFixed(1) + " " + b.x.toFixed(1) + " " + b.y.toFixed(1);
         }
       }
-      [asphalt, line, done, glow].concat(segs).forEach(function (p) { if (p) p.setAttribute("d", d); });
+      [asphalt, line, done, glow, trail].concat(segs).forEach(function (p) { if (p) p.setAttribute("d", d); });
       // semáforo al final de la carretera: se pone en verde cuando llega el coche
       var end = all[all.length - 1];
       if (!light) {
@@ -851,13 +874,17 @@
         light.innerHTML = '<i class="tl-r"></i><i class="tl-a"></i><i class="tl-g"></i>';
         body.appendChild(light);
       }
-      light.style.left = (horiz ? end.x + (rtlH ? 26 : -26) : end.x).toFixed(1) + "px";
+      light.style.left = (horiz ? end.x + (rtlH ? 26 : -26) : end.x + 38).toFixed(1) + "px";
       // en fila va debajo del final de la carretera, en el margen, para no tapar el título
       light.style.top = (horiz ? end.y + 112 : end.y - 8).toFixed(1) + "px";
       len = done.getTotalLength();
-      done.style.strokeDasharray = len + " " + len;
-      if (glow) glow.style.strokeDasharray = len + " " + len;
+      [done, glow].forEach(function (p) { if (p) p.style.strokeDasharray = len + " " + len; });
       stepAt = pts.map(function (p) { return lengthAt(horiz ? p.x : p.y); });
+      if (eyesBox) placeEyes();
+      start = Math.max(0, (stepAt[0] || 0) - 22);
+      // el coche aparca antes del borde, donde la carretera se funde, para que se vea junto al semáforo
+      stop = horiz ? lengthAt(rtlH ? 76 : br.width - 76) : Math.max(start, len - 40);
+      if (cur < 0) cur = start;   // el coche espera justo antes del kilómetro 0
       built = true;
       kick();
     }
@@ -880,22 +907,34 @@
         var targetY = innerHeight * 0.62 - br.top;
         target = targetY <= 0 ? 0 : (targetY >= br.height ? len : lengthAt(targetY));
       }
-      cur = reduced ? target : lerp(cur, target, 0.12);
-      done.style.strokeDashoffset = (len - cur).toFixed(1);
-      if (glow) glow.style.strokeDashoffset = (len - cur).toFixed(1);
+      target = clamp(target, start, stop);
+      cur = reduced ? target : lerp(cur, target, 0.1);
+      var off = (len - cur).toFixed(1);
+      done.style.strokeDashoffset = off;
+      if (glow) glow.style.strokeDashoffset = off;
+      // estela de luz detrás del coche mientras avanza
+      var speed = Math.abs(target - cur);
+      if (trail) {
+        var tl = Math.min(TRAIL, cur, 8 + speed * 1.6);
+        trail.style.strokeDasharray = "0 " + Math.max(0, cur - tl).toFixed(1) + " " + tl.toFixed(1) + " " + len.toFixed(1);
+        trail.style.opacity = clamp(speed / 30, 0, 1).toFixed(2);
+      }
       var p = done.getPointAtLength(cur), q = done.getPointAtLength(Math.min(len, cur + 2));
       var ang = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
-      if (cur >= len - 2) ang = horiz ? (root.dir === "rtl" ? 180 : 0) : 90;
-      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")" + (horiz ? " scale(1.15)" : " scale(.86)"));
-      car.classList.toggle("is-moving", Math.abs(target - cur) > 1.5);
-      car.classList.toggle("is-parked", cur >= len - 2);
+      if (cur >= stop - 2) ang = horiz ? (root.dir === "rtl" ? 180 : 0) : 90;
+      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")" + (horiz ? " scale(1.15)" : " scale(.9)"));
+      car.classList.toggle("is-moving", speed > 1.5);
+      car.classList.toggle("is-parked", cur >= stop - 2);
+      // catadióptricos: solo se tocan los que cambian
+      while (lit < eyes.length && eyeAt[lit] <= cur) eyes[lit++].classList.add("on");
+      while (lit > 0 && eyeAt[lit - 1] > cur) eyes[--lit].classList.remove("on");
       steps.forEach(function (s, i) { s.classList.toggle("is-reached", cur >= stepAt[i] - 4); });
       if (light) {
-        var ratio = len ? cur / len : 0;
+        var ratio = stop ? cur / stop : 0;
         var stt = ratio > 0.96 ? "is-g" : ratio > 0.6 ? "is-a" : "is-r";
         if (stt !== lightState) { light.classList.remove("is-r", "is-a", "is-g"); light.classList.add(stt); lightState = stt; }
       }
-      return Math.abs(target - cur) > 0.4;
+      return speed > 0.4;
     });
   }
 

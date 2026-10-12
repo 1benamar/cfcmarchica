@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <link rel="preload" as="image" href="assets/video/clip-bus.webp" media="(min-width: 760px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/video/clip-volant.webp" media="(max-width: 759px)" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20261012-3">
+<link rel="stylesheet" href="styles.css?v=20261012-5">
 <script>document.documentElement.classList.add("js");try{var l=localStorage.getItem("cfc-lang");if(/^(en|es|de|ar)$/.test(l)){document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";}}catch(e){}</script>
 <script type="application/ld+json">
 {
@@ -584,28 +584,42 @@
       <svg class="route__svg" data-route-svg aria-hidden="true">
         <defs>
           <filter id="rt-soft" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
-          <filter id="rt-glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
-          <filter id="rt-car-shadow" x="-50%" y="-80%" width="200%" height="260%"><feGaussianBlur stdDeviation="2.2"/></filter>
-          <pattern id="rt-grain" width="9" height="9" patternUnits="userSpaceOnUse">
-            <rect width="9" height="9" fill="#25383e"/>
-            <circle cx="1.6" cy="2.2" r=".7" fill="rgba(255,255,255,.07)"/><circle cx="6.4" cy="1.4" r=".5" fill="rgba(0,0,0,.28)"/>
-            <circle cx="4.2" cy="6.1" r=".6" fill="rgba(255,255,255,.05)"/><circle cx="7.8" cy="7.6" r=".7" fill="rgba(0,0,0,.22)"/><circle cx="2.1" cy="8" r=".4" fill="rgba(0,0,0,.3)"/>
+          <filter id="rt-car-shadow" x="-50%" y="-80%" width="200%" height="260%"><feGaussianBlur stdDeviation="2.4"/></filter>
+          <pattern id="rt-grain" width="11" height="11" patternUnits="userSpaceOnUse">
+            <rect width="11" height="11" fill="#27393f"/>
+            <circle cx="1.6" cy="2.2" r=".7" fill="rgba(255,255,255,.07)"/><circle cx="6.4" cy="1.4" r=".55" fill="rgba(0,0,0,.3)"/>
+            <circle cx="4.2" cy="6.1" r=".6" fill="rgba(255,255,255,.05)"/><circle cx="9.3" cy="8.6" r=".7" fill="rgba(0,0,0,.24)"/>
+            <circle cx="2.1" cy="9.4" r=".45" fill="rgba(0,0,0,.32)"/><circle cx="8.6" cy="4" r=".4" fill="rgba(255,255,255,.06)"/>
           </pattern>
-          <linearGradient id="rt-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF1CC" stop-opacity=".55"/><stop offset="1" stop-color="#FFF1CC" stop-opacity="0"/></linearGradient>
-          <linearGradient id="rt-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2A957"/><stop offset=".5" stop-color="#E7963F"/><stop offset="1" stop-color="#C77A2A"/></linearGradient>
+          <linearGradient id="rt-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF1CC" stop-opacity=".6"/><stop offset=".55" stop-color="#FFF1CC" stop-opacity=".18"/><stop offset="1" stop-color="#FFF1CC" stop-opacity="0"/></linearGradient>
+          <linearGradient id="rt-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5B062"/><stop offset=".45" stop-color="#E7963F"/><stop offset="1" stop-color="#B96F25"/></linearGradient>
+          <linearGradient id="rt-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B4652"/><stop offset="1" stop-color="#0D1A21"/></linearGradient>
         </defs>
-        <path class="route__shadow" data-route-seg/>
-        <path class="route__edge" data-route-seg/>
-        <path class="route__asphalt" data-route-path/>
-        <path class="route__line" data-route-line/>
-        <path class="route__glow" data-route-glow/>
-        <path class="route__done" data-route-done/>
+        <g class="route__road">
+          <path class="route__shadow" data-route-seg/>
+          <path class="route__shoulder" data-route-seg/>
+          <path class="route__asphalt" data-route-path/>
+          <path class="route__edges" data-route-seg/>
+          <path class="route__asphalt route__asphalt--top" data-route-seg/>
+          <path class="route__crown" data-route-seg/>
+          <path class="route__line" data-route-line/>
+          <g class="route__eyes" data-route-eyes></g>
+          <path class="route__glow" data-route-glow/>
+          <path class="route__done" data-route-done/>
+          <path class="route__trail" data-route-trail/>
+        </g>
         <g class="route__car" data-route-car>
-          <path class="route__beam" d="M13 -6.5 L74 -24 Q80 0 74 24 L13 6.5 Z"/>
-          <rect class="route__car-shadow" x="-15" y="-7.5" width="31" height="18" rx="6"/>
+          <path class="route__beam" d="M14 -6.5 L86 -26 Q93 0 86 26 L14 6.5 Z"/>
+          <rect class="route__car-shadow" x="-15" y="-7.4" width="31" height="18.4" rx="6"/>
+          <rect class="route__car-wheel" x="-11.5" y="-9.6" width="6.4" height="3" rx="1.2"/>
+          <rect class="route__car-wheel" x="-11.5" y="6.6" width="6.4" height="3" rx="1.2"/>
+          <rect class="route__car-wheel" x="6" y="-9.6" width="6.4" height="3" rx="1.2"/>
+          <rect class="route__car-wheel" x="6" y="6.6" width="6.4" height="3" rx="1.2"/>
           <rect class="route__car-body" x="-15.5" y="-8.5" width="31" height="17" rx="5.5"/>
+          <path class="route__car-hood" d="M9.5 -5.2c2.2.4 3.8 1 4.6 1.8M9.5 5.2c2.2-.4 3.8-1 4.6-1.8"/>
           <path class="route__car-glass" d="M3.5 -6.6h4.2a2.6 2.6 0 0 1 2.4 1.7c.5 1.5.8 3.1.8 4.9s-.3 3.4-.8 4.9a2.6 2.6 0 0 1-2.4 1.7H3.5z"/>
           <rect class="route__car-roof" x="-6.5" y="-6.4" width="10" height="12.8" rx="2.4"/>
+          <path class="route__car-shine" d="M-5 -4.8h6.4"/>
           <path class="route__car-glass" d="M-7.2 -6.2h-2.6a2 2 0 0 0-1.9 1.4c-.4 1.4-.6 3-.6 4.8s.2 3.4.6 4.8a2 2 0 0 0 1.9 1.4h2.6z"/>
           <path class="route__car-mirror" d="M2.5 -8.5l2-2.3h2.2l-1 2.3zM2.5 8.5l2 2.3h2.2l-1-2.3z"/>
           <rect class="route__car-light" x="13.6" y="-6.6" width="2" height="3.6" rx="1"/>
@@ -1001,6 +1015,6 @@
 <script defer src="lib/i18n-es.js?v=20261008-4"></script>
 <script defer src="lib/i18n-de.js?v=20261008-4"></script>
 <script defer src="lib/i18n-ar.js?v=20261011-1"></script>
-<script defer src="main.js?v=20261012-3"></script>
+<script defer src="main.js?v=20261012-5"></script>
 </body>
 </html>
