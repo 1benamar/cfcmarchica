@@ -666,12 +666,25 @@ html:not(.js-ok) .hdr { position: absolute; }
 .route .h2 em { color: var(--sun); }
 .route__body { position: relative; padding-block: 1rem 2rem; }
 .route__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.route__asphalt { fill: none; stroke: #22363C; stroke-width: 30; stroke-linecap: round; stroke-linejoin: round; }
-.route__line { fill: none; stroke: rgba(243, 238, 228, .38); stroke-width: 1.6; stroke-dasharray: 12 14; }
-.route__done { fill: none; stroke: var(--sun); stroke-width: 3; stroke-linecap: round; }
-.route__car rect { fill: var(--sun); }
-.route__car .route__car-glass { fill: var(--ink); }
-.route__car-light { fill: #FFF3D6; filter: drop-shadow(0 0 4px #FFE3A8) drop-shadow(0 0 8px rgba(255, 220, 150, .8)); }
+/* carretera: sombra, bordes blancos, asfalto con grano, línea central discontinua; el tramo recorrido se ilumina */
+.route__svg { --rw: 30px; }
+.route__shadow { fill: none; stroke: rgba(0, 0, 0, .55); stroke-width: calc(var(--rw) + 18px); stroke-linejoin: round; filter: url(#rt-soft); transform: translateY(7px); }
+.route__edge { fill: none; stroke: rgba(243, 238, 228, .58); stroke-width: calc(var(--rw) + 3px); stroke-linejoin: round; }
+.route__asphalt { fill: none; stroke: url(#rt-grain); stroke-width: calc(var(--rw) - 2px); stroke-linejoin: round; }
+.route__line { fill: none; stroke: rgba(243, 238, 228, .62); stroke-width: 2; stroke-dasharray: 18 16; }
+.route__glow { fill: none; stroke: rgba(231, 150, 63, .2); stroke-width: calc(var(--rw) - 8px); stroke-linecap: round; }
+.route__done { fill: none; stroke: var(--sun); stroke-width: 3.5; stroke-linecap: round; }
+/* coche visto desde arriba: faros que alumbran la carretera y pilotos que se encienden al aparcar */
+.route__beam { fill: url(#rt-beam); opacity: .75; }
+.route__car-shadow { fill: rgba(0, 0, 0, .65); filter: url(#rt-car-shadow); }
+.route__car-body { fill: url(#rt-body); stroke: rgba(70, 40, 10, .35); stroke-width: .6; }
+.route__car-roof { fill: #F0A24E; stroke: rgba(70, 40, 10, .18); stroke-width: .5; }
+.route__car-glass { fill: #10202A; }
+.route__car-mirror { fill: #C77A2A; }
+.route__car-light { fill: #FFF6DD; }
+.route__car-tail { fill: #9E3127; transition: fill .3s ease; }
+.route__car.is-parked .route__car-tail { fill: #FF4B3A; }
+.route__car.is-parked .route__beam { opacity: .4; }
 .route__steps { position: relative; display: grid; gap: clamp(4rem, 12vh, 8rem); padding-inline-start: 3.6rem; }
 .step { position: relative; }
 .step__dot {
@@ -1023,7 +1036,7 @@ html:not(.js-ok) .hdr { position: absolute; }
   .step:nth-child(even) { margin-inline-start: auto; }
   .step__dot { inset-inline-start: auto; inset-inline-end: -4.5rem; margin: 0; }
   .step:nth-child(even) .step__dot { inset-inline-end: auto; inset-inline-start: -4.5rem; }
-  .route__asphalt { stroke-width: 44; }
+  .route__svg { --rw: 40px; }
   .quiz__grid { grid-template-columns: .85fr 1.15fr; gap: 5rem; }
   .contact__grid { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
   .mbar { display: none; }
@@ -1191,7 +1204,7 @@ html:not(:lang(ar)) .lead { line-height: 1.7; }
   .step, .step:nth-child(even) { width: auto; margin: 0; }
   .step:nth-child(even) { margin-top: 2.4rem; }
   .step__dot, .step:nth-child(even) .step__dot { top: -3.7rem; inset-inline-start: 1.5rem; inset-inline-end: auto; margin: 0; }
-  .route__asphalt { stroke-width: 34; }
+  .route__svg { --rw: 36px; }
   .step__card { padding: 1.5rem 1.4rem; }
   .step h3 { font-size: 1.45rem; }
   .step p { font-size: .95rem; line-height: 1.6; }
@@ -1320,39 +1333,45 @@ html:not(:lang(ar)) .lead { line-height: 1.7; }
 
 .stat__n { height: 1em; }
 
-/* ---------- 30. Tarjeta profesional: todo se mide en cqw, así escala a cualquier ancho ---------- */
+/* ---------- 30. Tarjeta profesional: rejilla de tres filas (cabecera, foto y datos, chip y emblema);
+   todo se mide en cqw para que escale sin que nada se monte encima de nada ---------- */
 .step .pcard {
   container-type: inline-size;
-  width: min(100%, 300px); aspect-ratio: 1.586; height: auto; padding: 0;
-  border-radius: 6.5cqw; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto 1fr auto;
+  width: 100%; max-width: 320px; aspect-ratio: 1.586; height: auto; padding: 0;
+  border-radius: 12px; overflow: hidden;
   background:
     radial-gradient(120% 90% at 100% 0%, rgba(231, 150, 63, .28), transparent 55%),
     radial-gradient(90% 80% at 0% 100%, rgba(52, 143, 130, .3), transparent 60%),
     linear-gradient(135deg, #FBF8F1 0%, #EAF3F0 55%, #F6E6CF 100%);
   border: 1px solid rgba(255, 255, 255, .6);
 }
-.step .pcard > * { position: absolute; }
 .step .pcard .pcard__top {
-  inset: 0 0 auto; display: flex; justify-content: space-between; align-items: center;
-  padding: 4.5cqw 6cqw 3cqw; border-bottom: 1px solid rgba(31, 110, 99, .22);
-  font-size: 3.6cqw; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; color: var(--lagoon-2);
+  grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 3cqw;
+  padding: 3.6cqw 5.5cqw 3cqw; border-bottom: 1px solid rgba(31, 110, 99, .22);
+  white-space: nowrap; font-size: 3.5cqw; line-height: 1; letter-spacing: .1em; font-weight: 700; text-transform: uppercase; color: var(--lagoon-2);
 }
-.step .pcard .pcard__top span[lang] { font-size: 4.6cqw; letter-spacing: 0; text-transform: none; line-height: 1; }
-.step .pcard .pcard__body { inset: 19cqw 6cqw auto; display: flex; gap: 5cqw; align-items: flex-start; }
-.step .pcard .pcard__photo { position: relative; flex: none; width: 19cqw; height: 24cqw; border-radius: 2.4cqw; background: linear-gradient(180deg, #C9D6D3, #A3B8B3); overflow: hidden; }
+.step .pcard .pcard__top span[lang] { font-size: 4.4cqw; letter-spacing: 0; text-transform: none; }
+.step .pcard .pcard__photo {
+  position: relative; align-self: start; width: 18cqw; height: 22cqw; margin: 4cqw 0 0 5.5cqw;
+  border-radius: 2.2cqw; background: linear-gradient(180deg, #C9D6D3, #A3B8B3); overflow: hidden;
+}
 .step .pcard .pcard__photo::before { content: ""; position: absolute; left: 50%; top: 18%; width: 40%; height: 32%; border-radius: 50%; background: #7E9692; transform: translateX(-50%); }
 .step .pcard .pcard__photo::after { content: ""; position: absolute; left: 50%; bottom: -14%; width: 78%; height: 46%; border-radius: 50%; background: #7E9692; transform: translateX(-50%); }
-.step .pcard .pcard__info { flex: 1; display: grid; gap: 2.6cqw; min-width: 0; }
-.step .pcard .pcard__title { margin: 0; font-family: var(--serif); font-size: 5.4cqw; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; color: var(--ink); }
-.step .pcard .pcard__lines { display: grid; gap: 2cqw; }
-.step .pcard .pcard__lines i { height: 1.9cqw; border-radius: 1cqw; background: rgba(14, 26, 28, .16); }
+.step .pcard .pcard__info { align-self: start; display: grid; gap: 3cqw; min-width: 0; margin: 3.6cqw 5.5cqw 0 4.5cqw; }
+.step .pcard .pcard__title { margin: 0; font-family: var(--serif); font-size: 6cqw; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; color: var(--ink); }
+.step .pcard .pcard__lines { display: grid; gap: 1.8cqw; }
+.step .pcard .pcard__lines i { height: 1.8cqw; border-radius: 1cqw; background: rgba(14, 26, 28, .16); }
 .step .pcard .pcard__lines i:nth-child(2) { width: 62%; }
 .step .pcard .pcard__chip {
-  width: 13cqw; height: 9.5cqw; border-radius: 2cqw;
+  align-self: end; width: 13cqw; height: 9.5cqw; margin: 0 0 5cqw 5.5cqw; border-radius: 2cqw;
   background: linear-gradient(135deg, #F3D28E, #C99A45 60%, #E9C27A);
   box-shadow: inset 0 0 0 .6cqw rgba(120, 80, 20, .25);
 }
-.step .pcard .pcard__emblem { inset: auto 5cqw 5cqw auto; width: 15cqw; height: 15cqw; border-radius: 50%; background: #fff; padding: .8cqw; box-shadow: 0 1cqw 3cqw rgba(14, 26, 28, .15); }
+.step .pcard .pcard__emblem {
+  justify-self: end; align-self: end; width: 13cqw; height: 13cqw; margin: 0 4.5cqw 4cqw 0;
+  border-radius: 50%; background: #fff; padding: .8cqw; box-shadow: 0 1cqw 3cqw rgba(14, 26, 28, .15);
+}
 /* reflejo holográfico que barre la tarjeta al llegar y sigue al ratón */
 .step .pcard::before {
   content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: soft-light;
@@ -1501,19 +1520,6 @@ html:not(:lang(ar)) .hdr__word { font-size: inherit; letter-spacing: 0; }
 
 .ctile--addr .ctile__label { margin-top: auto; }
 .ctile--addr .ctile__cta { margin-top: .5rem; }
-
-/* tarjeta: rectangular (esquinas fijas) y texto legible aunque sea estrecha */
-.step .pcard { width: 100%; max-width: 320px; border-radius: 12px; }
-.step .pcard .pcard__top { font-size: 4.3cqw; padding: 4cqw 5.5cqw 3cqw; }
-.step .pcard .pcard__top span[lang] { font-size: 5.4cqw; }
-.step .pcard .pcard__body { inset: 17cqw 5.5cqw auto; gap: 4.5cqw; }
-.step .pcard .pcard__photo { width: 18cqw; height: 23cqw; }
-.step .pcard .pcard__title { font-size: 7.2cqw; line-height: 1.12; }
-.step .pcard .pcard__info { gap: 2.4cqw; }
-.step .pcard .pcard__emblem { width: 14cqw; height: 14cqw; inset: auto 4.5cqw 4.5cqw auto; }
-@container (max-width: 240px) {
-  .step .pcard .pcard__lines { display: none; }
-}
 
 /* ---------- 35. Señales de tráfico decorativas junto a los títulos ---------- */
 .formations .head, .programme .head { position: relative; }
@@ -1722,8 +1728,6 @@ html:not(:lang(ar)) .hdr__word { font-size: inherit; letter-spacing: 0; }
   .gps__actions .btn { flex: 1; }
 }
 
-/* ---------- 42. Flechas de dirección sobre la carretera del recorrido ---------- */
-.route__chev { fill: rgba(243, 238, 228, .55); font: 700 16px var(--sans); dominant-baseline: central; pointer-events: none; }
 
 /* ---------- 43. Brújula pequeña en el hero ---------- */
 .mini-compass { width: 1.35em; height: 1.35em; flex: none; }
@@ -1738,7 +1742,6 @@ html:not(:lang(ar)) .hdr__word { font-size: inherit; letter-spacing: 0; }
 
 html:not(:lang(ar)) .route .h2 { font-size: clamp(2rem, 4.3vw, 3.6rem); }
 
-.route.has-chev .route__line { display: none; }
 
 /* GPS: brújula sobre la laguna (abajo a la derecha) e información arriba a la izquierda, sin tapar el pin ni la posición */
 .compass { top: auto; bottom: 1rem; }
@@ -1768,3 +1771,4 @@ html:lang(ar) { --serif: var(--arabic-serif); --sans: var(--arabic-serif); }
 html:lang(ar) body { line-height: 1.85; }
 html:lang(ar) em, html:lang(ar) i:not([aria-hidden]) { font-style: normal; font-weight: inherit; }
 html:lang(ar) body * { letter-spacing: 0 !important; text-transform: none !important; }
+@media (prefers-reduced-motion: reduce) { .route__glow { display: none; } }

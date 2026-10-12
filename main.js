@@ -798,9 +798,10 @@
     var body = $("[data-route-body]"), svg = $("[data-route-svg]");
     if (!body || !svg) return;
     var asphalt = $("[data-route-path]"), line = $("[data-route-line]"), done = $("[data-route-done]"), car = $("[data-route-car]");
+    var glow = $("[data-route-glow]"), segs = $$("[data-route-seg]", svg);
     var steps = $$("[data-step]", body);
     var dots = steps.map(function (s) { return $(".step__dot", s); });
-    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "", chev = null, chevPath = null;
+    var len = 0, stepAt = [], cur = 0, built = false, horiz = false, light = null, lightState = "";
     var mqH = matchMedia("(min-width: 960px)");   // en escritorio los pasos van en fila y la carretera en horizontal
 
     // longitud del trazado en la que se alcanza una coordenada (x en horizontal, y en vertical)
@@ -840,30 +841,7 @@
           d += " C" + (a.x + wig).toFixed(1) + " " + (a.y + my).toFixed(1) + " " + (b.x - wig).toFixed(1) + " " + (b.y - my).toFixed(1) + " " + b.x.toFixed(1) + " " + b.y.toFixed(1);
         }
       }
-      [asphalt, line, done].forEach(function (p) { p.setAttribute("d", d); });
-      // flechas de dirección que avanzan por la carretera, como marcas viales
-      if (!chev) {
-        var NS = "http://www.w3.org/2000/svg";
-        asphalt.id = "route-road";
-        chev = doc.createElementNS(NS, "text");
-        chev.setAttribute("class", "route__chev");
-        chevPath = doc.createElementNS(NS, "textPath");
-        chevPath.setAttribute("href", "#route-road");
-        var an = doc.createElementNS(NS, "animate");
-        an.setAttribute("attributeName", "startOffset");
-        an.setAttribute("from", "0");
-        an.setAttribute("to", "48");
-        an.setAttribute("dur", "1.4s");
-        an.setAttribute("repeatCount", "indefinite");
-        chevPath.appendChild(an);
-        chev.appendChild(chevPath);
-        svg.insertBefore(chev, done);
-        $(".route").classList.add("has-chev");
-      }
-      var pathLen = asphalt.getTotalLength ? asphalt.getTotalLength() : 1000;
-      var unit = "›     ";
-      while (chevPath.firstChild && chevPath.firstChild.nodeType === 3) chevPath.removeChild(chevPath.firstChild);
-      chevPath.insertBefore(doc.createTextNode(new Array(Math.ceil(pathLen / 48) + 2).join(unit)), chevPath.firstChild);
+      [asphalt, line, done, glow].concat(segs).forEach(function (p) { if (p) p.setAttribute("d", d); });
       // semáforo al final de la carretera: se pone en verde cuando llega el coche
       var end = all[all.length - 1];
       if (!light) {
@@ -878,6 +856,7 @@
       light.style.top = (horiz ? end.y + 112 : end.y - 8).toFixed(1) + "px";
       len = done.getTotalLength();
       done.style.strokeDasharray = len + " " + len;
+      if (glow) glow.style.strokeDasharray = len + " " + len;
       stepAt = pts.map(function (p) { return lengthAt(horiz ? p.x : p.y); });
       built = true;
       kick();
@@ -903,10 +882,13 @@
       }
       cur = reduced ? target : lerp(cur, target, 0.12);
       done.style.strokeDashoffset = (len - cur).toFixed(1);
+      if (glow) glow.style.strokeDashoffset = (len - cur).toFixed(1);
       var p = done.getPointAtLength(cur), q = done.getPointAtLength(Math.min(len, cur + 2));
       var ang = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
       if (cur >= len - 2) ang = horiz ? (root.dir === "rtl" ? 180 : 0) : 90;
-      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")");
+      car.setAttribute("transform", "translate(" + p.x.toFixed(1) + " " + p.y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")" + (horiz ? " scale(1.15)" : " scale(.86)"));
+      car.classList.toggle("is-moving", Math.abs(target - cur) > 1.5);
+      car.classList.toggle("is-parked", cur >= len - 2);
       steps.forEach(function (s, i) { s.classList.toggle("is-reached", cur >= stepAt[i] - 4); });
       if (light) {
         var ratio = len ? cur / len : 0;
