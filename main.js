@@ -257,14 +257,16 @@
     // los <source media> ya lo hacen; aquí se cambian también las portadas
     if (matchMedia("(max-width: 759px)").matches && vids.length > 3) {
       var p0 = vids[0].getAttribute("poster");
-      vids[0].setAttribute("poster", vids[3].getAttribute("poster"));
-      vids[3].setAttribute("poster", p0);
+      vids[0].setAttribute("poster", vids[3].getAttribute("data-poster"));
+      vids[3].setAttribute("data-poster", p0);
     }
     var CLIP = 8, FADE = 1.3;
     var cur = 0, switching = false, inView = true, looping = false, dots = [];
     vids.forEach(function (v) { v.muted = true; v.defaultMuted = true; v.setAttribute("muted", ""); });
     function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); return p; }
-    function warm(v) { if (v && v.preload === "none") { v.preload = "auto"; v.load(); } }
+    // la portada de cada plano solo se descarga cuando le va a tocar
+    function poster(v) { var p = v && v.getAttribute("data-poster"); if (p) { v.setAttribute("poster", p); v.removeAttribute("data-poster"); } }
+    function warm(v) { poster(v); if (v && v.preload === "none") { v.preload = "auto"; v.load(); } }
     function len(v) { return Math.max(2, Math.min(CLIP, (v.duration || CLIP) - FADE)); }
     function paintDots() {
       dots.forEach(function (d, k) {
@@ -277,6 +279,7 @@
       if (n === cur || switching) return;
       var from = vids[cur], to = vids[n];
       switching = true;
+      poster(to);
       if (to.preload === "none") to.preload = "auto";
       try { to.currentTime = 0; } catch (e) { /* aún sin datos */ }
       var p = play(to);

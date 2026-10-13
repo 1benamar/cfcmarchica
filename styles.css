@@ -1811,3 +1811,6 @@ html:lang(ar) body * { letter-spacing: 0 !important; text-transform: none !impor
 .rsign svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .18)) drop-shadow(0 12px 16px rgba(14, 26, 28, .26)); }
 .rsign--dark svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .4)) drop-shadow(0 12px 18px rgba(0, 0, 0, .55)); }
 .qbox__sign svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .15)) drop-shadow(0 10px 14px rgba(14, 26, 28, .22)); overflow: visible; }
+
+/* la fuente árabe solo se descarga en la versión árabe: estos textos sueltos usan la del sistema */
+html:not([lang="ar"]) :is([data-set-lang="ar"], .pcard [lang="ar"]) { font-family: "Segoe UI", Tahoma, "Geeza Pro", "Noto Sans Arabic", sans-serif; }
