@@ -1545,7 +1545,21 @@ html:not(:lang(ar)) .hdr__word { font-size: inherit; letter-spacing: 0; }
 .formations .head, .programme .head { position: relative; }
 .rsign { position: absolute; top: -1rem; width: clamp(64px, 7vw, 96px); display: none; pointer-events: none; transform-origin: 50% 100%; }
 .rsign svg { position: relative; z-index: 1; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(14, 26, 28, .22)); animation: signSway 5s ease-in-out infinite; transform-origin: 50% 100%; }
-.rsign i { position: absolute; left: 50%; top: 70%; width: 6px; height: clamp(70px, 9vw, 120px); margin-left: -3px; border-radius: 3px; background: linear-gradient(90deg, #8d9497, #c9cfd1 45%, #7a8285); }
+.rsign i {
+  position: absolute; left: 50%; top: 70%; width: 7px; height: clamp(70px, 9vw, 120px); margin-left: -3.5px; border-radius: 3.5px 3.5px 1px 1px;
+  /* tubo galvanizado: sombra de la placa arriba, brillo vertical y se pierde abajo */
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, 0) 40px),
+    linear-gradient(90deg, #6f777a 0, #b9c0c3 30%, #eef1f2 46%, #a7afb2 64%, #5f676a 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, #000 70%, transparent);
+}
+/* abrazadera bajo la placa */
+.rsign::after {
+  content: ""; position: absolute; left: 50%; top: calc(100% + 3px); width: 13px; height: 6px; margin-left: -6.5px; border-radius: 2px;
+  background: linear-gradient(90deg, #5d6568, #c8ced0 45%, #f2f4f5 55%, #6b7376);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+}
 .rsign--l { inset-inline-start: var(--pad); }
 .rsign--r { inset-inline-end: var(--pad); }
 .rsign--r svg { animation-delay: -2.5s; }
@@ -1792,3 +1806,8 @@ html:lang(ar) body { line-height: 1.85; }
 html:lang(ar) em, html:lang(ar) i:not([aria-hidden]) { font-style: normal; font-weight: inherit; }
 html:lang(ar) body * { letter-spacing: 0 !important; text-transform: none !important; }
 @media (prefers-reduced-motion: reduce) { .route__trail { display: none; } }
+
+/* señales: el reflejo se ve más nítido con un contorno muy fino de sombra además de la sombra proyectada */
+.rsign svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .18)) drop-shadow(0 12px 16px rgba(14, 26, 28, .26)); }
+.rsign--dark svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .4)) drop-shadow(0 12px 18px rgba(0, 0, 0, .55)); }
+.qbox__sign svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .15)) drop-shadow(0 10px 14px rgba(14, 26, 28, .22)); overflow: visible; }
